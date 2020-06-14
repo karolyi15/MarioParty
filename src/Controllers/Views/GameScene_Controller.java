@@ -112,10 +112,10 @@ public class GameScene_Controller {
     @FXML
     private void handleExit(){
 
-        Image background=new Image("file:Resources/Imgs/characterselectionRZ.png");
-        Image characters=new Image("file:Resources/Imgs/CharacterMenu_Img.png");
+        Image background=new Image("file:Resources/Imgs/CharacterSelectionBackground_Img.png");
+       // Image characters=new Image("file:Resources/Imgs/CharacterMenu_Img.png");
         drawer.drawImage(background,-27,0);
-        drawer.drawImage(characters,300,200);
+       // drawer.drawImage(characters,300,200);
         this.gameScene_Canvas.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {

@@ -70,8 +70,11 @@ public class Game {
     //Restart Camara
 
     public void startGameLoop(){
-        Image testImage=new Image("file:Resources/Imgs/Map_Img.png");
-        this.sceneController.getDrawer().drawImage(testImage,0,0);
+        Image testImage=new Image("file:Resources/Imgs/GameMap_Img.png");
+        Image character=new Image("file:Resources/Imgs/Mario_Img.png");
+
+        this.sceneController.getDrawer().drawImage(testImage,-350,-1400);
+        this.sceneController.getDrawer().drawImage(character,7,305,24,40,210,195,36,60);
 
 
 
