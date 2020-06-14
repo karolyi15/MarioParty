@@ -88,6 +88,9 @@ public class GameScene_Controller {
         this.mainApp=mainApp;
     }
 
+    public Canvas getGameScene_Canvas(){
+        return this.gameScene_Canvas;
+    }
 
     //********** Draw System ***********//
 
