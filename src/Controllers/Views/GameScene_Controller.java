@@ -14,6 +14,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
+import java.io.File;
+
 public class GameScene_Controller {
 
     //********************************************* Class Fields ***********************************************//
@@ -51,7 +53,12 @@ public class GameScene_Controller {
 
         //Creating drawer
         this.drawer=this.gameScene_Canvas.getGraphicsContext2D();
+
         this.game=new Game(this);
+
+        Media media=new Media(new File("Resources/Sounds/Game_Music.mp3").toURI().toString());
+        this.musicPlayer=new MediaPlayer(media);
+        musicPlayer.setAutoPlay(true);
 
     }
 

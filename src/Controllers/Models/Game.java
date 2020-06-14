@@ -32,7 +32,7 @@ public class Game {
     Image character=new Image("file:Resources/Imgs/Mario_Img.png");
 
     //Sound System
-    private final String GAME_MUSIC_PATH="src/Resources/Sounds/Intro_Music.mp3";
+    private final String GAME_MUSIC_PATH="src/Resources/Sounds/Title_Music.mp3";
 
     //Game
     private int currentScene;
@@ -118,7 +118,14 @@ public class Game {
 
     //Refresh Camara
 
+    public void refreshCamara(){
+
+    }
+
     //Restart Camara
+    public void restartCamara(){
+
+    }
 
     public void initGame(){
 
@@ -129,13 +136,12 @@ public class Game {
     }
 
     public void drawMap(){
-        double tempX=-350+mapSpaces.get(currentScene).getPositionX();
-        double tempY=-1400+mapSpaces.get(currentScene).getPositionY();
-        System.out.println("current x: "+tempX);
-        System.out.println("current y: "+tempY);
+        double tempX=-350+mapSpaces.get(currentScene).getPositionX()-24;
+        double tempY=-1400+mapSpaces.get(currentScene).getPositionY()-34;
+
 
         this.sceneController.getDrawer().drawImage(testImage,-350,-1400);
-        this.sceneController.getDrawer().drawImage(character,7,305,24,40,tempX,tempY,36,60);
+        this.sceneController.getDrawer().drawImage(character,67,309,31,34,tempX,tempY,46.5,51);
         //this.sceneController.getDrawer().drawImage(character,tempX,tempY);
     }
 
