@@ -2,7 +2,9 @@ package Controllers.Views;
 
 import Controllers.Main;
 
-import Controllers.Models.Game;
+import Controllers.Models.GameFactories.BoardGame;
+import Controllers.Models.GameFactories.BoardGameFactory;
+import Controllers.Models.SpriteFactories.SpriteFactory;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
@@ -25,8 +27,10 @@ public class GameScene_Controller {
     private MediaPlayer soundPlayer;
 
     private Main mainApp;
-    private Game game;
+    private BoardGameFactory gameFactory;
+    private SpriteFactory spriteFactory;
     private GraphicsContext drawer;
+    private BoardGame game;
 
     //FXML Components
     @FXML
@@ -54,7 +58,9 @@ public class GameScene_Controller {
         //Creating drawer
         this.drawer=this.gameScene_Canvas.getGraphicsContext2D();
 
-        this.game=new Game(this);
+        this.gameFactory=new BoardGameFactory();
+        this.game=(BoardGame) gameFactory.createGame(this);
+        this.game.start();
 
         Media media=new Media(new File("Resources/Sounds/Game_Music.mp3").toURI().toString());
         this.musicPlayer=new MediaPlayer(media);
@@ -70,22 +76,18 @@ public class GameScene_Controller {
         return this.drawer;
     }
 
-    public MediaPlayer getMusicPlayer(){
-        return this.musicPlayer;
-    }
-    public MediaPlayer getSoundPlayer(){
-        return this.soundPlayer;
-    }
 
-    public void playMusic(Media music){
-        this.musicPlayer.stop();
-        this.musicPlayer=new MediaPlayer(music);
+
+    public void playMusic(String filePath){
+
+        this.musicPlayer=new MediaPlayer(new Media(filePath));
         this.musicPlayer.play();
     }
 
-    public void playSound(Media sound){
+    public void playSound(String filePath){
+
         this.soundPlayer.stop();
-        this.soundPlayer=new MediaPlayer(sound);
+        this.soundPlayer=new MediaPlayer(new Media(filePath));
         this.soundPlayer.play();
     }
 
@@ -122,7 +124,7 @@ public class GameScene_Controller {
     @FXML
     private void handleExit(){
 
-        Image background=new Image("file:Resources/Imgs/CharacterSelectionBackground_Img.png");
+        Image background=new Image("file:Resources/Imgs/Room01_Img.png");
        // Image characters=new Image("file:Resources/Imgs/CharacterMenu_Img.png");
         drawer.drawImage(background,-27,0);
        // drawer.drawImage(characters,300,200);

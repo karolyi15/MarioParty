@@ -1,11 +1,16 @@
 package Controllers.Models;
 
+import java.util.Random;
+
 public class Dice {
 
-    //********************************************* Class Fields ***********************************************//
-    //********************************************* Class Methods **********************************************//
+    private Random random;
 
+    public Dice(){
+        this.random=new Random();
+    }
 
-    //********** Constructors **********//
-    //******* Setters and Getters ******//
+    public int throwDice(){
+        return this.random.nextInt(6);
+    }
 }
