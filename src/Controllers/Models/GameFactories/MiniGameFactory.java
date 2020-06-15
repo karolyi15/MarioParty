@@ -1,6 +1,6 @@
 package Controllers.Models.GameFactories;
 
-import Controllers.Views.GameScene_Controller;
+import Controllers.Views.Scene_Controller;
 
 public class MiniGameFactory implements iGameFactory{
 
@@ -8,7 +8,7 @@ public class MiniGameFactory implements iGameFactory{
 
 
     @Override
-    public iMiniGame createGame(GameScene_Controller sceneController){
+    public iMiniGame createGame(Scene_Controller sceneController){
         return  null;
     }
 }

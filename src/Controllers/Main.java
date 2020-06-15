@@ -1,6 +1,6 @@
 package Controllers;
 
-import Controllers.Views.GameScene_Controller;
+import Controllers.Views.Scene_Controller;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -54,15 +54,12 @@ public class Main extends Application {
 
             //Load FXML File
             FXMLLoader loader=new FXMLLoader();
-            loader.setLocation(Main.class.getResource("Views/GameScene_UI.fxml"));
+            loader.setLocation(Main.class.getResource("Views/Scene_UI.fxml"));
             AnchorPane mainMenu=(AnchorPane) loader.load();
 
             //Set Scene to RootLayout
             rootLayout.setCenter(mainMenu);
 
-            //Load FXML Controller
-            GameScene_Controller controller=loader.getController();
-            controller.setMainApp(this);
 
 
         }catch (IOException e){

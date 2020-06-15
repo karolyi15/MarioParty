@@ -1,9 +1,9 @@
 package Controllers.Models.GameFactories;
 
-import Controllers.Views.GameScene_Controller;
+import Controllers.Views.Scene_Controller;
 
 public interface iGameFactory {
 
-    public iMiniGame createGame(GameScene_Controller sceneController);
+    public iMiniGame createGame(Scene_Controller sceneController);
 
 }

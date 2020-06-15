@@ -1,6 +1,7 @@
 package Controllers.Models.GameFactories;
 
-import Controllers.Views.GameScene_Controller;
+import Controllers.Models.SpriteFactories.SpriteFactory;
+import Controllers.Views.Scene_Controller;
 
 public interface iMiniGame {
 
@@ -24,7 +25,7 @@ public interface iMiniGame {
 
 
     //Game Loop
-    public void initGame(GameScene_Controller sceneController);
+    public void initGame(Scene_Controller sceneController);
     public void start();
 
 }

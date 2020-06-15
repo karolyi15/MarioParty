@@ -1,8 +1,10 @@
 package Controllers.Models.GameFactories;
 
+import Controllers.Models.SpriteFactories.CharacterType;
 import Controllers.Models.SpriteFactories.Node;
+import Controllers.Models.SpriteFactories.SpriteFactory;
 import Controllers.Models.SpriteFactories.iSprite;
-import Controllers.Views.GameScene_Controller;
+import Controllers.Views.Scene_Controller;
 import javafx.animation.AnimationTimer;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
@@ -22,22 +24,25 @@ public class BoardGame implements iMiniGame {
     private double[] camara;
 
     //Render System
-    private GameScene_Controller sceneController;
+    private Scene_Controller sceneController;
     private ArrayList<iSprite> playerList;
     private ArrayList<Node> board;
 
+    //Factories
+    private SpriteFactory spriteFactory;
+    private MiniGameFactory miniGameFactory;
+
     //GameLoop
-    private boolean running;
     private AnimationTimer gameLoop;
 
 
     //Methods
     //Constructors
-    public BoardGame(GameScene_Controller scene_controller){
+    public BoardGame(Scene_Controller scene_controller,SpriteFactory spriteFactory){
+        this.spriteFactory=spriteFactory;
         initGame(scene_controller);
         start();
     }
-
 
     //Camara System
     @Override
@@ -54,7 +59,7 @@ public class BoardGame implements iMiniGame {
     //Audio System
     @Override
     public void playSound(){
-        //sceneController.playSound();
+        System.out.println("playing Sound");
     }
     @Override
     public void playMusic(){
@@ -137,7 +142,7 @@ public class BoardGame implements iMiniGame {
 
     //Game Loop
     @Override
-    public void initGame(GameScene_Controller sceneController){
+    public void initGame(Scene_Controller sceneController){
 
         //Set Game Controller
         this.sceneController=sceneController;
@@ -146,9 +151,12 @@ public class BoardGame implements iMiniGame {
 
         //Init Game Board
         this.board=new ArrayList<>();
+        this.createBoard();
 
         //Init Game Players
         this.playerList=new ArrayList<>();
+        this.playerList.add(this.spriteFactory.createBackground(this.gameType));
+        this.playerList.add(this.spriteFactory.createCharacter(CharacterType.MARIO));
 
         //Init Camara System
         this.camara= new double[2];
@@ -171,7 +179,7 @@ public class BoardGame implements iMiniGame {
                 update();
             }
         };
-
+        this.gameLoop.start();
     }
 
 

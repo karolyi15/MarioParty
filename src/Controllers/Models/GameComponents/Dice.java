@@ -1,4 +1,4 @@
-package Controllers.Models;
+package Controllers.Models.GameComponents;
 
 import java.util.Random;
 
