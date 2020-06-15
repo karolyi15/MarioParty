@@ -47,7 +47,7 @@ public class Character implements iSprite{
 
     @Override
     public void update(GraphicsContext drawer){
-        drawer.drawImage(image,7,309,31,34,position[0],position[1],46.5,51);
+        drawer.drawImage(image,67,309,31,34,position[0],position[1],46.5,51);
 
     }
 

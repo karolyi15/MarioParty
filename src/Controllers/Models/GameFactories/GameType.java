@@ -3,7 +3,7 @@ package Controllers.Models.GameFactories;
 public enum GameType {
 
     TITLEMENU("file:Resources/Imgs/Backgrounds/Map_Img.png","file:Resources/Sounds/Title_Music.mp3"),
-    CHARACTERSELECTIONMENU("file:Resources/Imgs/Backgrounds/Map_Img.png","file:Resources/Sounds/Title_Music.mp3"),
+    CHARACTERSELECTIONMENU("file:Resources/Imgs/Backgrounds/Room01_Img.png","file:Resources/Sounds/Title_Music.mp3"),
     BOARD("file:Resources/Imgs/Backgrounds/Map_Img.png","file:Resources/Sounds/Game_Music.mp3"),
     CAT("file:Resources/Imgs/Backgrounds/Map_Img.png","file:Resources/Sounds/Title_Music.mp3"),
     SOUP("file:Resources/Imgs/Backgrounds/Map_Img.png","file:Resources/Sounds/Title_Music.mp3"),

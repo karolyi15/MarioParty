@@ -30,7 +30,7 @@ public class GameFactory implements iGameFactory{
     public iMiniGame createGame(Scene_Controller sceneController){
         if(this.spriteFactory!=null & this.miniGameFactory!=null) {
 
-            BoardGame tempGame=new BoardGame(sceneController,this.spriteFactory);
+            iMiniGame tempGame=new BoardGame(sceneController,this.spriteFactory);
             return tempGame;
 
         }else{

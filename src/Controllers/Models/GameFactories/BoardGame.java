@@ -1,5 +1,6 @@
 package Controllers.Models.GameFactories;
 
+import Controllers.Models.GameComponents.Dice;
 import Controllers.Models.SpriteFactories.CharacterType;
 import Controllers.Models.SpriteFactories.Node;
 import Controllers.Models.SpriteFactories.SpriteFactory;
@@ -25,6 +26,9 @@ public class BoardGame implements iMiniGame {
 
     //Render System
     private Scene_Controller sceneController;
+
+    //Game Components
+    private Dice dice;
     private ArrayList<iSprite> playerList;
     private ArrayList<Node> board;
 
@@ -49,6 +53,7 @@ public class BoardGame implements iMiniGame {
     public  void restartCamara(){
         this.camara[0]=-350;
         this.camara[1]=-1400;
+        this.playerList.get(0).setPosition(camara[0],camara[1]);
     }
 
     @Override
@@ -74,7 +79,8 @@ public class BoardGame implements iMiniGame {
             public void handle(MouseEvent mouseEvent) {
                 if(mouseEvent.getButton().equals(MouseButton.PRIMARY)){
 
-                    System.out.println("test handler");
+                    System.out.println(dice.throwDice());
+                    System.out.println(dice.throwDice());
 
                 }
             }
@@ -86,7 +92,7 @@ public class BoardGame implements iMiniGame {
         this.sceneController.getGameScene_Canvas().setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent keyEvent) {
-                if(keyEvent.getCode()== KeyCode.ESCAPE){
+                if(keyEvent.getCode()==KeyCode.TAB){
                     System.out.println("Pause");
                 }
             }
@@ -150,6 +156,7 @@ public class BoardGame implements iMiniGame {
         this.gameType=GameType.BOARD;
 
         //Init Game Board
+        this.dice=new Dice();
         this.board=new ArrayList<>();
         this.createBoard();
 
@@ -168,6 +175,9 @@ public class BoardGame implements iMiniGame {
 
         //Init Sound System
         //this.playMusic();
+
+        //test
+        this.playerList.get(1).setPosition(this.board.get(0).getPositionX(),this.board.get(0).getPositionY());
 
     }
     @Override
