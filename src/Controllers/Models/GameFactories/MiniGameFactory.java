@@ -18,7 +18,7 @@ public class MiniGameFactory implements iGameFactory{
     public iMiniGame createGame(Scene_Controller sceneController){
         if(this.spriteFactory!=null) {
 
-            iMiniGame tempGame = new BoardGame(sceneController, this.spriteFactory);
+            iMiniGame tempGame = new Tictactoe(sceneController, this.spriteFactory);
             return tempGame;
 
         }else{

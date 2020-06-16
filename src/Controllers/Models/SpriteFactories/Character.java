@@ -44,6 +44,9 @@ public class Character implements iSprite{
         this.position[0]=positionX-350-24;
         this.position[1]=positionY-1400-34;
     }
+    public double[] getPosition() {
+        return position;
+    }
 
     @Override
     public void update(GraphicsContext drawer){

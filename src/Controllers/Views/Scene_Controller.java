@@ -1,10 +1,11 @@
 package Controllers.Views;
 
 import Controllers.Main;
-
+import Controllers.Models.GameFactories.iMiniGame;
 import Controllers.Models.GameFactories.BoardGame;
 import Controllers.Models.GameFactories.GameFactory;
 import Controllers.Models.GameFactories.MiniGameFactory;
+import Controllers.Models.GameFactories.Tictactoe;
 import Controllers.Models.SpriteFactories.SpriteFactory;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -38,7 +39,7 @@ public class Scene_Controller {
     private MiniGameFactory miniGameFactory;
     private SpriteFactory spriteFactory;
 
-    private BoardGame game;
+    private iMiniGame game;
 
     //FXML Components
     @FXML
@@ -55,17 +56,22 @@ public class Scene_Controller {
         this.drawer=this.gameScene_Canvas.getGraphicsContext2D();
 
         //Init Factories
-        this.miniGameFactory=new MiniGameFactory();
+
         this.spriteFactory=new SpriteFactory();
+
+        this.miniGameFactory=new MiniGameFactory();
+        this.miniGameFactory.setSpriteFactory(spriteFactory);
+
         this.gameFactory=new GameFactory();
         this.gameFactory.setSpriteFactory(this.spriteFactory);
         this.gameFactory.setMiniGameFactory(this.miniGameFactory);
 
         //test Game
-        this.game=(BoardGame) this.gameFactory.createGame(this);
+        this.game=(Tictactoe) this.miniGameFactory.createGame(this);
 
         Media media=new Media(new File("Resources/Sounds/Game_Music.mp3").toURI().toString());
         this.musicPlayer=new MediaPlayer(media);
+        this.musicPlayer.setVolume(0.1);
         musicPlayer.setAutoPlay(true);
 
     }

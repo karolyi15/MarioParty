@@ -33,9 +33,12 @@ public class Background implements iSprite{
         this.position[1]=positionY;
 
     }
+    public double[] getPosition() {
+        return position;
+    }
     @Override
     public void update(GraphicsContext drawer){
-        drawer.drawImage(image,position[0],position[1]);
+        drawer.drawImage(image,position[0],position[1],this.width,this.height,0,0,700,500);
 
     }
     @Override
