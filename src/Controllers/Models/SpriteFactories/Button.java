@@ -23,13 +23,13 @@ public class Button  implements iSprite {
     private Boolean pressed;
     private int value;
 
-    public Button(){
+    public Button(double width,double height){
+        this.width=width;
+        this.height=height;
         this.type=PootyImages.CAJA;
         this.position=new double[2];
         this.setPosition(0,0);
-        image=new Image(type.getImagen(),100,100,false,false);
-        this.width=this.image.getWidth();
-        this.height=this.image.getHeight();
+        image=new Image(type.getImagen(),width,height,false,false);
         this.value=0;
         this.pressed=false;
 
@@ -55,7 +55,7 @@ public class Button  implements iSprite {
         if (state == 1){
             if(pressed == false){
                 this.type=PootyImages.TTTO;
-                image=new Image(type.getImagen(),100,100,false,false);
+                image=new Image(type.getImagen(),width,height,false,false);
                 pressed = true;
                 this.value=1;
                 //this.setDisabled(true);

@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
 import java.util.ArrayList;
@@ -127,12 +128,17 @@ public class Tictactoe implements iMiniGame {
     //Event Handling System
     @Override
     public void handleMouseEvents(){
+
         this.sceneController.getGameScene_Canvas().setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
+
                 for(int element=0;element<ButtonsList.size();element++){
-                    if(ButtonsList.get(element).getPosition()[0]<=mouseEvent.getX() &mouseEvent.getX()<=ButtonsList.get(element).getPosition()[0]+ButtonsList.get(element).getWidth()){
-                        if(ButtonsList.get(element).getPosition()[1]<mouseEvent.getY() & mouseEvent.getY()<ButtonsList.get(element).getPosition()[1]+ButtonsList.get(element).getHeight())
+
+                    Button tempButton=ButtonsList.get(element);
+
+                    if(tempButton.getPosition()[0]<=mouseEvent.getX() & mouseEvent.getX()<=tempButton.getPosition()[0]+tempButton.getWidth()){
+                        if(tempButton.getPosition()[1]<mouseEvent.getY() & mouseEvent.getY()<tempButton.getPosition()[1]+tempButton.getHeight())
                         ButtonsList.get(element).setState(1);
                     }
                 }
@@ -142,6 +148,13 @@ public class Tictactoe implements iMiniGame {
     }
     @Override
     public void handleKeyEvents(){
+
+        this.sceneController.getGameScene_Canvas().setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent keyEvent) {
+                System.out.println("key");
+            }
+        });
 
     }
 
@@ -189,10 +202,13 @@ public class Tictactoe implements iMiniGame {
         this.componentList.add(this.spriteFactory.createBackground(this.gameType));
         //this.componentList.add(this.spriteFactory.)
         this.ButtonsList=new ArrayList<>();
-        Button button1=new Button();
+        Button button1=new Button(100,100);
+        Button button2=new Button(55,55);
         button1.setPosition(100,100);
         this.ButtonsList.add(button1);
+        this.ButtonsList.add(button2);
         this.componentList.add(button1);
+        this.componentList.add(button2);
 
         //Init Sound System
         //this.playMusic();
