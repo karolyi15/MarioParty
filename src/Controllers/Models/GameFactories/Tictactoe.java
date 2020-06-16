@@ -132,6 +132,7 @@ public class Tictactoe implements iMiniGame {
             public void handle(MouseEvent mouseEvent) {
                 for(int element=0;element<ButtonsList.size();element++){
                     if(ButtonsList.get(element).getPosition()[0]<=mouseEvent.getX() &mouseEvent.getX()<=ButtonsList.get(element).getPosition()[0]+ButtonsList.get(element).getWidth()){
+                        if(ButtonsList.get(element).getPosition()[1]<mouseEvent.getY() & mouseEvent.getY()<ButtonsList.get(element).getPosition()[1]+ButtonsList.get(element).getHeight())
                         ButtonsList.get(element).setState(1);
                     }
                 }
