@@ -5,7 +5,7 @@ public enum PootyImages {
 
     TTTO ("file:Resources/Imgs/Backgrounds/TTTO.jpeg"),
 
-    TTTX("file:Resources/Imgs/Backgrounds/X.jpg"),
+    TTTX("file:Resources/Imgs/Backgrounds/TTTX.jpeg"),
 
     TTTBACKGROUND ("file:Resources/Imgs/Backgrounds/TTTBackground.png"),
 

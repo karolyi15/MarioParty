@@ -53,13 +53,23 @@ public class Button  implements iSprite {
 
     public void setState(int state){
         if (state == 1){
-            if(pressed == false){
+            if(this.pressed == false){
                 this.type=PootyImages.TTTO;
                 image=new Image(type.getImagen(),width,height,false,false);
-                pressed = true;
+                this.pressed = true;
                 this.value=1;
-                //this.setDisabled(true);
-            }}}
+
+            }}else if (state == -1){
+                if(this.pressed == false) {
+                    this.type=PootyImages.TTTX;
+                    image=new Image(type.getImagen(),width,height,false,false);
+                    this.pressed = true;
+                    this.value = -1;
+                    // this.setDisabled(true);
+                }
+            }else{
+                System.out.println("ESTADO INVALIDO");
+            }}
 
     public double getWidth() {
         return width;

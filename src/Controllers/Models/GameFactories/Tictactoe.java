@@ -23,6 +23,7 @@ public class Tictactoe implements iMiniGame {
     //Fields
     //Identifiers
     private GameType gameType;
+    private int turno;
 
     //Camara System
     private double[] camara;
@@ -31,7 +32,7 @@ public class Tictactoe implements iMiniGame {
     private Scene_Controller sceneController;
 
     //Game Components
-    private Node[][] board;
+    private Button[] board;
     private ArrayList<iSprite> componentList;
     private ArrayList<Button> ButtonsList;
 
@@ -102,6 +103,13 @@ public class Tictactoe implements iMiniGame {
         this.start();
     }
 
+    public int getTurno() {
+        return turno;
+    }
+
+    public void setTurno(int turno) {
+        this.turno = turno;
+    }
 
     //Camara System
     @Override
@@ -139,8 +147,17 @@ public class Tictactoe implements iMiniGame {
 
                     if(tempButton.getPosition()[0]<=mouseEvent.getX() & mouseEvent.getX()<=tempButton.getPosition()[0]+tempButton.getWidth()){
                         if(tempButton.getPosition()[1]<mouseEvent.getY() & mouseEvent.getY()<tempButton.getPosition()[1]+tempButton.getHeight())
-                        ButtonsList.get(element).setState(1);
+                        ButtonsList.get(element).setState(changeTurn());
                     }
+                }
+
+                if(checkWinner() == true){
+
+                    System.out.println("GANO EL JUGADOR" + turno*-1);
+
+                }else{
+                    System.out.println("SIGUE EL JUGADOR" + turno);
+
                 }
 
             }
@@ -162,8 +179,52 @@ public class Tictactoe implements iMiniGame {
     @Override
     public void createBoard(){
 
-        this.board=new Node[3][3];
+        this.board=new Button[9];
+        for(int row = 0; row<3;row++){
+            for(int column = 0; column<3;column++){
+                Button button=new Button(55,55);
+                button.setPosition(83*column+57,80*row+90);
 
+                this.ButtonsList.add(button);
+                this.componentList.add(button);
+
+            }
+        }
+
+    }
+
+    private int changeTurn(){
+        this.turno=this.turno*-1;
+        return this.turno;
+    }
+
+    private boolean checkWinner(){
+
+        int[][] tableWinner = new int[8][3];
+        //String topRow,midRow,botRow,leftRow,midCol,rightCol,cross1,cross2;
+            /*topRow = "012"; midRow = "345"; botRow = "678"; leftRow = "036";
+            midCol = "147"; rightCol = "258"; cross1 = "048"; cross2 = "246";*/
+        tableWinner[0][0] = 0; tableWinner[0][1] = 1; tableWinner[0][2] = 2; //topRow = "012";
+        tableWinner[1][0] = 3; tableWinner[1][1] = 4; tableWinner[1][2] = 5; //midRow = "345";
+        tableWinner[2][0] = 6; tableWinner[2][1] = 7; tableWinner[2][2] = 8; //botRow = "678";
+        tableWinner[3][0] = 0; tableWinner[3][1] = 3; tableWinner[3][2] = 6; //leftRow = "036";
+        tableWinner[4][0] = 1; tableWinner[4][1] = 4; tableWinner[4][2] = 7; //midCol = "147";
+        tableWinner[5][0] = 2; tableWinner[5][1] = 5; tableWinner[5][2] = 8; //rightCol = "258";
+        tableWinner[6][0] = 0; tableWinner[6][1] = 4; tableWinner[6][2] = 8; //cross1 = "048";
+        tableWinner[7][0] = 2; tableWinner[7][1] = 4; tableWinner[7][2] = 6; //cross2 = "246";
+        int cont = 0;
+        for(int i = 0; i < 8 ; i++){
+            cont = 0;
+            for(int j = 0; j < 3 ; j++){
+                if(ButtonsList.get(tableWinner[i][j]).getValue() == this.turno) {
+                    cont++;
+                }
+            }
+            if(cont == 3){
+                return true;
+            }
+        }
+        return false;
 
     }
 
@@ -194,21 +255,17 @@ public class Tictactoe implements iMiniGame {
         this.handleMouseEvents();
         this.handleKeyEvents();
 
-        //Init Board
-        this.createBoard();
 
         //Init Render System
         this.componentList=new ArrayList<>();
         this.componentList.add(this.spriteFactory.createBackground(this.gameType));
         //this.componentList.add(this.spriteFactory.)
         this.ButtonsList=new ArrayList<>();
-        Button button1=new Button(100,100);
-        Button button2=new Button(55,55);
-        button1.setPosition(100,100);
-        this.ButtonsList.add(button1);
-        this.ButtonsList.add(button2);
-        this.componentList.add(button1);
-        this.componentList.add(button2);
+
+        //Init Board
+        this.createBoard();
+
+        this.turno=1;
 
         //Init Sound System
         //this.playMusic();
