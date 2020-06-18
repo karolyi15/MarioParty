@@ -2,6 +2,9 @@ package Controllers.Models.GameFactories;
 
 public enum GameType {
 
+    //********************************************************************************************************************//
+    //************************************************* ENUM TYPES *******************************************************//
+
     TITLEMENU("file:Resources/Imgs/Backgrounds/Map_Img.png","file:Resources/Sounds/Title_Music.mp3"),
     CHARACTERSELECTIONMENU("file:Resources/Imgs/Backgrounds/Room01_Img.png","file:Resources/Sounds/Title_Music.mp3"),
     BOARD("file:Resources/Imgs/Backgrounds/Map_Img.png","file:Resources/Sounds/Game_Music.mp3"),
@@ -15,14 +18,25 @@ public enum GameType {
     COINS("file:Resources/Imgs/Backgrounds/Map_Img.png","file:Resources/Sounds/Title_Music.mp3"),
     CARDS("file:Resources/Imgs/Backgrounds/Map_Img.png","file:Resources/Sounds/Title_Music.mp3");
 
+    //********************************************************************************************************************//
+    //************************************************ ENUM FIELDS *******************************************************//
+
+    //Img File Path
     private String imgFilePath;
+
+    //Music File Path
     private String musicFilePath;
 
+    //********************************************************************************************************************//
+    //************************************************ ENUM METHODS ******************************************************//
+
+    //Constructor
     GameType(String imgFilePath,String musicFilePath){
         this.imgFilePath=imgFilePath;
         this.musicFilePath=musicFilePath;
     }
 
+    //Setters and Getters
     public String getImgFilePath(){
         return this.imgFilePath;
     }

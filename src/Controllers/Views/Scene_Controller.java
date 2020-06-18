@@ -1,20 +1,13 @@
 package Controllers.Views;
 
-import Controllers.Main;
-import Controllers.Models.GameFactories.iMiniGame;
-import Controllers.Models.GameFactories.BoardGame;
+import Controllers.Models.GameFactories.MiniGames.iMiniGame;
+import Controllers.Models.GameFactories.MainGame.BoardGame;
 import Controllers.Models.GameFactories.GameFactory;
 import Controllers.Models.GameFactories.MiniGameFactory;
-import Controllers.Models.GameFactories.Tictactoe;
 import Controllers.Models.SpriteFactories.SpriteFactory;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Button;
-import javafx.scene.image.Image;
-import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
@@ -67,7 +60,8 @@ public class Scene_Controller {
         this.gameFactory.setMiniGameFactory(this.miniGameFactory);
 
         //test Game
-        this.game=(Tictactoe) this.miniGameFactory.createGame(this);
+        this.game=(BoardGame) this.gameFactory.createGame(this);
+        //this.game=(Tictactoe) this.miniGameFactory.createGame(this);
 
         Media media=new Media(new File("Resources/Sounds/Game_Music.mp3").toURI().toString());
         this.musicPlayer=new MediaPlayer(media);

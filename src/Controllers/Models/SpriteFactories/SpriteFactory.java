@@ -1,14 +1,17 @@
 package Controllers.Models.SpriteFactories;
 
 import Controllers.Models.GameFactories.GameType;
+import Controllers.Models.SpriteFactories.Backgrounds.Background;
+import Controllers.Models.SpriteFactories.Characters.Character;
+import Controllers.Models.SpriteFactories.Characters.CharacterType;
 
 public class SpriteFactory {
 
-    public Character createCharacter(CharacterType type){
+    public iSprite createCharacter(CharacterType type){
         return new Character(type);
     }
 
-    public Background createBackground(GameType type){
+    public iSprite createBackground(GameType type){
         return new Background(type);
     }
 
