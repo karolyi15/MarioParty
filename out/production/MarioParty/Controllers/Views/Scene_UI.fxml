@@ -5,6 +5,6 @@
 
 <AnchorPane id="MainMenu" fx:id="MainMenu" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Views.Scene_Controller">
    <children>
-      <Canvas id="gameScene_Canvas" fx:id="gameScene_Canvas" height="500.0" layoutX="-45.0" layoutY="14.0" width="700.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Canvas id="gameScene" fx:id="canvas" height="500.0" layoutX="-45.0" layoutY="14.0" width="700.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
    </children>
 </AnchorPane>
