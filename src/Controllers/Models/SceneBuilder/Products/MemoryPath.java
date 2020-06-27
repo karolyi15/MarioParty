@@ -34,9 +34,10 @@ public class MemoryPath extends MiniGame {
             for(int column = 0; column<3;column++){
                 //60,75
                 Node memoryButton =new Node(65*row+160,80*column+190);
+                memoryButton.resizeImage(60,75);
                 memoryButton.setType(NodeType.MEMORYPATHEMPTYTABLE);
                 memoryButton.setValue(-1);
-                memoryButton.resizeImage(60,75);
+
                 memoryButton.setPressed(true);
                 this.tables[row][column]=memoryButton;
                 super.getGameComponents().add(memoryButton);
