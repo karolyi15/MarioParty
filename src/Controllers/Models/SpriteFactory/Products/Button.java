@@ -2,6 +2,9 @@ package Controllers.Models.SpriteFactory.Products;
 
 
 import Controllers.Models.SpriteFactory.Sprite;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+import javafx.scene.canvas.GraphicsContext;
 
 
 public class Button extends Sprite implements iButton {
@@ -11,6 +14,8 @@ public class Button extends Sprite implements iButton {
     //************************************************ CLASS FIELDS ******************************************************//
 
     //Render System
+    private String id;
+    private StringProperty text;
     private NodeType type;
 
     //Handle System
@@ -27,13 +32,50 @@ public class Button extends Sprite implements iButton {
         this.type=NodeType.DEFAULTBUTTON;
         super.setPosition(positionX,positionY);
 
+        //Render System
+        this.id=id;
+        this.text=new SimpleStringProperty("");
+
         //Handle System
         this.value=0;
         this.pressed=false;
 
     }
 
+    public String getId() {
+        return this.id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public StringProperty getText() {
+        return this.text;
+    }
+
+    public void setText(String text) {
+        this.text.setValue(text);
+    }
+
+    public void setValue(int value) {
+        this.value = value;
+    }
+
+    public int getValue() {
+        return value;
+    }
+
     //Render System
+
+    @Override
+    public void update(GraphicsContext drawer){
+
+        drawer.drawImage(super.getImage(),type.getPositionX(),type.getPositionY(),type.getWidth(),type.getHeight(),super.getPositionX(),super.getPositionY(),super.getWidth(),super.getHeight());
+        drawer.fillText(this.text.getValue(),super.getPositionX(),super.getPositionY(),super.getWidth());
+
+    }
+
     public void setType(NodeType type) {
         this.type = type;
     }
@@ -50,12 +92,5 @@ public class Button extends Sprite implements iButton {
         return pressed;
     }
 
-    public void setValue(int value) {
-        this.value = value;
-    }
-
-    public int getValue() {
-        return value;
-    }
 
 }

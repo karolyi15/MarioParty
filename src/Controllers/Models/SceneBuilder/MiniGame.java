@@ -28,6 +28,7 @@ public class MiniGame {
     private GameType gameType;
 
     //Render System
+    private Sprite map;
     private SpriteFactory spriteFactory;
     private ArrayList<Player> playerList;
     private ArrayList<Sprite> gameComponents;
@@ -105,6 +106,11 @@ public class MiniGame {
         }
     }
 
+
+    public Sprite getMap() {
+        return map;
+    }
+
     public void initGameComponents(){
 
     }
@@ -162,9 +168,16 @@ public class MiniGame {
         this.gameComponents=new ArrayList<>();
         this.ButtonsList=new ArrayList<>();
 
+        //Test
+        this.playerList=new ArrayList<>();
+
         //Init Background
         Background background=(Background) this.spriteFactory.createBackground(this.gameType);
-        background.setPosition(482,5);
+        //For Title Scene
+        //background.setPosition(482,5);
+        //For Main Game
+        background.setPosition(350,1400);
+        this.map=background;
         this.gameComponents.add(background);
 
         //Init Board

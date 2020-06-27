@@ -11,6 +11,9 @@ public class Player {
     private int currentNode;
     private Character character;
 
+    //Game Components
+    private int punished;
+
     //Data Log System
     private String playerLog;
 
@@ -24,11 +27,14 @@ public class Player {
         //Render System
         this.currentNode=0;
         this.character=character;
+
+        //Game Components
+        this.punished=0;
     }
 
     //Render System
     public Character getCharacter() {
-        return character;
+        return this.character;
     }
 
     public int getCurrentNode() {
@@ -39,4 +45,14 @@ public class Player {
         this.currentNode = currentNode;
     }
 
+    //Game Components
+
+
+    public int getPunished() {
+        return punished;
+    }
+
+    public void setPunished(int punished) {
+        this.punished = punished;
+    }
 }

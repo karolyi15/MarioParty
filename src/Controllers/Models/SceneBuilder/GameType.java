@@ -5,10 +5,10 @@ public enum GameType {
     //********************************************************************************************************************//
     //************************************************* ENUM TYPES *******************************************************//
 
-    TITLEMENU("file:Resources/Imgs/Backgrounds/TitleScene.png","Resources/Sounds/Title_Music.mp3"),
-    CHARACTERSELECTIONMENU("file:Resources/Imgs/Backgrounds/Room01_Img.png","Resources/Sounds/Title_Music.mp3"),
+    TITLEMENU("file:Resources/Imgs/Backgrounds/TitleBackground_Img.png","Resources/Sounds/Title_Music.mp3"),
+    CHARACTERSELECTIONMENU("file:Resources/Imgs/Backgrounds/TitleBackground_Img.png","Resources/Sounds/Title_Music.mp3"),
     BOARD("file:Resources/Imgs/Backgrounds/Map_Img.png","Resources/Sounds/Game_Music.mp3"),
-    TICTACTOE("file:Resources/Imgs/Backgrounds/TitleScene.png","Resources/Sounds/Title_Music.mp3"),
+    TICTACTOE("file:Resources/Imgs/Backgrounds/TitleBackground_Img.png","Resources/Sounds/Title_Music.mp3"),
     SOUP("file:Resources/Imgs/Backgrounds/Map_Img.png","Resources/Sounds/Title_Music.mp3"),
     MEMORYPATH("file:Resources/Imgs/Backgrounds/Map_Img.png","Resources/Sounds/Title_Music.mp3"),
     MEMORY("file:Resources/Imgs/Backgrounds/Map_Img.png","Resources/Sounds/Title_Music.mp3"),
