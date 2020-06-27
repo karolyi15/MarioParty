@@ -53,6 +53,8 @@ public class BoardGameScene extends MiniGame {
 
         }*/
 
+
+        //Update Path Position
         for(int node=0;node<this.board.size();node++){
             Node tempNode=this.board.get(node);
             tempNode.setPosition(tempNode.getPositionX()-super.getMap().getPositionX(),tempNode.getPositionY()-super.getMap().getPositionY());
@@ -222,6 +224,7 @@ public class BoardGameScene extends MiniGame {
 
                        System.out.println("Player "+playerTurn+1+"Wins!!");
                        player.setCurrentNode(player.getCurrentNode()+diceValue);
+                       //super.getGameLoop().stop();
                    }else{
                        player.setCurrentNode(player.getCurrentNode()+diceValue);
                    }
@@ -229,10 +232,10 @@ public class BoardGameScene extends MiniGame {
                }
            }
        }else{
-           System.out.println("Players Punished\n***** Turn Changed *****");
            player.setPunished(player.getPunished()-1);
 
        }
+        System.out.println("Players Punished\n***** Turn Changed *****");
         this.changeTurn();
 
     }

@@ -98,6 +98,10 @@ public class MiniGame {
         return this.sceneController;
     }
 
+    public AnimationTimer getGameLoop() {
+        return this.gameLoop;
+    }
+
     //Render System
 
     public void update(){
@@ -121,7 +125,7 @@ public class MiniGame {
         Media media=new Media(new File(filePath).toURI().toString());
         this.musicPlayer=new MediaPlayer(media);
 
-        this.musicPlayer.setVolume(0.1);
+        this.musicPlayer.setVolume(0);
         this.musicPlayer.setCycleCount(MediaPlayer.INDEFINITE);
         this.musicPlayer.setAutoPlay(true);
 
