@@ -129,7 +129,7 @@ public class MiniGame {
         Media media=new Media(new File(filePath).toURI().toString());
         this.musicPlayer=new MediaPlayer(media);
 
-        this.musicPlayer.setVolume(0.1);
+        this.musicPlayer.setVolume(0);
         this.musicPlayer.setCycleCount(MediaPlayer.INDEFINITE);
         this.musicPlayer.setAutoPlay(true);
 
@@ -184,7 +184,11 @@ public class MiniGame {
         //For Title Scene
         //background.setPosition(482,5);
         //For Main Game
-        background.setPosition(350,1400);
+        //background.setPosition(350,1400);
+        //For MemoryPath
+        background.resizeImage(700,500);
+        background.setPosition(50,0);
+
         this.map=background;
         this.gameComponents.add(background);
 

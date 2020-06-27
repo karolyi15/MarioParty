@@ -10,7 +10,7 @@ public enum GameType {
     BOARD("file:Resources/Imgs/Backgrounds/Map_Img.png","Resources/Sounds/Game_Music.mp3"),
     TICTACTOE("file:Resources/Imgs/Backgrounds/TitleBackground_Img.png","Resources/Sounds/Title_Music.mp3"),
     SOUP("file:Resources/Imgs/Backgrounds/Map_Img.png","Resources/Sounds/Title_Music.mp3"),
-    MEMORYPATH("file:Resources/Imgs/Backgrounds/Map_Img.png","Resources/Sounds/Title_Music.mp3"),
+    MEMORYPATH("file:Resources/Imgs/Backgrounds/MemoryPathBackground.png","Resources/Sounds/Title_Music.mp3"),
     MEMORY("file:Resources/Imgs/Backgrounds/Map_Img.png","Resources/Sounds/Title_Music.mp3"),
     CATCHCAT("file:Resources/Imgs/Backgrounds/Map_Img.png","Resources/Sounds/Title_Music.mp3"),
     BOMBER("file:Resources/Imgs/Backgrounds/Map_Img.png","Resources/Sounds/Title_Music.mp3"),

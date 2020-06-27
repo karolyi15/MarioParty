@@ -18,7 +18,15 @@ public enum NodeType {
     TEXTAREA("file:Resources/Imgs/UI Elements/UI_Elements.png",4,1201,182,42),
     CAJA ("file:Resources/Imgs/UI Elements/Caja.jpeg",0,0,0,0),
     TTTO ("file:Resources/Imgs/UI Elements/TTTO.jpeg",0,0,0,0),
-    TTTX("file:Resources/Imgs/UI Elements/TTTX.jpeg",0,0,0,0);
+    TTTX("file:Resources/Imgs/UI Elements/TTTX.jpeg",0,0,0,0),
+
+    MEMORYPATHEMPTYTABLE("file:Resources/Imgs/UI Elements/MemoryPathTable1.png",0,0,0,0),
+
+    MEMORYPATHCORRECTTABLE("file:Resources/Imgs/UI Elements/MemoryPathCorrectTable.png",0,0,0,0),
+
+    MEMORYPATHINCORRECTTABLE("file:Resources/Imgs/UI Elements/MemoryPathIncorrectTable.png",0,0,358,407),
+
+    TABLE("",0,0,0,0);
 
 
 

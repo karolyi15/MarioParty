@@ -49,4 +49,12 @@ public class MiniGameDirector {
         builder.getMiniGame().start();
     }
 
+    public void  buildMemoryPath(){
+        builder.reset(GameType.MEMORYPATH);
+        builder.setSceneController(controller);
+        builder.setSpriteFactory(factory);
+        builder.setGameType(GameType.MEMORYPATH);
+        builder.getMiniGame().start();
+    }
+
 }

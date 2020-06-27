@@ -2,6 +2,7 @@ package Controllers.Models.SceneBuilder;
 
 import Controllers.Models.Player;
 import Controllers.Models.SceneBuilder.Products.BoardGameScene;
+import Controllers.Models.SceneBuilder.Products.MemoryPath;
 import Controllers.Models.SceneBuilder.Products.TicTacToe;
 import Controllers.Models.SceneBuilder.Products.TitleScene;
 import Controllers.Models.SpriteFactory.SpriteFactory;
@@ -26,6 +27,8 @@ public class MiniGameBuilder implements iSceneBuilder {
             this.miniGame=new TitleScene();
         }else if(gameType.equals(GameType.BOARD)){
             this.miniGame=new BoardGameScene();
+        }else if(gameType.equals(GameType.MEMORYPATH)){
+            this.miniGame=new MemoryPath();
         }else{
             this.miniGame=new MiniGame();
         }
