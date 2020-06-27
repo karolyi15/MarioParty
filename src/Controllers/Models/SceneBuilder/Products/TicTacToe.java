@@ -35,6 +35,7 @@ public class TicTacToe extends MiniGame {
                 Node button=new Node(83*column+57,80*row+90);
                 button.resizeImage(55,55);
 
+
                 super.getButtonsList().add(button);
                 super.getGameComponents().add(button);
 
@@ -46,12 +47,15 @@ public class TicTacToe extends MiniGame {
     public void setState(Node button){
         if (this.turn == 1){
             if(button.getPressed() == false){
+
                 button.setType(NodeType.TTTO);
 
                 button.setValue(1);
 
-            }}else if (this.turn == -1){
+            }
+        }else if (this.turn == -1){
             if(button.getPressed() == false) {
+
                 button.setType(NodeType.TTTX);
 
                 button.setValue(-1);
@@ -81,7 +85,8 @@ public class TicTacToe extends MiniGame {
 
                     if(tempButton.getPositionX()<=mouseEvent.getX() & mouseEvent.getX()<=tempButton.getPositionX()+tempButton.getWidth()){
                         if(tempButton.getPositionY()<mouseEvent.getY() & mouseEvent.getY()<tempButton.getPositionY()+tempButton.getHeight())
-                           setState(tempButton);
+
+                            setState(tempButton);
 
                     }
                 }

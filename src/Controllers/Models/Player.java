@@ -1,6 +1,9 @@
 package Controllers.Models;
 
 import Controllers.Models.SpriteFactory.Products.Character;
+import Controllers.Models.SpriteFactory.Products.Node;
+
+import java.util.ArrayList;
 
 public class Player {
 
@@ -17,6 +20,8 @@ public class Player {
     //Data Log System
     private String playerLog;
 
+    //Game Board
+    private ArrayList<Node> gameBoard;
 
     //********************************************************************************************************************//
     //************************************************ CLASS METHODS *****************************************************//
@@ -30,6 +35,9 @@ public class Player {
 
         //Game Components
         this.punished=0;
+
+        //Game Board
+        this.gameBoard=new ArrayList<>();
     }
 
     //Render System
@@ -54,5 +62,9 @@ public class Player {
 
     public void setPunished(int punished) {
         this.punished = punished;
+    }
+
+    public ArrayList<Node> getGameBoard() {
+        return this.gameBoard;
     }
 }

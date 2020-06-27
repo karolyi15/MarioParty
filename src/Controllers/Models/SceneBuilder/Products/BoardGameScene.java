@@ -7,7 +7,6 @@ import Controllers.Models.SpriteFactory.Products.*;
 import Controllers.Models.SpriteFactory.Products.Character;
 import Controllers.Models.SpriteFactory.Sprite;
 import javafx.event.EventHandler;
-import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 
 
@@ -19,7 +18,8 @@ public class BoardGameScene extends MiniGame {
     //************************************************ CLASS FIELDS ******************************************************//
 
     //Render System
-    private ArrayList<Node> board;
+    private ArrayList<Node> realBoard;
+    private ArrayList<Node> relativeBoard;
 
     //Camara System
     private double[] camara;
@@ -27,6 +27,12 @@ public class BoardGameScene extends MiniGame {
     //Game Components
     private Dice dice;
     private int playerTurn;
+
+    //UI Elements
+    Sprite portrait;
+    Button tdice;
+    Button tarea;
+
 
     //********************************************************************************************************************//
     //************************************************ CLASS METHODS *****************************************************//
@@ -41,25 +47,37 @@ public class BoardGameScene extends MiniGame {
         this.camara[0]=350;
         this.camara[1]=1400;
         super.getMap().setPosition(camara[0],camara[1]);
+
+    }
+
+    private void setCamaraOn(Player player){
+        this.restartCamara();
+        super.getMap().setPosition(this.realBoard.get(player.getCurrentNode()).getPositionX()-super.getMap().getPositionX(),super.getMap().getPositionY());
+        this.updatePathPosition();
+        this.updatePlayerPosition();
+
     }
 
 
-    public  void updateCamara(){
-
-        /*if(tempPlayer.getCharacter().getPositionX()>=500) {
-
-            super.getMap().setPosition(map.getPositionX()+100,map.getPositionY());
-            tempPlayer.getCharacter().setPosition(tempPlayer.getCharacter().getPositionX()-100,tempPlayer.getCharacter().getPositionY());
-
-        }*/
+    /*public  void updateCamara(Player player){
 
 
         //Update Path Position
-        for(int node=0;node<this.board.size();node++){
-            Node tempNode=this.board.get(node);
-            tempNode.setPosition(tempNode.getPositionX()-super.getMap().getPositionX(),tempNode.getPositionY()-super.getMap().getPositionY());
-        }
+        //this.updatePathPosition();
 
+
+    }*/
+
+    private void updatePathPosition(){
+        System.out.println("***************Path Position Update*****************\n");
+        for(int node = 0; node<this.realBoard.size(); node++){
+
+            Node realNode=this.realBoard.get(node);
+            Node relativeNode=this.relativeBoard.get(node);
+
+            relativeNode.setPosition(realNode.getPositionX()-super.getMap().getPositionX(),realNode.getPositionY()-super.getMap().getPositionY());
+            //System.out.println("node "+node+" posx: "+relativeNode.getPositionX()+" posy: "+relativeNode.getPositionY()+"\n");
+        }
     }
 
 
@@ -77,7 +95,9 @@ public class BoardGameScene extends MiniGame {
 
                     if(tempButton.getPositionX()<=mouseEvent.getX() & mouseEvent.getX()<=tempButton.getPositionX()+tempButton.getWidth()){
                         if(tempButton.getPositionY()<mouseEvent.getY() & mouseEvent.getY()<tempButton.getPositionY()+tempButton.getHeight())
+
                             throwDice(BoardGameScene.super.getPlayerList().get(playerTurn));
+                            //updateCamara(BoardGameScene.super.getPlayerList().get(playerTurn));
 
                     }
                 }
@@ -92,41 +112,82 @@ public class BoardGameScene extends MiniGame {
 
    public void buildPath(){
 
+       /*this.board.add(new Node(503,1626));
+       this.board.add(new Node(576,1626));
+       this.board.add(new Node(576,1684));*/
+
         //Main Path
-        this.board.add(new Node(479,1592));
-        this.board.add(new Node(552,1592));
-        this.board.add(new Node(576,1684));
+        this.realBoard.add(new Node(503,1626));
+        this.realBoard.add(new Node(576,1626));
+        this.realBoard.add(new Node(576,1684));
 
-        this.board.add(new Node(576,1740));
-        this.board.add(new Node(633,1740));
-        this.board.add(new Node(691,1740));
-        this.board.add(new Node(748,1740));
-        this.board.add(new Node(806,1740));
-        this.board.add(new Node(863,1740));
-        this.board.add(new Node(922,1740));
-        this.board.add(new Node(979,1740));
+        this.realBoard.add(new Node(576,1740));
+        this.realBoard.add(new Node(633,1740));
+        this.realBoard.add(new Node(691,1740));
+        this.realBoard.add(new Node(748,1740));
+        this.realBoard.add(new Node(806,1740));
+        this.realBoard.add(new Node(863,1740));
+        this.realBoard.add(new Node(922,1740));
+        this.realBoard.add(new Node(979,1740));
 
-        this.board.add(new Node(979,1681));
-        this.board.add(new Node(1041,1681));
-        this.board.add(new Node(1097,1681));
+        this.realBoard.add(new Node(979,1681));
+        this.realBoard.add(new Node(1041,1681));
+        this.realBoard.add(new Node(1097,1681));
 
-        this.board.add(new Node(1097,1741));
-        this.board.add(new Node(1150,1741));
+        this.realBoard.add(new Node(1097,1741));
+        this.realBoard.add(new Node(1150,1741));
 
-        this.board.add(new Node(1150,1796));
-        this.board.add(new Node(1290,1799));
-        this.board.add(new Node(1267,1800));
-        this.board.add(new Node(1325,1798));
-        this.board.add(new Node(1383,1798));
-        this.board.add(new Node(1439,1798));
-        this.board.add(new Node(1497,1798));
+        this.realBoard.add(new Node(1150,1796));
+        this.realBoard.add(new Node(1290,1799));
+        this.realBoard.add(new Node(1267,1800));
+        this.realBoard.add(new Node(1325,1798));
+        this.realBoard.add(new Node(1383,1798));
+        this.realBoard.add(new Node(1439,1798));
+        this.realBoard.add(new Node(1497,1798));
 
-        this.board.add(new Node(1497,1739));
-        this.board.add(new Node(1553,1739));
-        this.board.add(new Node(1612,1739));
-        this.board.add(new Node(1671,1739));
+        this.realBoard.add(new Node(1497,1739));
+        this.realBoard.add(new Node(1553,1739));
+        this.realBoard.add(new Node(1612,1739));
+        this.realBoard.add(new Node(1671,1739));
+
+       ///Relative
+
+       this.relativeBoard.add(new Node(503,1626));
+       this.relativeBoard.add(new Node(576,1626));
+       this.relativeBoard.add(new Node(576,1684));
+
+       this.relativeBoard.add(new Node(576,1740));
+       this.relativeBoard.add(new Node(633,1740));
+       this.relativeBoard.add(new Node(691,1740));
+       this.relativeBoard.add(new Node(748,1740));
+       this.relativeBoard.add(new Node(806,1740));
+       this.relativeBoard.add(new Node(863,1740));
+       this.relativeBoard.add(new Node(922,1740));
+       this.relativeBoard.add(new Node(979,1740));
+
+       this.relativeBoard.add(new Node(979,1681));
+       this.relativeBoard.add(new Node(1041,1681));
+       this.relativeBoard.add(new Node(1097,1681));
+
+       this.relativeBoard.add(new Node(1097,1741));
+       this.relativeBoard.add(new Node(1150,1741));
+
+       this.relativeBoard.add(new Node(1150,1796));
+       this.relativeBoard.add(new Node(1290,1799));
+       this.relativeBoard.add(new Node(1267,1800));
+       this.relativeBoard.add(new Node(1325,1798));
+       this.relativeBoard.add(new Node(1383,1798));
+       this.relativeBoard.add(new Node(1439,1798));
+       this.relativeBoard.add(new Node(1497,1798));
+
+       this.relativeBoard.add(new Node(1497,1739));
+       this.relativeBoard.add(new Node(1553,1739));
+       this.relativeBoard.add(new Node(1612,1739));
+       this.relativeBoard.add(new Node(1671,1739));
 
 
+
+        this.updatePathPosition();
     }
 
 
@@ -137,12 +198,13 @@ public class BoardGameScene extends MiniGame {
         //Init Game Components
         this.dice=new Dice();
         this.playerTurn=0;
-        this.board=new ArrayList<>();
+        this.realBoard =new ArrayList<>();
+        this.relativeBoard=new ArrayList<>();
         this.buildPath();
 
         //Init Camara System
         this.camara= new double[2];
-        restartCamara();
+        //restartCamara();
 
         //Init UI Components
         Button diceButton=new Button(540,435);
@@ -169,20 +231,32 @@ public class BoardGameScene extends MiniGame {
         super.getGameComponents().add(player1.getCharacter());
         super.getGameComponents().add(player2.getCharacter());
 
-        this.updateCamara();
-        this.playersInitPosition();
-
+        this.updatePlayerPosition();
+        //this.setPlayersBoard();
     }
 
 
     //Game Logic
 
-    private void playersInitPosition(){
+    private void updatePlayerPosition(){
+
        for(int player=0;player<super.getPlayerList().size();player++){
            Player tempPlayer=super.getPlayerList().get(player);
-           tempPlayer.getCharacter().setPosition(this.board.get(0).getPositionX(),this.board.get(0).getPositionY());
+           tempPlayer.getCharacter().setPosition(this.relativeBoard.get(tempPlayer.getCurrentNode()).getPositionX(),this.relativeBoard.get(tempPlayer.getCurrentNode()).getPositionY());
        }
     }
+
+    /*private void setPlayersBoard(){
+        for(int player=0;player<super.getPlayerList().size();player++) {
+            for (int node = 0; node < this.realBoard.size(); node++) {
+                Node tempNode = this.realBoard.get(node);
+                tempNode.setPosition(tempNode.getPositionX()-super.getMap().getPositionX(),tempNode.getPositionY()-super.getMap().getPositionY());
+                super.getPlayerList().get(player).getGameBoard().add(tempNode);
+            }
+        }
+
+
+    }*/
 
     private void changeTurn(){
 
@@ -190,7 +264,8 @@ public class BoardGameScene extends MiniGame {
         if(this.playerTurn>=super.getPlayerList().size()){
             this.playerTurn=0;
         }
-
+        this.setCamaraOn(super.getPlayerList().get(this.playerTurn));
+        //this.updatePathPosition();
         this.displayPlayerInfo(super.getPlayerList().get(this.playerTurn));
 
     }
@@ -202,7 +277,7 @@ public class BoardGameScene extends MiniGame {
     private void throwDice(Player player){
 
         System.out.println("Playing Player "+(this.playerTurn+1));
-
+        System.out.println("Actual x: "+player.getCharacter().getPositionX()+" Actual y: "+player.getCharacter().getPositionY());
        if(player.getPunished()==0) {
 
            for (int dice = 0; dice < 2; dice++) {
@@ -229,13 +304,18 @@ public class BoardGameScene extends MiniGame {
                        player.setCurrentNode(player.getCurrentNode()+diceValue);
                    }
                    System.out.println("Player current node: "+player.getCurrentNode());
+                   //this.updatePathPosition();
+                   //this.setCamaraOn(player.getCharacter());
+                   player.getCharacter().setPosition(this.relativeBoard.get(player.getCurrentNode()).getPositionX(),this.relativeBoard.get(player.getCurrentNode()).getPositionY());
+
+                   System.out.println("New x: "+player.getCharacter().getPositionX()+" New y: "+player.getCharacter().getPositionY());
                }
            }
        }else{
            player.setPunished(player.getPunished()-1);
-
+           System.out.println("Players Punished\n");
        }
-        System.out.println("Players Punished\n***** Turn Changed *****");
+        System.out.println("***** Turn Changed *****");
         this.changeTurn();
 
     }

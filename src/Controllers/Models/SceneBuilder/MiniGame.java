@@ -78,6 +78,10 @@ public class MiniGame {
         this.spriteFactory = spriteFactory;
     }
 
+    public void setButtonsList(ArrayList<iButton> buttonsList) {
+        ButtonsList = buttonsList;
+    }
+
     public SpriteFactory getSpriteFactory() {
         return spriteFactory;
     }
@@ -125,7 +129,7 @@ public class MiniGame {
         Media media=new Media(new File(filePath).toURI().toString());
         this.musicPlayer=new MediaPlayer(media);
 
-        this.musicPlayer.setVolume(0);
+        this.musicPlayer.setVolume(0.1);
         this.musicPlayer.setCycleCount(MediaPlayer.INDEFINITE);
         this.musicPlayer.setAutoPlay(true);
 
