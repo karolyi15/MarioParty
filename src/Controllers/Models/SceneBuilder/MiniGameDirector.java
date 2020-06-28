@@ -57,4 +57,12 @@ public class MiniGameDirector {
         builder.getMiniGame().start();
     }
 
+    public void  buildCatchBoo(){
+        builder.reset(GameType.CATCHCAT);
+        builder.setSceneController(controller);
+        builder.setSpriteFactory(factory);
+        builder.setGameType(GameType.CATCHCAT);
+        builder.getMiniGame().start();
+    }
+
 }

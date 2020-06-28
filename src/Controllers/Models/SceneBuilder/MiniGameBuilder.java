@@ -1,10 +1,7 @@
 package Controllers.Models.SceneBuilder;
 
 import Controllers.Models.Player;
-import Controllers.Models.SceneBuilder.Products.BoardGameScene;
-import Controllers.Models.SceneBuilder.Products.MemoryPath;
-import Controllers.Models.SceneBuilder.Products.TicTacToe;
-import Controllers.Models.SceneBuilder.Products.TitleScene;
+import Controllers.Models.SceneBuilder.Products.*;
 import Controllers.Models.SpriteFactory.SpriteFactory;
 import Controllers.Views.Scene_Controller;
 import javafx.scene.media.MediaPlayer;
@@ -29,6 +26,8 @@ public class MiniGameBuilder implements iSceneBuilder {
             this.miniGame=new BoardGameScene();
         }else if(gameType.equals(GameType.MEMORYPATH)){
             this.miniGame=new MemoryPath();
+        }else if(gameType.equals(GameType.CATCHCAT)){
+            this.miniGame=new CatchBoo();
         }else{
             this.miniGame=new MiniGame();
         }

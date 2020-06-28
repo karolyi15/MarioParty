@@ -1,6 +1,7 @@
 package Controllers.Models.SpriteFactory.Products;
 
 import Controllers.Models.SpriteFactory.Sprite;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
 public class Node extends Sprite implements iButton {
@@ -58,6 +59,14 @@ public class Node extends Sprite implements iButton {
 
     public int getValue() {
         return value;
+    }
+
+    @Override
+    public void update(GraphicsContext drawer){
+
+        drawer.drawImage(super.getImage(),type.getPositionX(),type.getPositionY(),type.getWidth(),type.getHeight(),super.getPositionX(),super.getPositionY(),super.getWidth(),super.getHeight());
+
+
     }
 
 
