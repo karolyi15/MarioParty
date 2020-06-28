@@ -161,9 +161,10 @@ public class CatchBoo extends MiniGame {
                 System.out.println("Player Wins");
             }else{
                 gameField[booNode[0]][booNode[1]].setPressed(false);
-                booNode[0]=nextMove[0];
-                booNode[1]=nextMove[1];
+                booNode[0]=booNode[0]+nextMove[0]-1;
+                booNode[1]=booNode[1]+nextMove[1]-1;
                 gameField[booNode[0]][booNode[1]].setPressed(true);
+                displayGameField();
             }
 
         }else{
@@ -190,7 +191,7 @@ public class CatchBoo extends MiniGame {
 
                 Node tempNode=this.gameField[row][column];
                 if(tempNode.getPressed()==true & booNode[0]!=row &booNode[1]!=column){
-                    tempNode.setValue(-1);
+                    tempNode.setValue(9);
                 }else {
                     tempNode.setValue(Math.abs(row - booNode[0]) + Math.abs(column - booNode[1]));
                 }
@@ -286,7 +287,7 @@ public class CatchBoo extends MiniGame {
 
                 if(mouseEvent.getButton().equals(MouseButton.PRIMARY)){
 
-                    displayGameField();
+                    //displayGameField();
                     booTurn();
 
 
