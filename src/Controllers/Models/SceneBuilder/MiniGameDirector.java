@@ -65,4 +65,12 @@ public class MiniGameDirector {
         builder.getMiniGame().start();
     }
 
+    public void  buildMarioSoup(){
+        builder.reset(GameType.SOUP);
+        builder.setSceneController(controller);
+        builder.setSpriteFactory(factory);
+        builder.setGameType(GameType.SOUP);
+        builder.getMiniGame().start();
+    }
+
 }

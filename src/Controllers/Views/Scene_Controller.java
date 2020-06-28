@@ -42,7 +42,7 @@ public class Scene_Controller {
         //Test System
         this.director.setSceneController(this);
         this.director.setFactory(factory);
-        this.director.buildCatchBoo();
+        this.director.buildMarioSoup();
 
     }
 

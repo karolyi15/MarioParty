@@ -28,6 +28,8 @@ public class MiniGameBuilder implements iSceneBuilder {
             this.miniGame=new MemoryPath();
         }else if(gameType.equals(GameType.CATCHCAT)){
             this.miniGame=new CatchBoo();
+        }else if(gameType.equals(GameType.SOUP)){
+            this.miniGame=new MarioSoup();
         }else{
             this.miniGame=new MiniGame();
         }

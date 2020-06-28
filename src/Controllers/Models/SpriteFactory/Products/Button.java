@@ -33,7 +33,7 @@ public class Button extends Sprite implements iButton {
         super.setPosition(positionX,positionY);
 
         //Render System
-        this.id=id;
+        this.id="";
         this.text=new SimpleStringProperty("");
 
         //Handle System
