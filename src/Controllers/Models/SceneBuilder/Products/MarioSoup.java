@@ -1,6 +1,7 @@
 package Controllers.Models.SceneBuilder.Products;
 
-import Controllers.Models.SceneBuilder.MiniGame;
+import Controllers.Models.SceneBuilder.GameScene;
+import Controllers.Models.SceneBuilder.SceneType;
 import Controllers.Models.SpriteFactory.Products.Button;
 
 import java.io.File;
@@ -9,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
-public class MarioSoup extends MiniGame {
+public class MarioSoup extends GameScene {
 
     //********************************************************************************************************************//
     //************************************************ CLASS FIELDS ******************************************************//
@@ -36,7 +37,9 @@ public class MarioSoup extends MiniGame {
     //********************************************************************************************************************//
     //************************************************ CLASS METHODS *****************************************************//
 
-
+    public MarioSoup(){
+        super(SceneType.SOUP);
+    }
 
     @Override
     public void initGameComponents(){

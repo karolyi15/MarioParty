@@ -1,7 +1,7 @@
 package Controllers.Views;
 
-import Controllers.Models.SceneBuilder.MiniGameDirector;
-import Controllers.Models.SpriteFactory.SpriteFactory;
+import Controllers.Models.SceneBuilder.SceneBuilder;
+import Controllers.Models.SceneBuilder.SceneDirector;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -20,10 +20,9 @@ public class Scene_Controller {
     @FXML
     private Canvas canvas;
 
-    //Test System
-    MiniGameDirector director=new MiniGameDirector();
-    SpriteFactory factory=new SpriteFactory();
-
+    //Scenes Controller System
+    private SceneDirector director;
+    private SceneBuilder builder;
 
 
     //********************************************************************************************************************//
@@ -39,10 +38,13 @@ public class Scene_Controller {
         //Init drawer
         this.drawer=this.canvas.getGraphicsContext2D();
 
+        //Init Scene Components
+        this.builder=new SceneBuilder();
+        this.director=new SceneDirector(this.builder);
+
         //Test System
         this.director.setSceneController(this);
-        this.director.setFactory(factory);
-        this.director.buildMarioSoup();
+        this.director.buildMainGame();
 
     }
 

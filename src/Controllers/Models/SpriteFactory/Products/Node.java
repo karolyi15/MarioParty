@@ -66,7 +66,6 @@ public class Node extends Sprite implements iButton {
 
         drawer.drawImage(super.getImage(),type.getPositionX(),type.getPositionY(),type.getWidth(),type.getHeight(),super.getPositionX(),super.getPositionY(),super.getWidth(),super.getHeight());
 
-
     }
 
 

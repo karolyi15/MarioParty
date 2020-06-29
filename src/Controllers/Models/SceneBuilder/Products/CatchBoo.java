@@ -1,6 +1,8 @@
 package Controllers.Models.SceneBuilder.Products;
 
-import Controllers.Models.SceneBuilder.MiniGame;
+import Controllers.Models.SceneBuilder.GameScene;
+import Controllers.Models.SceneBuilder.SceneType;
+import Controllers.Models.SpriteFactory.Products.Button;
 import Controllers.Models.SpriteFactory.Products.Node;
 import Controllers.Models.SpriteFactory.Products.NodeType;
 import javafx.event.EventHandler;
@@ -9,7 +11,7 @@ import javafx.scene.input.MouseEvent;
 
 import java.util.Random;
 
-public class CatchBoo extends MiniGame {
+public class CatchBoo extends GameScene {
 
     //********************************************************************************************************************//
     //************************************************ CLASS FIELDS ******************************************************//
@@ -21,11 +23,14 @@ public class CatchBoo extends MiniGame {
     Random random;
 
     //Game Field System
-    private Node[][] gameField;
+    private Button[][] gameField;
 
     //********************************************************************************************************************//
     //************************************************ CLASS METHODS *****************************************************//
 
+    public CatchBoo(){
+        super(SceneType.CATCHCAT);
+    }
     @Override
     public void initGameComponents(){
         this.booNode=new int[2];
@@ -36,14 +41,14 @@ public class CatchBoo extends MiniGame {
 
     //Create the Game Field
     private void createGameField(){
-        this.gameField=new Node[10][10];
+        this.gameField=new Button[10][10];
 
         for(int row=0;row<gameField.length;row++){
             for(int column=0;column<gameField[0].length;column++){
-                Node tempNode=new Node(0,0);
+                Button tempNode=new Button(NodeType.TUMB,100+50*column,50*row);
                 tempNode.setValue(9);
-                tempNode.setType(NodeType.TUMB);
-                tempNode.resizeImage(40,40);
+                tempNode.setType(NodeType.TUMBX);
+                tempNode.resizeImage(50,50);
                 gameField[row][column]=tempNode;
 
                 super.getGameComponents().add(tempNode);
@@ -74,7 +79,7 @@ public class CatchBoo extends MiniGame {
 
         while(blocks<this.gameField.length+1){
 
-            Node tempNode=this.gameField[this.getRandom()][this.getRandom()];
+            Button tempNode=this.gameField[this.getRandom()][this.getRandom()];
             if(tempNode.getPressed()==false){
 
                 tempNode.setType(NodeType.TUMBX);
@@ -95,7 +100,7 @@ public class CatchBoo extends MiniGame {
         while(booCreated<1){
             int tempRow=this.random.nextInt(highValue-lowValue)+lowValue;
             int temColumn=this.random.nextInt(highValue-lowValue)+lowValue;
-            Node tempNode=this.gameField[tempRow][temColumn];
+            Button tempNode=this.gameField[tempRow][temColumn];
 
             if(tempNode.getPressed()==false){
                 tempNode.setPressed(true);
@@ -145,7 +150,7 @@ public class CatchBoo extends MiniGame {
                     int tempRow=booNode[0]-1+row;
                     int tempColumn=booNode[1]-1+column;
 
-                    Node tempNode=this.gameField[tempRow][tempColumn];
+                    Button tempNode=this.gameField[tempRow][tempColumn];
                     //Calculating Path Weights & Set to Open Set
                     openSet[row][column] = calculatePath(tempNode,tempRow,tempColumn,row-1,column-1);
 
@@ -189,7 +194,7 @@ public class CatchBoo extends MiniGame {
         for(int row=0;row<this.gameField.length;row++){
             for(int column=0;column<this.gameField.length;column++){
 
-                Node tempNode=this.gameField[row][column];
+                Button tempNode=this.gameField[row][column];
                 if(tempNode.getPressed()==true & booNode[0]!=row &booNode[1]!=column){
                     tempNode.setValue(9);
                 }else {
@@ -210,7 +215,7 @@ public class CatchBoo extends MiniGame {
     }
 
     //Calculate Path Weight
-    private int calculatePath(Node node, int nodeRow, int nodeColumn, int rowDir, int columnDir){
+    private int calculatePath(Button node, int nodeRow, int nodeColumn, int rowDir, int columnDir){
 
         if(node.getPressed()){
             return 100;

@@ -1,13 +1,14 @@
 package Controllers.Models.SceneBuilder.Products;
 
-import Controllers.Models.SceneBuilder.MiniGame;
+import Controllers.Models.SceneBuilder.GameScene;
+import Controllers.Models.SceneBuilder.SceneType;
 import Controllers.Models.SpriteFactory.Products.Node;
 import Controllers.Models.SpriteFactory.Products.NodeType;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 
 
-public class TicTacToe extends MiniGame {
+public class TicTacToe extends GameScene {
 
 
     //********************************************************************************************************************//
@@ -22,6 +23,7 @@ public class TicTacToe extends MiniGame {
 
     //Constructor
     public TicTacToe(){
+        super(SceneType.TICTACTOE);
         this.turn =1;
     }
 

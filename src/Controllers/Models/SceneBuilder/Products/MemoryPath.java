@@ -1,7 +1,7 @@
 package Controllers.Models.SceneBuilder.Products;
 
-import Controllers.Models.SceneBuilder.MiniGame;
-import Controllers.Models.SpriteFactory.Products.Button;
+import Controllers.Models.SceneBuilder.GameScene;
+import Controllers.Models.SceneBuilder.SceneType;
 import Controllers.Models.SpriteFactory.Products.Node;
 import Controllers.Models.SpriteFactory.Products.NodeType;
 import javafx.event.EventHandler;
@@ -10,13 +10,17 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
-public class MemoryPath extends MiniGame {
+public class MemoryPath extends GameScene {
 
     private Node[][] tables;
 
     private int attempts;
     private int currentRow;
     private int stateWin;
+
+    public MemoryPath(){
+        super(SceneType.MEMORYPATH);
+    }
 
     @Override
     public void initGameComponents(){

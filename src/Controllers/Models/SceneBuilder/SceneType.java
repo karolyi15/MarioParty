@@ -1,22 +1,25 @@
 package Controllers.Models.SceneBuilder;
 
-public enum GameType {
+public enum SceneType {
 
     //********************************************************************************************************************//
     //************************************************* ENUM TYPES *******************************************************//
 
+    //Main Scenes
     TITLEMENU("file:Resources/Imgs/Backgrounds/TitleBackground_Img.png","Resources/Sounds/Title_Music.mp3"),
     CHARACTERSELECTIONMENU("file:Resources/Imgs/Backgrounds/TitleBackground_Img.png","Resources/Sounds/Title_Music.mp3"),
     BOARD("file:Resources/Imgs/Backgrounds/Map_Img.png","Resources/Sounds/Game_Music.mp3"),
-    TICTACTOE("file:Resources/Imgs/Backgrounds/TitleBackground_Img.png","Resources/Sounds/Title_Music.mp3"),
-    SOUP("file:Resources/Imgs/Backgrounds/Map_Img.png","Resources/Sounds/Title_Music.mp3"),
-    MEMORYPATH("file:Resources/Imgs/Backgrounds/MemoryPathBackground.png","Resources/Sounds/Title_Music.mp3"),
-    MEMORY("file:Resources/Imgs/Backgrounds/Map_Img.png","Resources/Sounds/Title_Music.mp3"),
-    CATCHCAT("file:Resources/Imgs/Characters/Boo_Img.png","Resources/Sounds/Title_Music.mp3"),
-    BOMBER("file:Resources/Imgs/Backgrounds/Map_Img.png","Resources/Sounds/Title_Music.mp3"),
-    GUESS("file:Resources/Imgs/Backgrounds/Map_Img.png","Resources/Sounds/Title_Music.mp3"),
-    COINS("file:Resources/Imgs/Backgrounds/Map_Img.png","Resources/Sounds/Title_Music.mp3"),
-    CARDS("file:Resources/Imgs/Backgrounds/Map_Img.png","Resources/Sounds/Title_Music.mp3");
+
+    //Mini Games
+    TICTACTOE("file:Resources/Imgs/Backgrounds/TitleBackground_Img.png","Resources/Sounds/Game_Music.mp3"),
+    SOUP("file:Resources/Imgs/Backgrounds/Map_Img.png","Resources/Sounds/Game_Music.mp3"),
+    MEMORYPATH("file:Resources/Imgs/Backgrounds/MemoryPathBackground.png","Resources/Sounds/Game_Music.mp3"),
+    MEMORY("file:Resources/Imgs/Backgrounds/Map_Img.png","Resources/Sounds/Game_Music.mp3"),
+    CATCHCAT("file:Resources/Imgs/Backgrounds/CatchBooBackground_Img.png","Resources/Sounds/Game_Music.mp3"),
+    BOMBER("file:Resources/Imgs/Backgrounds/Map_Img.png","Resources/Sounds/Game_Music.mp3"),
+    GUESS("file:Resources/Imgs/Backgrounds/Map_Img.png","Resources/Sounds/Game_Music.mp3"),
+    COINS("file:Resources/Imgs/Backgrounds/Map_Img.png","Resources/Sounds/Game_Music.mp3"),
+    CARDS("file:Resources/Imgs/Backgrounds/Map_Img.png","Resources/Sounds/Game_Music.mp3");
 
     //********************************************************************************************************************//
     //************************************************ ENUM FIELDS *******************************************************//
@@ -31,7 +34,7 @@ public enum GameType {
     //************************************************ ENUM METHODS ******************************************************//
 
     //Constructor
-    GameType(String imgFilePath,String musicFilePath){
+    SceneType(String imgFilePath, String musicFilePath){
         this.imgFilePath=imgFilePath;
         this.musicFilePath=musicFilePath;
     }

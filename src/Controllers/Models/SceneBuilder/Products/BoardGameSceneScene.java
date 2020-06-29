@@ -2,7 +2,8 @@ package Controllers.Models.SceneBuilder.Products;
 
 import Controllers.Models.Dice;
 import Controllers.Models.Player;
-import Controllers.Models.SceneBuilder.MiniGame;
+import Controllers.Models.SceneBuilder.GameScene;
+import Controllers.Models.SceneBuilder.SceneType;
 import Controllers.Models.SpriteFactory.Products.*;
 import Controllers.Models.SpriteFactory.Products.Character;
 import Controllers.Models.SpriteFactory.Sprite;
@@ -12,7 +13,7 @@ import javafx.scene.input.MouseEvent;
 
 import java.util.ArrayList;
 
-public class BoardGameScene extends MiniGame {
+public class BoardGameSceneScene extends GameScene {
 
     //********************************************************************************************************************//
     //************************************************ CLASS FIELDS ******************************************************//
@@ -37,8 +38,8 @@ public class BoardGameScene extends MiniGame {
     //********************************************************************************************************************//
     //************************************************ CLASS METHODS *****************************************************//
     //Constructors
-    public BoardGameScene(){
-
+    public BoardGameSceneScene(){
+        super(SceneType.BOARD);
     }
 
     //Camara System
@@ -46,13 +47,13 @@ public class BoardGameScene extends MiniGame {
     public  void restartCamara(){
         this.camara[0]=350;
         this.camara[1]=1400;
-        super.getMap().setPosition(camara[0],camara[1]);
+        super.getBackground().setPosition(camara[0],camara[1]);
 
     }
 
     private void setCamaraOn(Player player){
         this.restartCamara();
-        super.getMap().setPosition(this.realBoard.get(player.getCurrentNode()).getPositionX()-super.getMap().getPositionX(),super.getMap().getPositionY());
+        super.getBackground().setPosition(this.realBoard.get(player.getCurrentNode()).getPositionX()-super.getBackground().getPositionX(),super.getBackground().getPositionY());
         this.updatePathPosition();
         this.updatePlayerPosition();
 
@@ -75,7 +76,7 @@ public class BoardGameScene extends MiniGame {
             Node realNode=this.realBoard.get(node);
             Node relativeNode=this.relativeBoard.get(node);
 
-            relativeNode.setPosition(realNode.getPositionX()-super.getMap().getPositionX(),realNode.getPositionY()-super.getMap().getPositionY());
+            relativeNode.setPosition(realNode.getPositionX()-super.getBackground().getPositionX(),realNode.getPositionY()-super.getBackground().getPositionY());
             //System.out.println("node "+node+" posx: "+relativeNode.getPositionX()+" posy: "+relativeNode.getPositionY()+"\n");
         }
     }
@@ -89,15 +90,15 @@ public class BoardGameScene extends MiniGame {
             @Override
             public void handle(MouseEvent mouseEvent) {
 
-                for(int element = 0; element< BoardGameScene.super.getButtonsList().size(); element++){
+                for(int element = 0; element< BoardGameSceneScene.super.getButtonsList().size(); element++){
 
-                    Button tempButton= (Button)BoardGameScene.super.getButtonsList().get(element);
+                    Button tempButton= (Button) BoardGameSceneScene.super.getButtonsList().get(element);
 
                     if(tempButton.getPositionX()<=mouseEvent.getX() & mouseEvent.getX()<=tempButton.getPositionX()+tempButton.getWidth()){
                         if(tempButton.getPositionY()<mouseEvent.getY() & mouseEvent.getY()<tempButton.getPositionY()+tempButton.getHeight())
 
-                            throwDice(BoardGameScene.super.getPlayerList().get(playerTurn));
-                            //updateCamara(BoardGameScene.super.getPlayerList().get(playerTurn));
+                            throwDice(BoardGameSceneScene.super.getPlayerList().get(playerTurn));
+                            //updateCamara(BoardGameSceneScene.super.getPlayerList().get(playerTurn));
 
                     }
                 }

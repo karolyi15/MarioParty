@@ -1,16 +1,17 @@
 package Controllers.Models.SceneBuilder.Products;
 
-import Controllers.Models.SceneBuilder.MiniGame;
+import Controllers.Models.SceneBuilder.GameScene;
+import Controllers.Models.SceneBuilder.SceneType;
 import Controllers.Models.SpriteFactory.Products.Button;
 import Controllers.Models.SpriteFactory.Products.Node;
 
-public class CharacterSelectionScene extends MiniGame {
+public class CharacterSelectionScene extends GameScene {
 
 
 
     //Constructor
     public CharacterSelectionScene(){
-
+        super(SceneType.CHARACTERSELECTIONMENU);
     }
 
 

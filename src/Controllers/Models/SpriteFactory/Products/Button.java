@@ -41,6 +41,21 @@ public class Button extends Sprite implements iButton {
         this.pressed=false;
 
     }
+    public Button(NodeType type,double positionX, double positionY){
+
+        super(type.getImage());
+        this.type=type;
+        super.setPosition(positionX,positionY);
+
+        //Render System
+        this.id="";
+        this.text=new SimpleStringProperty("");
+
+        //Handle System
+        this.value=0;
+        this.pressed=false;
+
+    }
 
     public String getId() {
         return this.id;
@@ -77,7 +92,9 @@ public class Button extends Sprite implements iButton {
     }
 
     public void setType(NodeType type) {
+
         this.type = type;
+        super.setImage(type.getImage());
     }
 
     public NodeType getType(){

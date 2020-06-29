@@ -1,6 +1,6 @@
 package Controllers.Models.SpriteFactory;
 
-import Controllers.Models.SceneBuilder.GameType;
+import Controllers.Models.SceneBuilder.SceneType;
 import Controllers.Models.SpriteFactory.Products.*;
 import Controllers.Models.SpriteFactory.Products.Character;
 
@@ -10,7 +10,7 @@ public class SpriteFactory {
         return new Character(type);
     }
 
-    public Sprite createBackground(GameType type){
+    public Sprite createBackground(SceneType type){
         return new Background(type);
     }
 

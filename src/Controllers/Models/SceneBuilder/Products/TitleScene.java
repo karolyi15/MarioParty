@@ -1,13 +1,13 @@
 package Controllers.Models.SceneBuilder.Products;
 
-import Controllers.Models.SceneBuilder.MiniGame;
+import Controllers.Models.SceneBuilder.GameScene;
+import Controllers.Models.SceneBuilder.SceneType;
 import Controllers.Models.SpriteFactory.Products.Button;
-import Controllers.Models.SpriteFactory.Products.Node;
 import Controllers.Models.SpriteFactory.Sprite;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 
-public class TitleScene extends MiniGame {
+public class TitleScene extends GameScene {
 
     //********************************************************************************************************************//
     //************************************************ CLASS FIELDS ******************************************************//
@@ -22,19 +22,51 @@ public class TitleScene extends MiniGame {
     //Constructor
     public TitleScene(){
 
+        super(SceneType.TITLEMENU);
+
     }
+
+    //Init Scene Components
 
     @Override
     public void initGameComponents(){
 
-        //Init Decoration
+       this.initSprites();
+       this.initGameLogo();
+       this.initUiElements();
+    }
+
+    private void initUiElements(){
+
+        //Init Buttons
+        Button startButton =new Button(200,400);
+        startButton.setId("Start");
+        startButton.setText("Start");
+        startButton.resizeImage(300,50);
+
+        super.getButtonsList().add(startButton);
+        super.getGameComponents().add(startButton);
+    }
+
+    private void initGameLogo(){
+
+        //Init Logo
+        Sprite titleLogo=new Sprite("file:Resources/Imgs/Backgrounds/Title_Img.png");
+        titleLogo.getImgSection(157,236,213,40);
+        titleLogo.resizeImage(569,110);
+        titleLogo.setPosition(65.5,50);
+        super.getGameComponents().add(titleLogo);
+
+    }
+
+
+    private void initSprites(){
 
         //Mario
         Sprite mario=new Sprite("file:Resources/Imgs/Characters/Mario_Img.png");
         mario.getImgSection(81,241,20,29);
         mario.resizeImage(49,75);
         mario.setPosition(150,300);
-
         super.getGameComponents().add(mario);
 
         //Luigi
@@ -42,7 +74,6 @@ public class TitleScene extends MiniGame {
         luigi.getImgSection(68,254,15,34);
         luigi.resizeImage(37,85);
         luigi.setPosition(200,300);
-
         super.getGameComponents().add(luigi);
 
         //Peach
@@ -50,7 +81,6 @@ public class TitleScene extends MiniGame {
         peach.getImgSection(684,1374,40,30);
         peach.resizeImage(100,79);
         peach.setPosition(450,200);
-
         super.getGameComponents().add(peach);
 
         //Yoshi
@@ -58,7 +88,6 @@ public class TitleScene extends MiniGame {
         yoshi.getImgSection(68,308,30,36);
         yoshi.resizeImage(75,85);
         yoshi.setPosition(325,310);
-
         super.getGameComponents().add(yoshi);
 
         //Balloons
@@ -93,24 +122,8 @@ public class TitleScene extends MiniGame {
         tubeBlue.setPosition(550,350);
         super.getGameComponents().add(tubeBlue);
 
-        //Init UI Components
-        Button startButton =new Button(200,400);
-        startButton.setId("Start");
-        startButton.setText("Start");
-        startButton.resizeImage(300,50);
-
-        super.getButtonsList().add(startButton);
-        super.getGameComponents().add(startButton);
-
-        //Init Logo
-        Sprite titleLogo=new Sprite("file:Resources/Imgs/Backgrounds/Title_Img.png");
-        titleLogo.getImgSection(157,236,213,40);
-        titleLogo.resizeImage(569,110);
-        titleLogo.setPosition(65.5,50);
-
-        super.getGameComponents().add(titleLogo);
-
     }
+
 
     //Event Handling System
     @Override
@@ -122,7 +135,7 @@ public class TitleScene extends MiniGame {
 
                 for(int element = 0; element< TitleScene.super.getButtonsList().size(); element++){
 
-                    Node tempButton= (Node)TitleScene.super.getButtonsList().get(element);
+                    Button tempButton= (Button) TitleScene.super.getButtonsList().get(element);
 
                     if(tempButton.getPositionX()<=mouseEvent.getX() & mouseEvent.getX()<=tempButton.getPositionX()+tempButton.getWidth()){
                         if(tempButton.getPositionY()<mouseEvent.getY() & mouseEvent.getY()<tempButton.getPositionY()+tempButton.getHeight())

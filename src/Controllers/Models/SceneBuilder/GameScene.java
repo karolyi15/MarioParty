@@ -14,26 +14,26 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-
 import java.io.File;
 import java.util.ArrayList;
 
-public class MiniGame {
+public class GameScene {
 
 
     //********************************************************************************************************************//
     //************************************************ CLASS FIELDS ******************************************************//
 
-    //Identifiers
-    private GameType gameType;
 
     //Render System
-    private Sprite map;
+    private SceneType sceneType;
+    private Sprite background;
     private SpriteFactory spriteFactory;
+    private Scene_Controller sceneController;
+
+    //Input Handler System
     private ArrayList<Player> playerList;
     private ArrayList<Sprite> gameComponents;
-    private ArrayList<iButton> ButtonsList;
-    private Scene_Controller sceneController;
+    private ArrayList<iButton> buttonsList;
 
     //Sound System
     private MediaPlayer musicPlayer;
@@ -48,80 +48,65 @@ public class MiniGame {
 
 
     //Constructor
-    public MiniGame() {
-
+    public GameScene(SceneType sceneType) {
+        this.sceneType = sceneType;
     }
 
     //Setters and Getters
 
-    public void setGameType(GameType gameType) {
-        this.gameType = gameType;
-    }
-
+    //Render System
     public void setSceneController(Scene_Controller sceneController) {
         this.sceneController = sceneController;
     }
-
-    public void setPlayerList(ArrayList<Player> playerList) {
-        this.playerList = playerList;
-    }
-
-    public void setMusicPlayer(MediaPlayer musicPlayer) {
-        this.musicPlayer = musicPlayer;
-    }
-
-    public void setSoundPlayer(MediaPlayer soundPlayer) {
-        this.soundPlayer = soundPlayer;
+    public Scene_Controller getSceneController() {
+        return this.sceneController;
     }
 
     public void setSpriteFactory(SpriteFactory spriteFactory) {
         this.spriteFactory = spriteFactory;
     }
-
-    public void setButtonsList(ArrayList<iButton> buttonsList) {
-        ButtonsList = buttonsList;
-    }
-
     public SpriteFactory getSpriteFactory() {
         return spriteFactory;
     }
 
+    public Sprite getBackground() {
+        return background;
+    }
+
+    //Input Handler System
+    public void setPlayerList(ArrayList<Player> playerList) {
+        this.playerList = playerList;
+    }
     public ArrayList<Player> getPlayerList() {
         return this.playerList;
+    }
+
+    public ArrayList<iButton> getButtonsList() {
+        return this.buttonsList;
     }
 
     public ArrayList<Sprite> getGameComponents() {
         return this.gameComponents;
     }
 
-    public ArrayList<iButton> getButtonsList() {
-        return this.ButtonsList;
-    }
-
-    public Scene_Controller getSceneController() {
-        return this.sceneController;
-    }
-
+    //Game Loop
     public AnimationTimer getGameLoop() {
         return this.gameLoop;
     }
 
-    //Render System
 
+
+    //Render System
     public void update(){
         for(int element=0;element<gameComponents.size();element++){
             this.gameComponents.get(element).update(this.sceneController.getDrawer());
         }
     }
 
-
-    public Sprite getMap() {
-        return map;
-    }
-
     public void initGameComponents(){
-
+        System.out.println("There are not elements to initialize");
     }
+
 
     //Sound System
     public void playMusic(String filePath){
@@ -129,7 +114,7 @@ public class MiniGame {
         Media media=new Media(new File(filePath).toURI().toString());
         this.musicPlayer=new MediaPlayer(media);
 
-        this.musicPlayer.setVolume(0);
+        this.musicPlayer.setVolume(0.1);
         this.musicPlayer.setCycleCount(MediaPlayer.INDEFINITE);
         this.musicPlayer.setAutoPlay(true);
 
@@ -151,7 +136,7 @@ public class MiniGame {
             public void handle(MouseEvent mouseEvent) {
                 if(mouseEvent.getButton().equals(MouseButton.PRIMARY)){
 
-                    System.out.println("test handler");
+                    System.out.println("Test Mouse handler");
 
                 }
             }
@@ -163,7 +148,7 @@ public class MiniGame {
             @Override
             public void handle(KeyEvent keyEvent) {
                 if(keyEvent.getCode()== KeyCode.ESCAPE){
-                    System.out.println("Pause");
+                    System.out.println("Pause Test Key Handler");
                 }
             }
         });
@@ -174,32 +159,23 @@ public class MiniGame {
 
         //Init Render System
         this.gameComponents=new ArrayList<>();
-        this.ButtonsList=new ArrayList<>();
+        this.buttonsList =new ArrayList<>();
 
-        //Test
+        //Init Input System
         this.playerList=new ArrayList<>();
 
         //Init Background
-        Background background=(Background) this.spriteFactory.createBackground(this.gameType);
-        //For Title Scene
-        //background.setPosition(482,5);
-        //For Main Game
-        //background.setPosition(350,1400);
-        //For MemoryPath
-        background.resizeImage(700,500);
-        background.setPosition(50,0);
-
-        this.map=background;
+        this.background =(Background) this.spriteFactory.createBackground(this.sceneType);
         this.gameComponents.add(background);
 
-        //Init Board
+        //Init Game Components Rendering
         this.initGameComponents();
 
-        //Init  Event Handler System
+        //Init Event Handler System
         this.handleMouseEvents();
         this.handleKeyEvents();
 
-        this.playMusic(this.gameType.getMusicFilePath());
+        this.playMusic(this.sceneType.getMusicFilePath());
 
         //Init Game Loop
         this.gameLoop=new AnimationTimer() {

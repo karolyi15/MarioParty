@@ -1,6 +1,5 @@
 package Controllers;
 
-import Controllers.Views.Scene_Controller;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -12,14 +11,17 @@ import java.io.IOException;
 
 public class Main extends Application {
 
-    //********************************************* Class Fields ***********************************************//
+    //********************************************************************************************************************//
+    //************************************************ CLASS FIELDS ******************************************************//
 
+    //JavaFX Components
     private Stage primaryStage;
     private BorderPane rootLayout;
 
-    //********************************************* Class Methods **********************************************//
+    //********************************************************************************************************************//
+    //************************************************ CLASS METHODS *****************************************************//
 
-
+    //Starts JavaFX Application
     @Override
     public void start(Stage primaryStage) {
 
