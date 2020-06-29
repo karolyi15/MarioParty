@@ -12,6 +12,8 @@ public interface iSceneBuilder {
 
     public void setSceneController(Scene_Controller sceneController);
 
+    public void setSceneDirector(SceneDirector director);
+
     public void setPlayers(ArrayList<Player> playerList);
 
     public GameScene getBuild();

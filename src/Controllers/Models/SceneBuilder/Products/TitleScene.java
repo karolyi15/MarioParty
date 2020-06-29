@@ -31,6 +31,7 @@ public class TitleScene extends GameScene {
     @Override
     public void initGameComponents(){
 
+
        this.initSprites();
        this.initGameLogo();
        this.initUiElements();
@@ -139,7 +140,7 @@ public class TitleScene extends GameScene {
 
                     if(tempButton.getPositionX()<=mouseEvent.getX() & mouseEvent.getX()<=tempButton.getPositionX()+tempButton.getWidth()){
                         if(tempButton.getPositionY()<mouseEvent.getY() & mouseEvent.getY()<tempButton.getPositionY()+tempButton.getHeight())
-                           System.out.println("Click");
+                           stop();
 
                     }
                 }
@@ -148,6 +149,13 @@ public class TitleScene extends GameScene {
 
             }
         });
+    }
+
+    @Override
+    public void stop(){
+        super.getMusicPlayer().stop();
+        super.getGameLoop().stop();
+        super.getSceneDirector().buildMainGame();
     }
 
 }

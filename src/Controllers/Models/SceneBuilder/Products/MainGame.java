@@ -13,7 +13,7 @@ import javafx.scene.input.MouseEvent;
 
 import java.util.ArrayList;
 
-public class BoardGameSceneScene extends GameScene {
+public class MainGame extends GameScene {
 
     //********************************************************************************************************************//
     //************************************************ CLASS FIELDS ******************************************************//
@@ -34,11 +34,14 @@ public class BoardGameSceneScene extends GameScene {
     Button tdice;
     Button tarea;
 
+    //Scene Transition System
+    SceneType nextMiniGame;
+
 
     //********************************************************************************************************************//
     //************************************************ CLASS METHODS *****************************************************//
     //Constructors
-    public BoardGameSceneScene(){
+    public MainGame(){
         super(SceneType.BOARD);
     }
 
@@ -90,15 +93,17 @@ public class BoardGameSceneScene extends GameScene {
             @Override
             public void handle(MouseEvent mouseEvent) {
 
-                for(int element = 0; element< BoardGameSceneScene.super.getButtonsList().size(); element++){
+                for(int element = 0; element< MainGame.super.getButtonsList().size(); element++){
 
-                    Button tempButton= (Button) BoardGameSceneScene.super.getButtonsList().get(element);
+                    Button tempButton= (Button) MainGame.super.getButtonsList().get(element);
 
                     if(tempButton.getPositionX()<=mouseEvent.getX() & mouseEvent.getX()<=tempButton.getPositionX()+tempButton.getWidth()){
                         if(tempButton.getPositionY()<mouseEvent.getY() & mouseEvent.getY()<tempButton.getPositionY()+tempButton.getHeight())
 
-                            throwDice(BoardGameSceneScene.super.getPlayerList().get(playerTurn));
-                            //updateCamara(BoardGameSceneScene.super.getPlayerList().get(playerTurn));
+                            throwDice(MainGame.super.getPlayerList().get(playerTurn));
+                            //updateCamara(MainGame.super.getPlayerList().get(playerTurn));
+
+                            stop();
 
                     }
                 }
@@ -321,7 +326,16 @@ public class BoardGameSceneScene extends GameScene {
 
     }
 
+    @Override
+    public void stop(){
 
+        //Stops Game Execution
+        super.getMusicPlayer().stop();
+        super.getGameLoop().stop();
+
+        //Build Mini Game
+        super.getSceneDirector().buildTicTacToe();
+    }
 
 
 }

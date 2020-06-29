@@ -119,6 +119,7 @@ public class TicTacToe extends GameScene {
                 if(checkWinner() == true){
 
                     System.out.println("GANO EL JUGADOR" + turn *-1);
+                    stop();
 
                 }else{
                     System.out.println("SIGUE EL JUGADOR" + turn);
@@ -226,6 +227,15 @@ public class TicTacToe extends GameScene {
         super.getSceneController().getDrawer().fillText("YOU WIN!!!",405,230);
     }
 
+    @Override
+    public void stop(){
 
+        //Stops Mini Game Execution
+        super.getMusicPlayer().stop();
+        super.getGameLoop().stop();
+
+        //Reload Main Game
+        super.getSceneDirector().getMainGame().start();
+    }
 
 }

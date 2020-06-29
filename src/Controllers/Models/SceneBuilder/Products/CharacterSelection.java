@@ -5,12 +5,12 @@ import Controllers.Models.SceneBuilder.SceneType;
 import Controllers.Models.SpriteFactory.Products.Button;
 import Controllers.Models.SpriteFactory.Products.Node;
 
-public class CharacterSelectionScene extends GameScene {
+public class CharacterSelection extends GameScene {
 
 
 
     //Constructor
-    public CharacterSelectionScene(){
+    public CharacterSelection(){
         super(SceneType.CHARACTERSELECTIONMENU);
     }
 
@@ -36,7 +36,12 @@ public class CharacterSelectionScene extends GameScene {
 
     }
 
-
+    @Override
+    public void stop(){
+        super.getMusicPlayer().stop();
+        super.getGameLoop().stop();
+        super.getSceneDirector().buildMainGame();
+    }
 
 
 

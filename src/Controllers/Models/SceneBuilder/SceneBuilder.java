@@ -36,7 +36,7 @@ public class SceneBuilder implements iSceneBuilder {
 
         }else if(sceneType.equals(SceneType.BOARD)){
 
-            this.gameScene =new BoardGameSceneScene();
+            this.gameScene =new MainGame();
             this.gameScene.setSpriteFactory(this.spriteFactory);
 
         }
@@ -91,6 +91,11 @@ public class SceneBuilder implements iSceneBuilder {
     @Override
     public void setSceneController(Scene_Controller sceneController){
         this.gameScene.setSceneController(sceneController);
+    }
+
+    @Override
+    public void setSceneDirector(SceneDirector director){
+        this.gameScene.setSceneDirector(director);
     }
 
     @Override

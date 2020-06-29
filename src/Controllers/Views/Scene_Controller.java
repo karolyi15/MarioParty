@@ -1,5 +1,6 @@
 package Controllers.Views;
 
+import Controllers.Models.SceneBuilder.GameScene;
 import Controllers.Models.SceneBuilder.SceneBuilder;
 import Controllers.Models.SceneBuilder.SceneDirector;
 import javafx.fxml.FXML;
@@ -25,6 +26,7 @@ public class Scene_Controller {
     private SceneBuilder builder;
 
 
+
     //********************************************************************************************************************//
     //************************************************ CLASS METHODS *****************************************************//
 
@@ -44,7 +46,7 @@ public class Scene_Controller {
 
         //Test System
         this.director.setSceneController(this);
-        this.director.buildMarioSoup();
+        this.director.buildTitleScene();
     }
 
    //Render System
@@ -55,9 +57,6 @@ public class Scene_Controller {
     public GraphicsContext getDrawer(){
         return this.drawer;
     }
-
-
-
 
 
 }

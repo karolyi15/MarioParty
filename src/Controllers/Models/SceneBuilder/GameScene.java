@@ -41,6 +41,7 @@ public class GameScene {
 
     //GameLoop
     private AnimationTimer gameLoop;
+    private SceneDirector director;
 
 
     //********************************************************************************************************************//
@@ -94,7 +95,13 @@ public class GameScene {
         return this.gameLoop;
     }
 
+    public SceneDirector getSceneDirector() {
+        return director;
+    }
 
+    public void setSceneDirector(SceneDirector director) {
+        this.director = director;
+    }
 
     //Render System
     public void update(){
@@ -109,12 +116,25 @@ public class GameScene {
 
 
     //Sound System
+
+    public MediaPlayer getMusicPlayer() {
+        return musicPlayer;
+    }
+
+
+
+    public MediaPlayer getSoundPlayer() {
+        return soundPlayer;
+    }
+
+
+
     public void playMusic(String filePath){
 
         Media media=new Media(new File(filePath).toURI().toString());
         this.musicPlayer=new MediaPlayer(media);
 
-        this.musicPlayer.setVolume(0);
+        this.musicPlayer.setVolume(0.2);
         this.musicPlayer.setCycleCount(MediaPlayer.INDEFINITE);
         this.musicPlayer.setAutoPlay(true);
 
@@ -186,11 +206,13 @@ public class GameScene {
             }
         };
 
+
         this.gameLoop.start();
 
     }
 
     public void stop(){
+
         this.gameLoop.stop();
     }
 }
