@@ -228,15 +228,15 @@ public class MainGame extends GameScene {
         super.getGameComponents().add(textArea);
 
         //Test Bench
-        Player player1=new Player(NodeType.MARIOPORTRAIT);
-        Player player2=new Player(NodeType.MARIOPORTRAIT);
+        //Player player1=new Player(NodeType.MARIOPORTRAIT);
+        //Player player2=new Player(NodeType.MARIOPORTRAIT);
 
-        super.getPlayerList().add(player1);
-        super.getPlayerList().add(player2);
+        //super.getPlayerList().add(player1);
+        //super.getPlayerList().add(player2);
 
-        super.getGameComponents().add(player1.getCharacter());
-        super.getGameComponents().add(player2.getCharacter());
-
+        //super.getGameComponents().add(player1.getCharacter());
+        //super.getGameComponents().add(player2.getCharacter());
+        //this.initPlayers();
         this.updatePlayerPosition();
         //this.setPlayersBoard();
     }
@@ -244,11 +244,13 @@ public class MainGame extends GameScene {
 
     //Game Logic
 
+
     private void updatePlayerPosition(){
 
        for(int player=0;player<super.getPlayerList().size();player++){
            Player tempPlayer=super.getPlayerList().get(player);
            tempPlayer.getCharacter().setPosition(this.relativeBoard.get(tempPlayer.getCurrentNode()).getPositionX(),this.relativeBoard.get(tempPlayer.getCurrentNode()).getPositionY());
+            super.getGameComponents().add(tempPlayer.getCharacter());
        }
     }
 

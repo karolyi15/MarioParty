@@ -49,6 +49,9 @@ public class SceneDirector {
     public void setPlayerList(ArrayList<Player> playerList) {
         this.playerList = playerList;
     }
+
+
+
     //Building  Methods
 
     //Complete Solution
@@ -81,7 +84,7 @@ public class SceneDirector {
         builder.reset(SceneType.BOARD);
         builder.setSceneController(controller);
         builder.setSceneDirector(this);
-        //builder.setPlayers();
+        builder.setPlayers(this.playerList);
         this.mainGame=builder.getBuild();
         this.mainGame.start();
     }

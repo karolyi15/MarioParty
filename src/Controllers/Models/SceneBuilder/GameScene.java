@@ -182,7 +182,7 @@ public class GameScene {
         this.buttonsList =new ArrayList<>();
 
         //Init Input System
-        this.playerList=new ArrayList<>();
+        //this.playerList=new ArrayList<>();
 
         //Init Background
         this.background =(Background) this.spriteFactory.createBackground(this.sceneType);

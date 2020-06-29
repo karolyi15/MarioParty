@@ -39,7 +39,7 @@ public class Character extends Sprite implements iCharacter{
     //Render System
     @Override
     public void update(GraphicsContext drawer){
-        drawer.drawImage(super.getImage(),67,309,31,34,super.getPositionX()-24,super.getPositionY()-34,46.5,51);
+        drawer.drawImage(super.getImage(),type.getPositionX(),type.getPositionY(),type.getWidth(),type.getHeight(),super.getPositionX()-24,super.getPositionY()-34,46.5,51);
     }
 
 
