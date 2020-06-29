@@ -1,7 +1,9 @@
 package Controllers.Models;
 
 import Controllers.Models.SpriteFactory.Products.Character;
+import Controllers.Models.SpriteFactory.Products.CharacterType;
 import Controllers.Models.SpriteFactory.Products.Node;
+import Controllers.Models.SpriteFactory.Products.NodeType;
 
 import java.util.ArrayList;
 
@@ -27,17 +29,46 @@ public class Player {
     //************************************************ CLASS METHODS *****************************************************//
 
     //Constructor
-    public Player(Character character){
+    public Player(NodeType portrait){
 
         //Render System
         this.currentNode=0;
-        this.character=character;
+        this.createCharacter(portrait);
 
         //Game Components
         this.punished=0;
 
         //Game Board
         this.gameBoard=new ArrayList<>();
+    }
+
+    private void createCharacter(NodeType portrait){
+        switch (portrait){
+            case MARIOPORTRAIT:
+                this.character=new Character(CharacterType.MARIO);
+                break;
+            case LUIGIPORTRAIT:
+                this.character=new Character(CharacterType.LUIGI);
+                break;
+            case PEACHPORTRAIT:
+                this.character=new Character(CharacterType.PEACH);
+                break;
+            case YOSHIPORTRAIT:
+                this.character=new Character(CharacterType.YOSHI);
+                break;
+            case WALUIGIPORTRAIT:
+                this.character=new Character(CharacterType.WALUIGI);
+                break;
+            case WARIO:
+                this.character=new Character(CharacterType.WARIO);
+                break;
+            case DAISYPORTRAIT:
+                this.character=new Character(CharacterType.DAISY);
+                break;
+            case YELLOWYOSHIPORTRAIT:
+                this.character=new Character(CharacterType.YOSHIBLUE);
+                break;
+        }
     }
 
     //Render System

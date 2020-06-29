@@ -17,6 +17,17 @@ public enum NodeType {
     //UI
     TEXTAREA("file:Resources/Imgs/UI Elements/UI_Elements.png",4,1201,182,42),
 
+    //Character Selection
+    UNKNOWNPORTRAIT("file:Resources/Imgs/UI Elements/CharacterMenu_Img.png",140,0,34,34),
+    MARIOPORTRAIT("file:Resources/Imgs/UI Elements/CharacterMenu_Img.png",0,0,34,34),
+    LUIGIPORTRAIT("file:Resources/Imgs/UI Elements/CharacterMenu_Img.png",35,0,34,34),
+    YOSHIPORTRAIT("file:Resources/Imgs/UI Elements/CharacterMenu_Img.png",105,0,34,34),
+    PEACHPORTRAIT("file:Resources/Imgs/UI Elements/CharacterMenu_Img.png",70,0,34,34),
+    DAISYPORTRAIT("file:Resources/Imgs/UI Elements/CharacterMenu_Img.png",70,34,34,34),
+    WARIOPORTRAIT("file:Resources/Imgs/UI Elements/CharacterMenu_Img.png",0,34,34,34),
+    WALUIGIPORTRAIT("file:Resources/Imgs/UI Elements/CharacterMenu_Img.png",35,34,34,34),
+    YELLOWYOSHIPORTRAIT("file:Resources/Imgs/UI Elements/CharacterMenu_Img.png",105,34,34,34),
+
     //Tic Tac Toe Nodes
     CAJA ("file:Resources/Imgs/UI Elements/TicTacToe_Elements.png",112,0,103,103),
     TTTO ("file:Resources/Imgs/UI Elements/TicTacToe_Elements.png",215,0,103,103),

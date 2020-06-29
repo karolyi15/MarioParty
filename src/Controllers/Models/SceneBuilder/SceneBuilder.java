@@ -34,6 +34,11 @@ public class SceneBuilder implements iSceneBuilder {
             this.gameScene =new TitleScene();
             this.gameScene.setSpriteFactory(this.spriteFactory);
 
+        }else if(sceneType.equals(SceneType.CHARACTERSELECTIONMENU)){
+
+            this.gameScene =new CharacterSelection();
+            this.gameScene.setSpriteFactory(this.spriteFactory);
+
         }else if(sceneType.equals(SceneType.BOARD)){
 
             this.gameScene =new MainGame();

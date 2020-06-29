@@ -46,6 +46,9 @@ public class SceneDirector {
         return mainGame;
     }
 
+    public void setPlayerList(ArrayList<Player> playerList) {
+        this.playerList = playerList;
+    }
     //Building  Methods
 
     //Complete Solution
@@ -58,6 +61,15 @@ public class SceneDirector {
     //Main Scenes
     public void  buildTitleScene(){
         builder.reset(SceneType.TITLEMENU);
+        builder.setSceneController(controller);
+        builder.setSceneDirector(this);
+        //builder.setPlayers();
+        this.mainGame=builder.getBuild();
+        this.mainGame.start();
+    }
+
+    public void  buildCharacterSelection(){
+        builder.reset(SceneType.CHARACTERSELECTIONMENU);
         builder.setSceneController(controller);
         builder.setSceneDirector(this);
         //builder.setPlayers();

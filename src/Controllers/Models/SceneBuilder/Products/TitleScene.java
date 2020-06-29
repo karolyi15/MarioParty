@@ -155,7 +155,7 @@ public class TitleScene extends GameScene {
     public void stop(){
         super.getMusicPlayer().stop();
         super.getGameLoop().stop();
-        super.getSceneDirector().buildMainGame();
+        super.getSceneDirector().buildCharacterSelection();
     }
 
 }

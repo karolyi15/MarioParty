@@ -228,8 +228,8 @@ public class MainGame extends GameScene {
         super.getGameComponents().add(textArea);
 
         //Test Bench
-        Player player1=new Player((Character) super.getSpriteFactory().createCharacter(CharacterType.MARIO));
-        Player player2=new Player((Character) super.getSpriteFactory().createCharacter(CharacterType.MARIO));
+        Player player1=new Player(NodeType.MARIOPORTRAIT);
+        Player player2=new Player(NodeType.MARIOPORTRAIT);
 
         super.getPlayerList().add(player1);
         super.getPlayerList().add(player2);

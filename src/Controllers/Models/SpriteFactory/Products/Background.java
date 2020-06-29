@@ -35,6 +35,7 @@ public class Background extends Sprite implements iBackground{
 
         switch (this.type){
             case TITLEMENU:
+            case CHARACTERSELECTIONMENU:
                 this.setPosition(482,5);
                 break;
             case BOARD:

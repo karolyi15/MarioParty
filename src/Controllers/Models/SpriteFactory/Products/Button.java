@@ -88,7 +88,7 @@ public class Button extends Sprite implements iButton {
     public void update(GraphicsContext drawer){
 
         drawer.drawImage(super.getImage(),type.getPositionX(),type.getPositionY(),type.getWidth(),type.getHeight(),super.getPositionX(),super.getPositionY(),super.getWidth(),super.getHeight());
-        //drawer.fillText(this.text.getValue(),super.getPositionX(),super.getPositionY(),super.getWidth());
+        drawer.fillText(this.text.getValue(),super.getPositionX(),super.getPositionY(),super.getWidth());
 
     }
 
