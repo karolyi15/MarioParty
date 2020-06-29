@@ -83,10 +83,11 @@ public class Sprite {
 
     public void setImage(String imgPath){
         this.imgPath=imgPath;
-        this.image=new Image(this.imgPath,this.width,this.height,false,false);
-        this.readerDimensions[0]=this.image.getWidth();
-        this.readerDimensions[1]=this.image.getHeight();
-        //this.image=new Image(this.imgPath);
+        this.image=new Image(this.imgPath);
+        //this.image=new Image(this.imgPath,this.width,this.height,false,false);
+        //this.readerDimensions[0]=this.image.getWidth();
+        //this.readerDimensions[1]=this.image.getHeight();
+
     }
 
     public Image getImage(){

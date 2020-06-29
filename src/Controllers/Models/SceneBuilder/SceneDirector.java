@@ -78,4 +78,34 @@ public class SceneDirector {
         builder.getBuild().start();
     }
 
+    public void  buildCollectTheCoins(){
+
+        builder.reset(SceneType.COINS);
+        builder.setSceneController(controller);
+        builder.getBuild().start();
+
+    }
+
+    public void  buildMemory(){
+
+        builder.reset(SceneType.MEMORY);
+        builder.setSceneController(controller);
+        builder.getBuild().start();
+
+    }
+
+    public void  buildGuessWho(){
+
+        builder.reset(SceneType.GUESS);
+        builder.setSceneController(controller);
+        builder.getBuild().start();
+    }
+
+    public void  buildMarioCards(){
+
+        builder.reset(SceneType.CARDS);
+        builder.setSceneController(controller);
+        builder.getBuild().start();
+    }
+
 }

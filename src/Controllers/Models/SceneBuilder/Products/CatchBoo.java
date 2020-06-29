@@ -47,7 +47,7 @@ public class CatchBoo extends GameScene {
             for(int column=0;column<gameField[0].length;column++){
                 Button tempNode=new Button(NodeType.TUMB,100+50*column,50*row);
                 tempNode.setValue(9);
-                tempNode.setType(NodeType.TUMBX);
+                //tempNode.setType(NodeType.CAJA);
                 tempNode.resizeImage(50,50);
                 gameField[row][column]=tempNode;
 
@@ -77,7 +77,7 @@ public class CatchBoo extends GameScene {
     private void buildBlockage(){
         int blocks=0;
 
-        while(blocks<this.gameField.length+1){
+        while(blocks<this.gameField.length){
 
             Button tempNode=this.gameField[this.getRandom()][this.getRandom()];
             if(tempNode.getPressed()==false){
@@ -104,7 +104,7 @@ public class CatchBoo extends GameScene {
 
             if(tempNode.getPressed()==false){
                 tempNode.setPressed(true);
-                tempNode.setType(NodeType.MEMORYPATHCORRECTTABLE);
+                tempNode.setType(NodeType.CATCHBOO);
                 tempNode.setValue(0);
                 this.booNode[0]=tempRow;
                 this.booNode[1]=temColumn;
@@ -114,7 +114,7 @@ public class CatchBoo extends GameScene {
     }
 
     //Player Turn System
-    private void playerTurn(Node selectedNode){
+    private void playerTurn(Button selectedNode){
 
         this.displayGameField();
 
@@ -166,25 +166,17 @@ public class CatchBoo extends GameScene {
                 System.out.println("Player Wins");
             }else{
                 gameField[booNode[0]][booNode[1]].setPressed(false);
+                gameField[booNode[0]][booNode[1]].setType(NodeType.TUMB);
                 booNode[0]=booNode[0]+nextMove[0]-1;
                 booNode[1]=booNode[1]+nextMove[1]-1;
                 gameField[booNode[0]][booNode[1]].setPressed(true);
+                gameField[booNode[0]][booNode[1]].setType(NodeType.CATCHBOO);
                 displayGameField();
             }
 
         }else{
             System.out.println("Player Perdiooo!!! :(");
         }
-
-
-        //Selecting Path
-        /*int[] selectedPath=selectPath(openSet);
-        if(selectedPath.equals(null)){
-            System.out.println("Player wins");
-        }else{
-            booNode[0]=booNode[0]+selectedPath[0]-1;
-            booNode[1]=booNode[1]+selectedPath[1]-1;
-        }*/
 
         System.out.println("*** Boo Moved ***");
 
@@ -274,29 +266,28 @@ public class CatchBoo extends GameScene {
         super.getSceneController().getCanvas().setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                /*for(int row = 0; row<6;row++){
+                for(int row = 0; row<6;row++){
                     for(int column = 0; column<3;column++){
-                        Node tempMemoryButton = gameField[row][column];
+                        Button tempMemoryButton = gameField[row][column];
                         if(tempMemoryButton.getPositionX()<=mouseEvent.getX() & mouseEvent.getX()<= tempMemoryButton.getPositionX()+ tempMemoryButton.getWidth()) {
                             if (tempMemoryButton.getPositionY() < mouseEvent.getY() & mouseEvent.getY() < tempMemoryButton.getPositionY() + tempMemoryButton.getHeight()){
 
-                                displayGameField();
-                                booTurn();
+                                playerTurn(tempMemoryButton);
 
 
                             }
                         }
                     }
-                }*/
+                }
 
 
-                if(mouseEvent.getButton().equals(MouseButton.PRIMARY)){
+                /*if(mouseEvent.getButton().equals(MouseButton.PRIMARY)){
 
                     //displayGameField();
                     booTurn();
 
 
-                }
+                }*/
             }
         });
 

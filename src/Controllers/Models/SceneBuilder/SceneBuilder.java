@@ -62,7 +62,27 @@ public class SceneBuilder implements iSceneBuilder {
             this.gameScene =new MarioSoup();
             this.gameScene.setSpriteFactory(this.spriteFactory);
 
-        }else{
+        }else if(sceneType.equals(SceneType.COINS)){
+
+            this.gameScene=new CollectTheCoins();
+            this.gameScene.setSpriteFactory(this.spriteFactory);
+
+        }else if(sceneType.equals(SceneType.MEMORY)){
+
+            this.gameScene=new Memory();
+            this.gameScene.setSpriteFactory(this.spriteFactory);
+
+        }else if(sceneType.equals(SceneType.GUESS)){
+
+            this.gameScene=new GuessWho();
+            this.gameScene.setSpriteFactory(this.spriteFactory);
+
+        }else if(sceneType.equals(SceneType.CARDS)){
+
+            this.gameScene=new MarioCards();
+            this.gameScene.setSpriteFactory(this.spriteFactory);
+
+         }else{
             this.gameScene=null;
         }
 

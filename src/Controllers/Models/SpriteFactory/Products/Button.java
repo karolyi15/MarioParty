@@ -46,6 +46,7 @@ public class Button extends Sprite implements iButton {
         super(type.getImage());
         this.type=type;
         super.setPosition(positionX,positionY);
+        //super.getImgSection((int)type.getPositionX(),(int)type.getPositionY(),(int)type.getWidth(),(int)type.getHeight());
 
         //Render System
         this.id="";
@@ -87,7 +88,7 @@ public class Button extends Sprite implements iButton {
     public void update(GraphicsContext drawer){
 
         drawer.drawImage(super.getImage(),type.getPositionX(),type.getPositionY(),type.getWidth(),type.getHeight(),super.getPositionX(),super.getPositionY(),super.getWidth(),super.getHeight());
-        drawer.fillText(this.text.getValue(),super.getPositionX(),super.getPositionY(),super.getWidth());
+        //drawer.fillText(this.text.getValue(),super.getPositionX(),super.getPositionY(),super.getWidth());
 
     }
 
@@ -95,6 +96,8 @@ public class Button extends Sprite implements iButton {
 
         this.type = type;
         super.setImage(type.getImage());
+        //super.getImgSection((int)type.getPositionX(),(int)type.getPositionY(),(int)type.getWidth(),(int)type.getHeight());
+        //super.getImgSection((int)type.getPositionX(),(int)type.getPositionY(),(int)type.getWidth(),(int)type.getHeight());
     }
 
     public NodeType getType(){

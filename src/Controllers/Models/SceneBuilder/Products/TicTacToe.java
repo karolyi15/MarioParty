@@ -2,10 +2,12 @@ package Controllers.Models.SceneBuilder.Products;
 
 import Controllers.Models.SceneBuilder.GameScene;
 import Controllers.Models.SceneBuilder.SceneType;
-import Controllers.Models.SpriteFactory.Products.Node;
+import Controllers.Models.SpriteFactory.Products.Button;
 import Controllers.Models.SpriteFactory.Products.NodeType;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 
 
 public class TicTacToe extends GameScene {
@@ -34,8 +36,8 @@ public class TicTacToe extends GameScene {
 
         for(int row = 0; row<3;row++){
             for(int column = 0; column<3;column++){
-                Node button=new Node(83*column+57,80*row+90);
-                button.resizeImage(55,55);
+                Button button=new Button(NodeType.CAJA,110*column+50,110*row+50);
+                button.resizeImage(100,100);
 
 
                 super.getButtonsList().add(button);
@@ -45,8 +47,22 @@ public class TicTacToe extends GameScene {
         }
 
     }
+    @Override
+    public void update(){
+        for(int element=0;element<super.getGameComponents().size();element++){
+            super.getGameComponents().get(element).update(super.getSceneController().getDrawer());
+        }
+        drawTitle(); // title game
+        drawturn(this.turn); // players board turn
 
-    public void setState(Node button){
+        if(checkWinner() == true){
+            drawturn(this.turn*-1);
+            drawWinner();
+        }
+
+    }
+
+    public void setState(Button button){
         if (this.turn == 1){
             if(button.getPressed() == false){
 
@@ -67,7 +83,7 @@ public class TicTacToe extends GameScene {
             System.out.println("ESTADO INVALIDO");
         }
         button.setPressed(true);
-        this.changeTurn();
+        //this.changeTurn();
 
     }
 
@@ -83,13 +99,20 @@ public class TicTacToe extends GameScene {
 
                 for(int element = 0; element< TicTacToe.super.getButtonsList().size(); element++){
 
-                    Node tempButton= (Node)TicTacToe.super.getButtonsList().get(element);
+                    Button tempButton= (Button)TicTacToe.super.getButtonsList().get(element);
 
-                    if(tempButton.getPositionX()<=mouseEvent.getX() & mouseEvent.getX()<=tempButton.getPositionX()+tempButton.getWidth()){
-                        if(tempButton.getPositionY()<mouseEvent.getY() & mouseEvent.getY()<tempButton.getPositionY()+tempButton.getHeight())
-
-                            setState(tempButton);
-
+                    if(tempButton.getPositionX()<=mouseEvent.getX() & mouseEvent.getX()<=tempButton.getPositionX()+tempButton.getWidth()) {
+                        if (tempButton.getPositionY() < mouseEvent.getY() & mouseEvent.getY() < tempButton.getPositionY() + tempButton.getHeight()){
+                            if (checkWinner() == false) {
+                                System.out.println("CHECK WINNER");
+                                tempButton.setValue(changeTurn());
+                                setState(tempButton);
+                                if (checkButtonsStates() == true) {
+                                    System.out.println("CHECK STATES");
+                                    restartButtonsStates();
+                                }
+                            }
+                        }
                     }
                 }
 
@@ -101,7 +124,6 @@ public class TicTacToe extends GameScene {
                     System.out.println("SIGUE EL JUGADOR" + turn);
 
                 }
-
             }
         });
     }
@@ -113,6 +135,28 @@ public class TicTacToe extends GameScene {
         this.turn =this.turn *-1;
         return this.turn;
     }
+
+    public void restartButtonsStates(){
+        for(int j = 0; j < 9 ; j++){
+            super.getButtonsList().get(j).setValue(0);
+            super.getButtonsList().get(j).setPressed(false);
+            super.getButtonsList().get(j).setType(NodeType.CAJA);
+        }
+    }
+
+    private boolean checkButtonsStates(){
+        int cont = 0;
+        for(int j = 0; j < 9 ; j++){
+            if(super.getButtonsList().get(j).getValue() != 0) {
+                cont++;
+            }
+        }
+        if(cont == 9){
+            return true;
+        }
+        return false;
+    }
+
 
     private boolean checkWinner(){
 
@@ -144,7 +188,43 @@ public class TicTacToe extends GameScene {
 
     }
 
+    public void drawTitle(){
+        // ---- TITLE TIC TAC TOE ----
+        super.getSceneController().getDrawer().setFont(new Font("Verdana Bold Italic", 40));
+        super.getSceneController().getDrawer().setFill(Color.WHITE);
+        super.getSceneController().getDrawer().fillText("Tic Tac Toe",400,80,500);
+    }
 
+    public void drawturn(int turn){
+        /*double x = 400;
+        double y = 150;
+        double width = ;
+        double height = ;*/
+        if(turn == 1){
+            //----- CREATE PLAYER 2 BOARD------
+            super.getSceneController().getDrawer().setFill(Color.BLUE);
+            super.getSceneController().getDrawer().fillRoundRect(400, 150, 200, 50, 10, 10);
+            // ---- TITLE PLAYER ----
+            super.getSceneController().getDrawer().setFont(new Font("Verdana Bold", 30));
+            super.getSceneController().getDrawer().setFill(Color.WHITE);
+            super.getSceneController().getDrawer().fillText("PLAYER 1",420,185);
+        }else if (turn == -1){
+            //----- CREATE PLAYER 1 BOARD-----
+            super.getSceneController().getDrawer().setFill(Color.RED);
+            super.getSceneController().getDrawer().fillRoundRect(400, 150, 200, 50, 10, 10);
+            // ---- TITLE PLAYER ----
+            super.getSceneController().getDrawer().setFont(new Font("Verdana Bold", 30));
+            super.getSceneController().getDrawer().setFill(Color.WHITE);
+            super.getSceneController().getDrawer().fillText("PLAYER 2",420,185);
+        }
+    }
+
+    public void drawWinner(){
+        // ---- TITLE WINNER ----
+        super.getSceneController().getDrawer().setFont(new Font("Verdana Bold", 30));
+        super.getSceneController().getDrawer().setFill(Color.WHITE);
+        super.getSceneController().getDrawer().fillText("YOU WIN!!!",405,230);
+    }
 
 
 

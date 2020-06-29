@@ -35,17 +35,21 @@ public class Background extends Sprite implements iBackground{
 
         switch (this.type){
             case TITLEMENU:
-            case TICTACTOE:
                 this.setPosition(482,5);
                 break;
             case BOARD:
                 this.setPosition(350,1400);
+                break;
+            case TICTACTOE:
                 break;
             case MEMORYPATH:
                 this.setPosition(50,0);
                 break;
             case CATCHCAT:
                 this.setPosition(25,0);
+                break;
+            case CARDS:
+                this.setPosition(2,0);
                 break;
 
         }
