@@ -236,6 +236,7 @@ public class TicTacToe extends GameScene {
 
         //Reload Main Game
         super.getSceneDirector().buildMainGame();
+        //super.getSceneDirector().getMainGame().getGameLoop().start();
     }
 
 }

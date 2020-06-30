@@ -36,6 +36,7 @@ public class MainGame extends GameScene {
 
     //Scene Transition System
     SceneType nextMiniGame;
+    ArrayList<NodeType> minigames;
 
 
     //********************************************************************************************************************//
@@ -98,12 +99,13 @@ public class MainGame extends GameScene {
                     Button tempButton= (Button) MainGame.super.getButtonsList().get(element);
 
                     if(tempButton.getPositionX()<=mouseEvent.getX() & mouseEvent.getX()<=tempButton.getPositionX()+tempButton.getWidth()){
-                        if(tempButton.getPositionY()<mouseEvent.getY() & mouseEvent.getY()<tempButton.getPositionY()+tempButton.getHeight())
+                        if(tempButton.getPositionY()<mouseEvent.getY() & mouseEvent.getY()<tempButton.getPositionY()+tempButton.getHeight()) {
 
                             throwDice(MainGame.super.getPlayerList().get(playerTurn));
                             //updateCamara(MainGame.super.getPlayerList().get(playerTurn));
 
                             stop();
+                        }
 
                     }
                 }

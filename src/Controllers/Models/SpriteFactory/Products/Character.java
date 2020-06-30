@@ -3,7 +3,7 @@ package Controllers.Models.SpriteFactory.Products;
 import Controllers.Models.SpriteFactory.Sprite;
 import javafx.scene.canvas.GraphicsContext;
 
-public class Character extends Sprite implements iCharacter{
+public class Character extends Sprite {
 
     //********************************************************************************************************************//
     //************************************************ CLASS FIELDS ******************************************************//
@@ -13,9 +13,6 @@ public class Character extends Sprite implements iCharacter{
 
     //Animation System
 
-
-    //Physics System
-    private double[] speed;
 
 
     //********************************************************************************************************************//
@@ -31,8 +28,7 @@ public class Character extends Sprite implements iCharacter{
         //Render System
         this.type=type;
 
-        //Physics System
-        this.speed=new double[2];
+
     }
 
 

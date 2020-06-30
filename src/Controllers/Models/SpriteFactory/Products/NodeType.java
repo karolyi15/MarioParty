@@ -81,7 +81,7 @@ public enum NodeType {
     TOAD("file:Resources/Imgs/UI Elements/GuessWho_Elements.png",0,323,327,323),
     WALUIGI("file:Resources/Imgs/UI Elements/GuessWho_Elements.png",0,646,327,323),
     WARIO("file:Resources/Imgs/UI Elements/GuessWho_Elements.png",0,0,327,323),
-    YOSHI("file:Resources/Imgs/UI Elements/GuessWho_Elements.pngg",654 ,646,327,323),
+    YOSHI("file:Resources/Imgs/UI Elements/GuessWho_Elements.png",654 ,646,327,323),
 
     GUESSBUTTONSTANDARD("file:Resources/Imgs/UI Elements/GuessWho_Elements.png",11,979,312,92),
     GUESSBUTTONCORRECT("file:Resources/Imgs/UI Elements/GuessWho_Elements.png",363,979,312,92),

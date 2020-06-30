@@ -5,7 +5,7 @@ import Controllers.Models.SpriteFactory.Sprite;
 import javafx.scene.canvas.GraphicsContext;
 
 
-public class Background extends Sprite implements iBackground{
+public class Background extends Sprite {
 
     //********************************************************************************************************************//
     //************************************************ CLASS FIELDS ******************************************************//
