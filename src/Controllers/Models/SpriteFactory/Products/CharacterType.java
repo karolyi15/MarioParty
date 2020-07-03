@@ -12,7 +12,7 @@ public enum CharacterType {
     PEACH("file:Resources/Imgs/Characters/Peach_Img.png",67,338,31,36),
 
     WARIO("file:Resources/Imgs/Characters/Mario_Img.png",67,309,31,34),
-    WALUIGI("file:Resources/Imgs/Characters/Luigi_Img.png",68,338,31,35),
+    WALUIGI("file:Resources/Imgs/Characters/Luigi_Img.png",68,324,31,36),
     DAISY("file:Resources/Imgs/Characters/Peach_Img.png",67,338,31,36),
     YOSHIBLUE("file:Resources/Imgs/Characters/Yoshi_Img.png",67,308,31,35);
 

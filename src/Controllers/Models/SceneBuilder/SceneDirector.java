@@ -2,6 +2,7 @@ package Controllers.Models.SceneBuilder;
 
 import Controllers.Models.Player;
 import Controllers.Views.Scene_Controller;
+import org.json.simple.JSONObject;
 
 import java.util.ArrayList;
 
@@ -21,6 +22,7 @@ public class SceneDirector {
     private GameScene miniGame;
 
     private ArrayList<Player> playerList;
+    private JSONObject gameLog;
 
     //********************************************************************************************************************//
     //************************************************ CLASS METHODS *****************************************************//
@@ -30,8 +32,14 @@ public class SceneDirector {
 
         this.builder=builder;
         this.playerList=new ArrayList<>();
+        this.initGameLog();
+
     }
 
+    private void initGameLog(){
+        this.gameLog=new JSONObject();
+        this.gameLog.put("Restart",true);
+    }
     //Setters & Getters
     public void changeBuilder(iSceneBuilder builder){
         this.builder=builder;
@@ -50,9 +58,11 @@ public class SceneDirector {
         this.playerList = playerList;
     }
 
+    public JSONObject getGameLog() {
+        return gameLog;
+    }
 
-
-    //Building  Methods
+//Building  Methods
 
     //Complete Solution
     public void buildSolution(){

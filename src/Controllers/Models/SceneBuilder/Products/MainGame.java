@@ -9,6 +9,7 @@ import Controllers.Models.SpriteFactory.Products.Character;
 import Controllers.Models.SpriteFactory.Sprite;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
+import org.json.simple.JSONObject;
 
 
 import java.util.ArrayList;
@@ -30,9 +31,10 @@ public class MainGame extends GameScene {
     private int playerTurn;
 
     //UI Elements
-    Sprite portrait;
-    Button tdice;
-    Button tarea;
+    private Button portrait;
+    private Button diceButton;
+    private Button textArea;
+
 
     //Scene Transition System
     SceneType nextMiniGame;
@@ -41,13 +43,15 @@ public class MainGame extends GameScene {
 
     //********************************************************************************************************************//
     //************************************************ CLASS METHODS *****************************************************//
+
     //Constructors
     public MainGame(){
         super(SceneType.BOARD);
     }
 
-    //Camara System
 
+
+    //Camara System
     public  void restartCamara(){
         this.camara[0]=350;
         this.camara[1]=1400;
@@ -64,66 +68,55 @@ public class MainGame extends GameScene {
     }
 
 
-    /*public  void updateCamara(Player player){
-
-
-        //Update Path Position
-        //this.updatePathPosition();
-
-
-    }*/
-
-    private void updatePathPosition(){
-        System.out.println("***************Path Position Update*****************\n");
-        for(int node = 0; node<this.realBoard.size(); node++){
-
-            Node realNode=this.realBoard.get(node);
-            Node relativeNode=this.relativeBoard.get(node);
-
-            relativeNode.setPosition(realNode.getPositionX()-super.getBackground().getPositionX(),realNode.getPositionY()-super.getBackground().getPositionY());
-            //System.out.println("node "+node+" posx: "+relativeNode.getPositionX()+" posy: "+relativeNode.getPositionY()+"\n");
-        }
-    }
-
-
-
-    //Event Handling System
+    //Game Loop
     @Override
-    public void handleMouseEvents(){
-        super.getSceneController().getCanvas().setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
+    public void initGameComponents(){
 
-                for(int element = 0; element< MainGame.super.getButtonsList().size(); element++){
+        //Init Camara System
+        this.camara= new double[2];
 
-                    Button tempButton= (Button) MainGame.super.getButtonsList().get(element);
+        //Init Game Components
+        this.dice=new Dice();
 
-                    if(tempButton.getPositionX()<=mouseEvent.getX() & mouseEvent.getX()<=tempButton.getPositionX()+tempButton.getWidth()){
-                        if(tempButton.getPositionY()<mouseEvent.getY() & mouseEvent.getY()<tempButton.getPositionY()+tempButton.getHeight()) {
+        //Set Up Game State
+        this.loadGameState();
 
-                            throwDice(MainGame.super.getPlayerList().get(playerTurn));
-                            //updateCamara(MainGame.super.getPlayerList().get(playerTurn));
+        //UI Elements
+        this.initUI_Elements();
 
-                            stop();
-                        }
+        //**********************************Review
+        this.updatePathPosition();
+        this.updatePlayerPosition();
 
-                    }
-                }
-
-
-            }
-        });
     }
 
+
+    private void initUI_Elements(){
+        //Init UI Components
+        this.diceButton=new Button(540,435);
+        diceButton.setText("Throw Dice");
+        diceButton.setId("Dice Button");
+        diceButton.resizeImage(150,50);
+        super.getButtonsList().add(diceButton);
+        super.getGameComponents().add(diceButton);
+
+        this.textArea=new Button(390,10);
+        textArea.setText("Player #");
+        textArea.setId("Text Area");
+        textArea.setType(NodeType.TEXTAREA);
+        textArea.resizeImage(300,75);
+        super.getGameComponents().add(textArea);
+
+        this.portrait=new Button(NodeType.UNKNOWNPORTRAIT,400,20);
+        portrait.resizeImage(54,58);
+        super.getGameComponents().add(portrait);
+    }
 
     //Render System
 
-   public void buildPath(){
+    public void buildPath(){
 
-       /*this.board.add(new Node(503,1626));
-       this.board.add(new Node(576,1626));
-       this.board.add(new Node(576,1684));*/
-
+        //Real Path
         //Main Path
         this.realBoard.add(new Node(503,1626));
         this.realBoard.add(new Node(576,1626));
@@ -158,132 +151,45 @@ public class MainGame extends GameScene {
         this.realBoard.add(new Node(1612,1739));
         this.realBoard.add(new Node(1671,1739));
 
-       ///Relative
+        ///Relative Path
 
-       this.relativeBoard.add(new Node(503,1626));
-       this.relativeBoard.add(new Node(576,1626));
-       this.relativeBoard.add(new Node(576,1684));
+        this.relativeBoard.add(new Node(503,1626));
+        this.relativeBoard.add(new Node(576,1626));
+        this.relativeBoard.add(new Node(576,1684));
 
-       this.relativeBoard.add(new Node(576,1740));
-       this.relativeBoard.add(new Node(633,1740));
-       this.relativeBoard.add(new Node(691,1740));
-       this.relativeBoard.add(new Node(748,1740));
-       this.relativeBoard.add(new Node(806,1740));
-       this.relativeBoard.add(new Node(863,1740));
-       this.relativeBoard.add(new Node(922,1740));
-       this.relativeBoard.add(new Node(979,1740));
+        this.relativeBoard.add(new Node(576,1740));
+        this.relativeBoard.add(new Node(633,1740));
+        this.relativeBoard.add(new Node(691,1740));
+        this.relativeBoard.add(new Node(748,1740));
+        this.relativeBoard.add(new Node(806,1740));
+        this.relativeBoard.add(new Node(863,1740));
+        this.relativeBoard.add(new Node(922,1740));
+        this.relativeBoard.add(new Node(979,1740));
 
-       this.relativeBoard.add(new Node(979,1681));
-       this.relativeBoard.add(new Node(1041,1681));
-       this.relativeBoard.add(new Node(1097,1681));
+        this.relativeBoard.add(new Node(979,1681));
+        this.relativeBoard.add(new Node(1041,1681));
+        this.relativeBoard.add(new Node(1097,1681));
 
-       this.relativeBoard.add(new Node(1097,1741));
-       this.relativeBoard.add(new Node(1150,1741));
+        this.relativeBoard.add(new Node(1097,1741));
+        this.relativeBoard.add(new Node(1150,1741));
 
-       this.relativeBoard.add(new Node(1150,1796));
-       this.relativeBoard.add(new Node(1290,1799));
-       this.relativeBoard.add(new Node(1267,1800));
-       this.relativeBoard.add(new Node(1325,1798));
-       this.relativeBoard.add(new Node(1383,1798));
-       this.relativeBoard.add(new Node(1439,1798));
-       this.relativeBoard.add(new Node(1497,1798));
+        this.relativeBoard.add(new Node(1150,1796));
+        this.relativeBoard.add(new Node(1290,1799));
+        this.relativeBoard.add(new Node(1267,1800));
+        this.relativeBoard.add(new Node(1325,1798));
+        this.relativeBoard.add(new Node(1383,1798));
+        this.relativeBoard.add(new Node(1439,1798));
+        this.relativeBoard.add(new Node(1497,1798));
 
-       this.relativeBoard.add(new Node(1497,1739));
-       this.relativeBoard.add(new Node(1553,1739));
-       this.relativeBoard.add(new Node(1612,1739));
-       this.relativeBoard.add(new Node(1671,1739));
+        this.relativeBoard.add(new Node(1497,1739));
+        this.relativeBoard.add(new Node(1553,1739));
+        this.relativeBoard.add(new Node(1612,1739));
+        this.relativeBoard.add(new Node(1671,1739));
 
-
-
-        this.updatePathPosition();
-    }
-
-
-    //Game Loop
-    @Override
-    public void initGameComponents(){
-
-        //Init Game Components
-        this.dice=new Dice();
-        this.playerTurn=0;
-        this.realBoard =new ArrayList<>();
-        this.relativeBoard=new ArrayList<>();
-        this.buildPath();
-
-        //Init Camara System
-        this.camara= new double[2];
-        //restartCamara();
-
-        //Init UI Components
-        Button diceButton=new Button(540,435);
-        diceButton.setText("Throw Dice");
-        diceButton.setId("Dice Button");
-        diceButton.resizeImage(150,50);
-        super.getButtonsList().add(diceButton);
-        super.getGameComponents().add(diceButton);
-
-        Button textArea=new Button(390,10);
-        textArea.setText("Player #");
-        textArea.setId("Text Area");
-        textArea.setType(NodeType.TEXTAREA);
-        textArea.resizeImage(300,75);
-        super.getGameComponents().add(textArea);
-
-        //Test Bench
-        //Player player1=new Player(NodeType.MARIOPORTRAIT);
-        //Player player2=new Player(NodeType.MARIOPORTRAIT);
-
-        //super.getPlayerList().add(player1);
-        //super.getPlayerList().add(player2);
-
-        //super.getGameComponents().add(player1.getCharacter());
-        //super.getGameComponents().add(player2.getCharacter());
-        //this.initPlayers();
-        this.updatePlayerPosition();
-        //this.setPlayersBoard();
     }
 
 
     //Game Logic
-
-
-    private void updatePlayerPosition(){
-
-       for(int player=0;player<super.getPlayerList().size();player++){
-           Player tempPlayer=super.getPlayerList().get(player);
-           tempPlayer.getCharacter().setPosition(this.relativeBoard.get(tempPlayer.getCurrentNode()).getPositionX(),this.relativeBoard.get(tempPlayer.getCurrentNode()).getPositionY());
-            super.getGameComponents().add(tempPlayer.getCharacter());
-       }
-    }
-
-    /*private void setPlayersBoard(){
-        for(int player=0;player<super.getPlayerList().size();player++) {
-            for (int node = 0; node < this.realBoard.size(); node++) {
-                Node tempNode = this.realBoard.get(node);
-                tempNode.setPosition(tempNode.getPositionX()-super.getMap().getPositionX(),tempNode.getPositionY()-super.getMap().getPositionY());
-                super.getPlayerList().get(player).getGameBoard().add(tempNode);
-            }
-        }
-
-
-    }*/
-
-    private void changeTurn(){
-
-        this.playerTurn+=1;
-        if(this.playerTurn>=super.getPlayerList().size()){
-            this.playerTurn=0;
-        }
-        this.setCamaraOn(super.getPlayerList().get(this.playerTurn));
-        //this.updatePathPosition();
-        this.displayPlayerInfo(super.getPlayerList().get(this.playerTurn));
-
-    }
-
-    private void displayPlayerInfo(Player player){
-        System.out.println("Player info displayed");
-    }
-
     private void throwDice(Player player){
 
         System.out.println("Playing Player "+(this.playerTurn+1));
@@ -309,7 +215,7 @@ public class MainGame extends GameScene {
 
                        System.out.println("Player "+playerTurn+1+"Wins!!");
                        player.setCurrentNode(player.getCurrentNode()+diceValue);
-                       //super.getGameLoop().stop();
+                       super.getGameLoop().stop();
                    }else{
                        player.setCurrentNode(player.getCurrentNode()+diceValue);
                    }
@@ -330,16 +236,114 @@ public class MainGame extends GameScene {
 
     }
 
+    private void changeTurn(){
+
+        this.playerTurn+=1;
+        if(this.playerTurn>=super.getPlayerList().size()){
+            this.playerTurn=0;
+        }
+        this.setCamaraOn(super.getPlayerList().get(this.playerTurn));
+        //this.updatePathPosition();
+        this.displayPlayerInfo(super.getPlayerList().get(this.playerTurn));
+
+    }
+
+    private void updatePlayerPosition(){
+
+        for(int player=0;player<super.getPlayerList().size();player++){
+            Player tempPlayer=super.getPlayerList().get(player);
+            tempPlayer.getCharacter().setPosition(this.relativeBoard.get(tempPlayer.getCurrentNode()).getPositionX(),this.relativeBoard.get(tempPlayer.getCurrentNode()).getPositionY());
+            super.getGameComponents().add(tempPlayer.getCharacter());
+        }
+    }
+
+    private void updatePathPosition(){
+        System.out.println("***************Path Position Update*****************\n");
+        for(int node = 0; node<this.realBoard.size(); node++){
+
+            Node realNode=this.realBoard.get(node);
+            Node relativeNode=this.relativeBoard.get(node);
+
+            relativeNode.setPosition(realNode.getPositionX()-super.getBackground().getPositionX(),realNode.getPositionY()-super.getBackground().getPositionY());
+            //System.out.println("node "+node+" posx: "+relativeNode.getPositionX()+" posy: "+relativeNode.getPositionY()+"\n");
+        }
+    }
+
+
+    private void displayPlayerInfo(Player player){
+
+        this.textArea.setText("Player "+(this.playerTurn+1));
+        this.portrait.setType(player.getPlayerID());
+    }
+
+
+
+    //Event Handling System
+    @Override
+    public void handleMouseEvents(){
+        super.getSceneController().getCanvas().setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+
+                for(int element = 0; element< MainGame.super.getButtonsList().size(); element++){
+
+                    Button tempButton= (Button) MainGame.super.getButtonsList().get(element);
+
+                    if(tempButton.getPositionX()<=mouseEvent.getX() & mouseEvent.getX()<=tempButton.getPositionX()+tempButton.getWidth()){
+                        if(tempButton.getPositionY()<mouseEvent.getY() & mouseEvent.getY()<tempButton.getPositionY()+tempButton.getHeight()) {
+
+                            throwDice(MainGame.super.getPlayerList().get(playerTurn));
+                            //updateCamara(MainGame.super.getPlayerList().get(playerTurn));
+
+                            //stop();
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+
+    private void saveGameState(){
+        JSONObject gameLog=super.getSceneDirector().getGameLog();
+        gameLog.put("Restart",false);
+        gameLog.put("PlayerTurn",this.playerTurn);
+        gameLog.put("RealPath",this.realBoard);
+        //gameLog.put("RelativePath", this.relativeBoard);
+    }
+
+    private void loadGameState(){
+        JSONObject gameLog=super.getSceneDirector().getGameLog();
+        Boolean restart=(Boolean) gameLog.get("Restart");
+
+        if(restart){
+            this.playerTurn=0;
+            this.realBoard=new ArrayList<>();
+            this.relativeBoard=new ArrayList<>();
+            this.buildPath();
+
+        }else{
+            this.playerTurn=(int)gameLog.get("PlayerTurn");
+            this.realBoard=(ArrayList<Node>)gameLog.get("RealPath");
+            this.relativeBoard=(ArrayList<Node>)gameLog.get("RealPath");
+        }
+
+    }
+
+
     @Override
     public void stop(){
 
         //Stops Game Execution
         super.getMusicPlayer().stop();
         super.getGameLoop().stop();
+        this.saveGameState();
 
         //Build Mini Game
         super.getSceneDirector().buildTicTacToe();
     }
+
+
 
 
 }
