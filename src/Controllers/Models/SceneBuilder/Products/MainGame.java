@@ -11,6 +11,7 @@ import org.json.simple.JSONObject;
 
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class MainGame extends GameScene {
 
@@ -18,8 +19,8 @@ public class MainGame extends GameScene {
     //************************************************ CLASS FIELDS ******************************************************//
 
     //Render System
-    private ArrayList<Node> realBoard;
-    private ArrayList<Node> relativeBoard;
+    private ArrayList<Button> realBoard;
+    private ArrayList<Button> relativeBoard;
 
     //Camara System
     private double[] camara;
@@ -159,74 +160,123 @@ public class MainGame extends GameScene {
 
         //Real Path
         //Main Path
-        this.realBoard.add(new Node(503,1626));
-        this.realBoard.add(new Node(576,1626));
-        this.realBoard.add(new Node(576,1684));
+        this.realBoard.add(new Button(503,1626));
+        this.realBoard.add(new Button(576,1626));
+        this.realBoard.add(new Button(576,1684));
 
-        this.realBoard.add(new Node(576,1740));
-        this.realBoard.add(new Node(633,1740));
-        this.realBoard.add(new Node(691,1740));
-        this.realBoard.add(new Node(748,1740));
-        this.realBoard.add(new Node(806,1740));
-        this.realBoard.add(new Node(863,1740));
-        this.realBoard.add(new Node(922,1740));
-        this.realBoard.add(new Node(979,1740));
+        this.realBoard.add(new Button(576,1740));
+        this.realBoard.add(new Button(633,1740));
+        this.realBoard.add(new Button(691,1740));
+        this.realBoard.add(new Button(748,1740));
+        this.realBoard.add(new Button(806,1740));
+        this.realBoard.add(new Button(863,1740));
+        this.realBoard.add(new Button(922,1740));
+        this.realBoard.add(new Button(979,1740));
 
-        this.realBoard.add(new Node(979,1681));
-        this.realBoard.add(new Node(1041,1681));
-        this.realBoard.add(new Node(1097,1681));
+        this.realBoard.add(new Button(979,1681));
+        this.realBoard.add(new Button(1041,1681));
+        this.realBoard.add(new Button(1097,1681));
 
-        this.realBoard.add(new Node(1097,1741));
-        this.realBoard.add(new Node(1150,1741));
+        this.realBoard.add(new Button(1097,1741));
+        this.realBoard.add(new Button(1150,1741));
 
-        this.realBoard.add(new Node(1150,1796));
-        this.realBoard.add(new Node(1290,1799));
-        this.realBoard.add(new Node(1267,1800));
-        this.realBoard.add(new Node(1325,1798));
-        this.realBoard.add(new Node(1383,1798));
-        this.realBoard.add(new Node(1439,1798));
-        this.realBoard.add(new Node(1497,1798));
+        this.realBoard.add(new Button(1150,1796));
+        this.realBoard.add(new Button(1290,1799));
+        this.realBoard.add(new Button(1267,1800));
+        this.realBoard.add(new Button(1325,1798));
+        this.realBoard.add(new Button(1383,1798));
+        this.realBoard.add(new Button(1439,1798));
+        this.realBoard.add(new Button(1497,1798));
 
-        this.realBoard.add(new Node(1497,1739));
-        this.realBoard.add(new Node(1553,1739));
-        this.realBoard.add(new Node(1612,1739));
-        this.realBoard.add(new Node(1671,1739));
+        this.realBoard.add(new Button(1497,1739));
+        this.realBoard.add(new Button(1553,1739));
+        this.realBoard.add(new Button(1612,1739));
+        this.realBoard.add(new Button(1671,1739));
 
         ///Relative Path
 
-        this.relativeBoard.add(new Node(503,1626));
-        this.relativeBoard.add(new Node(576,1626));
-        this.relativeBoard.add(new Node(576,1684));
+        this.relativeBoard.add(new Button(503,1626));
+        this.relativeBoard.add(new Button(576,1626));
+        this.relativeBoard.add(new Button(576,1684));
 
-        this.relativeBoard.add(new Node(576,1740));
-        this.relativeBoard.add(new Node(633,1740));
-        this.relativeBoard.add(new Node(691,1740));
-        this.relativeBoard.add(new Node(748,1740));
-        this.relativeBoard.add(new Node(806,1740));
-        this.relativeBoard.add(new Node(863,1740));
-        this.relativeBoard.add(new Node(922,1740));
-        this.relativeBoard.add(new Node(979,1740));
+        this.relativeBoard.add(new Button(576,1740));
+        this.relativeBoard.add(new Button(633,1740));
+        this.relativeBoard.add(new Button(691,1740));
+        this.relativeBoard.add(new Button(748,1740));
+        this.relativeBoard.add(new Button(806,1740));
+        this.relativeBoard.add(new Button(863,1740));
+        this.relativeBoard.add(new Button(922,1740));
+        this.relativeBoard.add(new Button(979,1740));
 
-        this.relativeBoard.add(new Node(979,1681));
-        this.relativeBoard.add(new Node(1041,1681));
-        this.relativeBoard.add(new Node(1097,1681));
+        this.relativeBoard.add(new Button(979,1681));
+        this.relativeBoard.add(new Button(1041,1681));
+        this.relativeBoard.add(new Button(1097,1681));
 
-        this.relativeBoard.add(new Node(1097,1741));
-        this.relativeBoard.add(new Node(1150,1741));
+        this.relativeBoard.add(new Button(1097,1741));
+        this.relativeBoard.add(new Button(1150,1741));
 
-        this.relativeBoard.add(new Node(1150,1796));
-        this.relativeBoard.add(new Node(1290,1799));
-        this.relativeBoard.add(new Node(1267,1800));
-        this.relativeBoard.add(new Node(1325,1798));
-        this.relativeBoard.add(new Node(1383,1798));
-        this.relativeBoard.add(new Node(1439,1798));
-        this.relativeBoard.add(new Node(1497,1798));
+        this.relativeBoard.add(new Button(1150,1796));
+        this.relativeBoard.add(new Button(1290,1799));
+        this.relativeBoard.add(new Button(1267,1800));
+        this.relativeBoard.add(new Button(1325,1798));
+        this.relativeBoard.add(new Button(1383,1798));
+        this.relativeBoard.add(new Button(1439,1798));
+        this.relativeBoard.add(new Button(1497,1798));
 
-        this.relativeBoard.add(new Node(1497,1739));
-        this.relativeBoard.add(new Node(1553,1739));
-        this.relativeBoard.add(new Node(1612,1739));
-        this.relativeBoard.add(new Node(1671,1739));
+        this.relativeBoard.add(new Button(1497,1739));
+        this.relativeBoard.add(new Button(1553,1739));
+        this.relativeBoard.add(new Button(1612,1739));
+        this.relativeBoard.add(new Button(1671,1739));
 
+        //Assign Node Type
+        this.assignNodeType();
+    }
+
+    private void assignNodeType(){
+        //Create NodeType List
+        ArrayList<NodeType> typeList=new ArrayList<>();
+        typeList.add(NodeType.TAIL);
+        typeList.add(NodeType.STAR);
+        typeList.add(NodeType.PRISON);
+        typeList.add(NodeType.TUBERED);
+        typeList.add(NodeType.TUBEBLUE);
+        typeList.add(NodeType.TUBEYELLOW);
+        typeList.add(NodeType.FIRE);
+        typeList.add(NodeType.ICE);
+        typeList.add(NodeType.MINIGAMEICON);
+        typeList.add(NodeType.MINIGAMEICON);
+        typeList.add(NodeType.MINIGAMEICON);
+        typeList.add(NodeType.MINIGAMEICON);
+        typeList.add(NodeType.MINIGAMEICON);
+        typeList.add(NodeType.MINIGAMEICON);
+        typeList.add(NodeType.MINIGAMEICON);
+        typeList.add(NodeType.MINIGAMEICON);
+        typeList.add(NodeType.MINIGAMEICON);
+        typeList.add(NodeType.MINIGAMEICON);
+        typeList.add(NodeType.MINIGAMEICON);
+        typeList.add(NodeType.MINIGAMEICON);
+        typeList.add(NodeType.MINIGAMEICON);
+        typeList.add(NodeType.MINIGAMEICON);
+        typeList.add(NodeType.MINIGAMEICON);
+        typeList.add(NodeType.MINIGAMEICON);
+        typeList.add(NodeType.MINIGAMEICON);
+        typeList.add(NodeType.MINIGAMEICON);
+
+        Random random=new Random();
+
+        for(int node=0;node<this.realBoard.size()-1;node++){
+            int randomPosition=random.nextInt(typeList.size());
+            System.out.println("Random Position"+randomPosition);
+            Button tempRealNode=this.realBoard.get(node);
+            tempRealNode.setType(typeList.get(randomPosition));
+            tempRealNode.resizeImage(10,10);
+            Button tempRelativeNode=this.relativeBoard.get(node);
+            tempRelativeNode.setType(typeList.get(randomPosition));
+            tempRelativeNode.resizeImage(30,30);
+
+            typeList.remove(randomPosition);
+            super.getGameComponents().add(tempRelativeNode);
+        }
     }
 
 
@@ -302,8 +352,8 @@ public class MainGame extends GameScene {
         System.out.println("***************Path Position Update*****************\n");
         for(int node = 0; node<this.realBoard.size(); node++){
 
-            Node realNode=this.realBoard.get(node);
-            Node relativeNode=this.relativeBoard.get(node);
+            Button realNode=this.realBoard.get(node);
+            Button relativeNode=this.relativeBoard.get(node);
 
             relativeNode.setPosition(realNode.getPositionX()-super.getBackground().getPositionX(),realNode.getPositionY()-super.getBackground().getPositionY());
             //System.out.println("node "+node+" posx: "+relativeNode.getPositionX()+" posy: "+relativeNode.getPositionY()+"\n");
@@ -350,7 +400,7 @@ public class MainGame extends GameScene {
         gameLog.put("Restart",false);
         gameLog.put("PlayerTurn",this.playerTurn);
         gameLog.put("RealPath",this.realBoard);
-        //gameLog.put("RelativePath", this.relativeBoard);
+        gameLog.put("RelativePath", this.relativeBoard);
     }
 
     private void loadGameState(){
@@ -366,8 +416,8 @@ public class MainGame extends GameScene {
 
         }else{
             this.playerTurn=(int)gameLog.get("PlayerTurn");
-            this.realBoard=(ArrayList<Node>)gameLog.get("RealPath");
-            this.relativeBoard=(ArrayList<Node>)gameLog.get("RealPath");
+            this.realBoard=(ArrayList<Button>)gameLog.get("RealPath");
+            this.relativeBoard=(ArrayList<Button>)gameLog.get("RelativePath");
         }
 
     }

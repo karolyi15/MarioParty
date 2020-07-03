@@ -3,13 +3,16 @@ package Controllers.Models.SpriteFactory.Products;
 public enum NodeType {
 
     //Board Cells
-    PRISON("",0,0,0,0),
-    TUBE("",0,0,0,0),
-    STAR("",0,0,0,0),
-    FIRE("",0,0,0,0),
-    ICE("",0,0,0,0),
-    TAIL("",0,0,0,0),
-    DEFAULT("",0,0,0,0),
+    PRISON("file:Resources/Imgs/UI Elements/MapElements_Img",89,443,33,37),
+    TUBERED("file:Resources/Imgs/UI Elements/MapElements_Img",85,484,35,37),
+    TUBEBLUE("file:Resources/Imgs/UI Elements/MapElements_Img",190,484,35,37),
+    TUBEYELLOW("file:Resources/Imgs/UI Elements/MapElements_Img",15,484,35,37),
+    STAR("file:Resources/Imgs/UI Elements/UI_Elements.png",38,1156,15,15),
+    FIRE("file:Resources/Imgs/UI Elements/MapElements_Img",324,226,25,36),
+    ICE("file:Resources/Imgs/UI Elements/MapElements_Img",92,360,25,36),
+    TAIL("file:Resources/Imgs/UI Elements/UI_Elements.png",7,1117,24,42),
+    MINIGAMEICON("file:Resources/Imgs/UI Elements/UI_Elements.png",55,75,17,17),
+
 
     //Button State
     DEFAULTBUTTON("file:Resources/Imgs/UI Elements/UI_Elements.png",57,1114,85,25),
