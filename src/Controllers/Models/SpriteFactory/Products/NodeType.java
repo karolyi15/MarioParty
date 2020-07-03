@@ -3,16 +3,23 @@ package Controllers.Models.SpriteFactory.Products;
 public enum NodeType {
 
     //Board Cells
-    PRISON("file:Resources/Imgs/UI Elements/MapElements_Img",89,443,33,37),
-    TUBERED("file:Resources/Imgs/UI Elements/MapElements_Img",85,484,35,37),
-    TUBEBLUE("file:Resources/Imgs/UI Elements/MapElements_Img",190,484,35,37),
-    TUBEYELLOW("file:Resources/Imgs/UI Elements/MapElements_Img",15,484,35,37),
-    STAR("file:Resources/Imgs/UI Elements/UI_Elements.png",38,1156,15,15),
-    FIRE("file:Resources/Imgs/UI Elements/MapElements_Img",324,226,25,36),
-    ICE("file:Resources/Imgs/UI Elements/MapElements_Img",92,360,25,36),
-    TAIL("file:Resources/Imgs/UI Elements/UI_Elements.png",7,1117,24,42),
-    MINIGAMEICON("file:Resources/Imgs/UI Elements/UI_Elements.png",55,75,17,17),
-
+    PRISON("file:Resources/Imgs/UI Elements/UI_Elements.png",233,9,33,37),
+    TUBERED("file:Resources/Imgs/UI Elements/UI_Elements.png",232,57,35,37),
+    TUBEBLUE("file:Resources/Imgs/UI Elements/UI_Elements.png",310,57,35,37),
+    TUBEYELLOW("file:Resources/Imgs/UI Elements/UI_Elements.png",271,56,35,37),
+    STAR("file:Resources/Imgs/UI Elements/UI_Elements.png",339,107,17,16),
+    FIRE("file:Resources/Imgs/UI Elements/UI_Elements.png",313,108,17,16),
+    ICE("file:Resources/Imgs/UI Elements/UI_Elements.png",290,108,17,16),
+    TAIL("file:Resources/Imgs/UI Elements/UI_Elements.png",7,1117,24,22),
+    SOUPICON("file:Resources/Imgs/UI Elements/UI_Elements.png",55,75,17,17),
+    CARDSICON("file:Resources/Imgs/UI Elements/UI_Elements.png",267,162,25,32),
+    GUESSICON("file:Resources/Imgs/UI Elements/UI_Elements.png",239,107,17,17),
+    MEMORYICON("file:Resources/Imgs/UI Elements/UI_Elements.png",239,162,26,32),
+    MEMORYPATHICON("file:Resources/Imgs/UI Elements/UI_Elements.png",239,135,32,22),
+    CATCHBOOICON("file:Resources/Imgs/UI Elements/UI_Elements.png",366,101,29,24),
+    BOMBERICON("file:Resources/Imgs/UI Elements/UI_Elements.png",271,10,25,36),
+    TICTACTOEICON("file:Resources/Imgs/UI Elements/UI_Elements.png",300,164,21,28),
+    COINSICON("file:Resources/Imgs/UI Elements/UI_Elements.png",267,108,15,15),
 
     //Button State
     DEFAULTBUTTON("file:Resources/Imgs/UI Elements/UI_Elements.png",57,1114,85,25),

@@ -243,30 +243,39 @@ public class MainGame extends GameScene {
         typeList.add(NodeType.TUBEYELLOW);
         typeList.add(NodeType.FIRE);
         typeList.add(NodeType.ICE);
-        typeList.add(NodeType.MINIGAMEICON);
-        typeList.add(NodeType.MINIGAMEICON);
-        typeList.add(NodeType.MINIGAMEICON);
-        typeList.add(NodeType.MINIGAMEICON);
-        typeList.add(NodeType.MINIGAMEICON);
-        typeList.add(NodeType.MINIGAMEICON);
-        typeList.add(NodeType.MINIGAMEICON);
-        typeList.add(NodeType.MINIGAMEICON);
-        typeList.add(NodeType.MINIGAMEICON);
-        typeList.add(NodeType.MINIGAMEICON);
-        typeList.add(NodeType.MINIGAMEICON);
-        typeList.add(NodeType.MINIGAMEICON);
-        typeList.add(NodeType.MINIGAMEICON);
-        typeList.add(NodeType.MINIGAMEICON);
-        typeList.add(NodeType.MINIGAMEICON);
-        typeList.add(NodeType.MINIGAMEICON);
-        typeList.add(NodeType.MINIGAMEICON);
-        typeList.add(NodeType.MINIGAMEICON);
+
+        typeList.add(NodeType.SOUPICON);
+        typeList.add(NodeType.SOUPICON);
+
+        typeList.add(NodeType.CARDSICON);
+        typeList.add(NodeType.CARDSICON);
+
+        typeList.add(NodeType.GUESSICON);
+        typeList.add(NodeType.GUESSICON);
+
+        typeList.add(NodeType.MEMORYICON);
+        typeList.add(NodeType.MEMORYICON);
+
+        typeList.add(NodeType.MEMORYPATHICON);
+        typeList.add(NodeType.MEMORYPATHICON);
+
+        typeList.add(NodeType.CATCHBOOICON);
+        typeList.add(NodeType.CATCHBOOICON);
+
+        typeList.add(NodeType.BOMBERICON);
+        typeList.add(NodeType.BOMBERICON);
+
+        typeList.add(NodeType.TICTACTOEICON);
+        typeList.add(NodeType.TICTACTOEICON);
+
+        typeList.add(NodeType.COINSICON);
+        typeList.add(NodeType.COINSICON);
 
         Random random=new Random();
 
         for(int node=0;node<this.realBoard.size()-1;node++){
             int randomPosition=random.nextInt(typeList.size());
-            System.out.println("Random Position"+randomPosition);
+            //System.out.println("Random Position"+randomPosition);
             Button tempRealNode=this.realBoard.get(node);
             tempRealNode.setType(typeList.get(randomPosition));
             tempRealNode.resizeImage(10,10);
