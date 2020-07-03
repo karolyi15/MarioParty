@@ -152,17 +152,43 @@ public class CharacterSelection extends GameScene {
 
     private void verifyPlayers(){
         int activePlayer=0;
+
         for(int player=0;player<portraits.length;player++){
             if(this.portraits[player].getType()!=NodeType.UNKNOWNPORTRAIT){
                 activePlayer++;
             }
         }
 
-        if(activePlayer>=2){
+        if(activePlayer>=2 & verifyCharacter()){
             this.stop();
         }else{
-            System.out.println("No hay suficientes jugadores");
+            System.out.println("No hay suficientes jugadores o personajes repetidos");
         }
+    }
+
+    private boolean verifyCharacter(){
+
+       for(int player=0;player<portraits.length;player++){
+
+           int present=0;
+           //System.out.println(present);
+           Button tempPlayer=portraits[player];
+           if(tempPlayer.getType()!=NodeType.UNKNOWNPORTRAIT) {
+               for (int character = 0; character < portraits.length; character++) {
+
+                   if (tempPlayer.getType() == this.portraits[character].getType()) {
+                       present++;
+
+                   }
+
+               }
+               if (present >= 2) {
+                   return false;
+               }
+           }
+       }
+
+        return true;
     }
 
    private void createPlayers(){
