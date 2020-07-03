@@ -36,8 +36,8 @@ public class MainGame extends GameScene {
 
 
     //Scene Transition System
-    SceneType nextMiniGame;
-    ArrayList<NodeType> minigames;
+    NodeType playingNode;
+
 
 
     //********************************************************************************************************************//
@@ -67,8 +67,9 @@ public class MainGame extends GameScene {
         this.initUI_Elements();
 
         //**********************************Review
-        this.updatePathPosition();
-        this.updatePlayerPosition();
+        //this.updatePathPosition();
+        //this.updatePlayerPosition();
+        this.setCamaraOn(super.getPlayerList().get(this.playerTurn));
 
     }
 
@@ -85,7 +86,7 @@ public class MainGame extends GameScene {
             int diceResult = dice.throwDice() + dice.throwDice();
             sortedList.add(diceResult);
         }
-        System.out.println("Array Inicial");
+        System.out.println("\nArray Inicial");
         this.printArrayList(sortedList);
 
         //Sorting Player List
@@ -125,10 +126,20 @@ public class MainGame extends GameScene {
     }
 
     private void setCamaraOn(Player player){
+
+        //Restart Camara Values To Calculate New Node Position
         this.restartCamara();
         super.getBackground().setPosition(this.realBoard.get(player.getCurrentNode()).getPositionX()-super.getBackground().getPositionX(),super.getBackground().getPositionY());
+
+        //Update Camara Values
+        //this.camara[0]=super.getBackground().getPositionX();
+        //this.camara[1]=super.getBackground().getPositionY();
+
+        //Update Game Elements Position
         this.updatePathPosition();
         this.updatePlayerPosition();
+
+        this.displayPlayerPortrait(player);
 
     }
 
@@ -273,8 +284,9 @@ public class MainGame extends GameScene {
 
         Random random=new Random();
 
-        for(int node=0;node<this.realBoard.size()-1;node++){
+        for(int node=1;node<this.realBoard.size();node++){
             int randomPosition=random.nextInt(typeList.size());
+            //int randomPosition=random.nextInt(typeList.size()-1)+1;//***********
             //System.out.println("Random Position"+randomPosition);
             Button tempRealNode=this.realBoard.get(node);
             tempRealNode.setType(typeList.get(randomPosition));
@@ -344,7 +356,7 @@ public class MainGame extends GameScene {
         }
         this.setCamaraOn(super.getPlayerList().get(this.playerTurn));
         //this.updatePathPosition();
-        this.displayPlayerPortrait(super.getPlayerList().get(this.playerTurn));
+        //this.displayPlayerPortrait(super.getPlayerList().get(this.playerTurn));
 
     }
 
