@@ -11,10 +11,10 @@ public enum CharacterType {
     YOSHI("file:Resources/Imgs/Characters/Yoshi_Img.png",67,308,31,35),
     PEACH("file:Resources/Imgs/Characters/Peach_Img.png",67,338,31,36),
 
-    WARIO("file:Resources/Imgs/Characters/Mario_Img.png",67,309,31,34),
-    WALUIGI("file:Resources/Imgs/Characters/Luigi_Img.png",68,324,31,36),
-    DAISY("file:Resources/Imgs/Characters/Peach_Img.png",67,338,31,36),
-    YOSHIBLUE("file:Resources/Imgs/Characters/Yoshi_Img.png",67,308,31,35);
+    WARIO("file:Resources/Imgs/Characters/Wario_Img.png",67,309,31,34),
+    WALUIGI("file:Resources/Imgs/Characters/Waluigi_Img.png",68,324,31,36),
+    DAISY("file:Resources/Imgs/Characters/Daisy_Img.png",67,338,31,36),
+    YOSHIBLUE("file:Resources/Imgs/Characters/YellowYoshi_Img.png",67,308,31,35);
 
     //********************************************************************************************************************//
     //************************************************ ENUM FIELDS *******************************************************//

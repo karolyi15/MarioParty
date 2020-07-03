@@ -181,7 +181,7 @@ public class MainGame extends GameScene {
         this.realBoard.add(new Button(1150,1741));
 
         this.realBoard.add(new Button(1150,1796));
-        this.realBoard.add(new Button(1290,1799));
+        this.realBoard.add(new Button(1208,1799));
         this.realBoard.add(new Button(1267,1800));
         this.realBoard.add(new Button(1325,1798));
         this.realBoard.add(new Button(1383,1798));
@@ -216,7 +216,7 @@ public class MainGame extends GameScene {
         this.relativeBoard.add(new Button(1150,1741));
 
         this.relativeBoard.add(new Button(1150,1796));
-        this.relativeBoard.add(new Button(1290,1799));
+        this.relativeBoard.add(new Button(1208,1799));
         this.relativeBoard.add(new Button(1267,1800));
         this.relativeBoard.add(new Button(1325,1798));
         this.relativeBoard.add(new Button(1383,1798));
