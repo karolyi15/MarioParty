@@ -5,8 +5,6 @@ import Controllers.Models.Player;
 import Controllers.Models.SceneBuilder.GameScene;
 import Controllers.Models.SceneBuilder.SceneType;
 import Controllers.Models.SpriteFactory.Products.*;
-import Controllers.Models.SpriteFactory.Products.Character;
-import Controllers.Models.SpriteFactory.Sprite;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import org.json.simple.JSONObject;
@@ -51,23 +49,6 @@ public class MainGame extends GameScene {
 
 
 
-    //Camara System
-    public  void restartCamara(){
-        this.camara[0]=350;
-        this.camara[1]=1400;
-        super.getBackground().setPosition(camara[0],camara[1]);
-
-    }
-
-    private void setCamaraOn(Player player){
-        this.restartCamara();
-        super.getBackground().setPosition(this.realBoard.get(player.getCurrentNode()).getPositionX()-super.getBackground().getPositionX(),super.getBackground().getPositionY());
-        this.updatePathPosition();
-        this.updatePlayerPosition();
-
-    }
-
-
     //Game Loop
     @Override
     public void initGameComponents(){
@@ -85,6 +66,66 @@ public class MainGame extends GameScene {
         this.initUI_Elements();
 
         //**********************************Review
+        this.updatePathPosition();
+        this.updatePlayerPosition();
+
+    }
+
+    private void sortPlayers(){
+
+        //Get player List Length
+
+        int listLength=super.getPlayerList().size();
+
+        //Get Random Positions
+        ArrayList<Integer> sortedList=new ArrayList<>();
+
+        for(int player=0;player<listLength;player++) {
+            int diceResult = dice.throwDice() + dice.throwDice();
+            sortedList.add(diceResult);
+        }
+        System.out.println("Array Inicial");
+        this.printArrayList(sortedList);
+
+        //Sorting Player List
+        for(int i=0;i<super.getPlayerList().size()-1;i++){
+            for(int j=0;j<listLength-i-1;j++){
+                if(sortedList.get(j)>sortedList.get(j+1)){
+
+                    int temNumber=sortedList.get(j);
+                    Player tempPayer=super.getPlayerList().get(j);
+
+                    sortedList.set(j,sortedList.get(j+1));
+                    super.getPlayerList().set(j,super.getPlayerList().get(j+1));
+
+                    sortedList.set(j+1,temNumber);
+                    super.getPlayerList().set(j+1,tempPayer);
+                }
+            }
+        }
+
+        System.out.println("Array Ordenado");
+        this.printArrayList(sortedList);
+    }
+
+    //Sorting Test
+    private void printArrayList(ArrayList<Integer> array){
+        for(int element=0;element<array.size();element++){
+            System.out.print(array.get(element)+" ");
+        }
+    }
+
+    //Camara System
+    private  void restartCamara(){
+        this.camara[0]=350;
+        this.camara[1]=1400;
+        super.getBackground().setPosition(camara[0],camara[1]);
+
+    }
+
+    private void setCamaraOn(Player player){
+        this.restartCamara();
+        super.getBackground().setPosition(this.realBoard.get(player.getCurrentNode()).getPositionX()-super.getBackground().getPositionX(),super.getBackground().getPositionY());
         this.updatePathPosition();
         this.updatePlayerPosition();
 
@@ -244,7 +285,7 @@ public class MainGame extends GameScene {
         }
         this.setCamaraOn(super.getPlayerList().get(this.playerTurn));
         //this.updatePathPosition();
-        this.displayPlayerInfo(super.getPlayerList().get(this.playerTurn));
+        this.displayPlayerPortrait(super.getPlayerList().get(this.playerTurn));
 
     }
 
@@ -270,7 +311,7 @@ public class MainGame extends GameScene {
     }
 
 
-    private void displayPlayerInfo(Player player){
+    private void displayPlayerPortrait(Player player){
 
         this.textArea.setText("Player "+(this.playerTurn+1));
         this.portrait.setType(player.getPlayerID());
@@ -320,6 +361,7 @@ public class MainGame extends GameScene {
             this.playerTurn=0;
             this.realBoard=new ArrayList<>();
             this.relativeBoard=new ArrayList<>();
+            this.sortPlayers();
             this.buildPath();
 
         }else{
