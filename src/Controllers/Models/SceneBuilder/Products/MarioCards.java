@@ -78,8 +78,10 @@ public class MarioCards extends GameScene {
                                     System.out.println("-----TERMINO EL JUEGO-----");
                                     if(checkWinner()==true){
                                         System.out.println("YOU WIN!!!");
+                                        stop();
                                     }else{
                                         System.out.println("YOU LOSE!!!");
+                                        stop();
                                     }
                                 }
                             }
@@ -391,6 +393,18 @@ public class MarioCards extends GameScene {
         }
 
 
+    }
+
+    @Override
+    public void stop(){
+
+        //Stops Mini Game Execution
+        super.getMusicPlayer().stop();
+        super.getGameLoop().stop();
+
+        //Reload Main Game
+        super.getSceneDirector().buildMainGame();
+        //super.getSceneDirector().getMainGame().getGameLoop().start();
     }
 
 

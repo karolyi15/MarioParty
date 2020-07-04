@@ -204,7 +204,17 @@ public class CollectTheCoins extends GameScene {
         super.getGameComponents().add(board);
     }
 
+    @Override
+    public void stop(){
 
+        //Stops Mini Game Execution
+        super.getMusicPlayer().stop();
+        super.getGameLoop().stop();
+
+        //Reload Main Game
+        super.getSceneDirector().buildMainGame();
+        //super.getSceneDirector().getMainGame().getGameLoop().start();
+    }
 
 
 }

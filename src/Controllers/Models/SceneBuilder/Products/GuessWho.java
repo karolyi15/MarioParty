@@ -103,8 +103,10 @@ public class GuessWho extends GameScene {
                                 disableButtons();
                                 if(checkWinner(tempGuessWhoButton)){
                                     System.out.println("YOU WIN!!!!");
+                                    stop();
                                 }else{
                                     System.out.println("YOU LOSE :(");
+                                    stop();
                                 }
                             }
                         }
@@ -207,5 +209,17 @@ public class GuessWho extends GameScene {
         super.getSceneController().getDrawer().setFont(new Font("AR DARLING", 20));
         super.getSceneController().getDrawer().setFill(Color.BLACK);
         super.getSceneController().getDrawer().fillText(type.name() , x+35 , y+20 ,200);
+    }
+
+    @Override
+    public void stop(){
+
+        //Stops Mini Game Execution
+        super.getMusicPlayer().stop();
+        super.getGameLoop().stop();
+
+        //Reload Main Game
+        super.getSceneDirector().buildMainGame();
+        //super.getSceneDirector().getMainGame().getGameLoop().start();
     }
 }

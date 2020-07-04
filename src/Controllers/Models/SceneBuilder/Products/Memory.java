@@ -89,9 +89,11 @@ public class Memory extends GameScene {
                                     if(allPairsFound() == true){
                                         if(checkWinner() ==true){
                                             System.out.println("GANO EL PLAYER 1");
+
                                         }else{
                                             System.out.println("GANO EL PLAYER 2");
                                         }
+                                        stop();
                                     }
                                     //  }
                                     //restartMovements();
@@ -323,6 +325,18 @@ public class Memory extends GameScene {
         super.getSceneController().getDrawer().setFont(new Font("Verdana Bold", 30));
         super.getSceneController().getDrawer().setFill(Color.WHITE);
         super.getSceneController().getDrawer().fillText(player,330,455);
+    }
+
+    @Override
+    public void stop(){
+
+        //Stops Mini Game Execution
+        super.getMusicPlayer().stop();
+        super.getGameLoop().stop();
+
+        //Reload Main Game
+        super.getSceneDirector().buildMainGame();
+        //super.getSceneDirector().getMainGame().getGameLoop().start();
     }
 
 

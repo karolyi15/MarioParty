@@ -327,7 +327,7 @@ public class MainGame extends GameScene {
 
                        System.out.println("Player "+playerTurn+1+"Wins!!");
                        player.setCurrentNode(player.getCurrentNode()+diceValue);
-                       super.getGameLoop().stop();
+                       //super.getGameLoop().stop();
                    }else{
                        player.setCurrentNode(player.getCurrentNode()+diceValue);
                    }
@@ -344,8 +344,84 @@ public class MainGame extends GameScene {
            System.out.println("Players Punished\n");
        }
         System.out.println("***** Turn Changed *****");
+       this.executeGame(this.realBoard.get(player.getCurrentNode()).getType());
         this.changeTurn();
 
+    }
+
+    private void executeGame(NodeType nodeType){
+
+        switch (nodeType){
+            //MiniGames Options
+            case SOUPICON:
+                this.stop();
+                super.getSceneDirector().buildTicTacToe();
+                //super.getSceneDirector().buildMarioSoup();
+                break;
+            case CARDSICON:
+                this.stop();
+                super.getSceneDirector().buildMarioCards();
+                break;
+            case GUESSICON:
+                this.stop();
+                super.getSceneDirector().buildGuessWho();
+                break;
+            case MEMORYICON:
+                this.stop();
+                super.getSceneDirector().buildMemory();
+                break;
+            case MEMORYPATHICON:
+                this.stop();
+                super.getSceneDirector().buildMemoryPath();
+                break;
+            case CATCHBOOICON:
+                this.stop();
+                super.getSceneDirector().buildCatchBoo();
+                break;
+            case BOMBERICON:
+                this.stop();
+                super.getSceneDirector().buildCatchBoo();
+                break;
+            case TICTACTOEICON:
+                this.stop();
+                super.getSceneDirector().buildTicTacToe();
+                break;
+            case COINSICON:
+                this.stop();
+                super.getSceneDirector().buildTicTacToe();
+                //super.getSceneDirector().buildCollectTheCoins();
+                break;
+             //Other Node Options
+            case PRISON:
+                this.executePrison();
+                break;
+            case STAR:
+                this.throwDice(super.getPlayerList().get(this.playerTurn));
+                break;
+            case FIRE:
+                System.out.println("Flor de fuego");
+                break;
+            case ICE:
+                System.out.println("Flor de Hielo");
+                break;
+            case TAIL:
+                System.out.println("Colita");
+                break;
+            case TUBERED:
+            case TUBEBLUE:
+            case TUBEYELLOW:
+                System.out.println("entré en un tubo");
+                break;
+
+
+
+        }
+
+    }
+
+    private void executePrison(){
+        Player activePlayer=super.getPlayerList().get(this.playerTurn);
+        activePlayer.setPunished(activePlayer.getPunished()+2);
     }
 
     private void changeTurn(){
@@ -439,8 +515,17 @@ public class MainGame extends GameScene {
             this.playerTurn=(int)gameLog.get("PlayerTurn");
             this.realBoard=(ArrayList<Button>)gameLog.get("RealPath");
             this.relativeBoard=(ArrayList<Button>)gameLog.get("RelativePath");
+
+            this.loadNodeImg();
         }
 
+    }
+
+    private void loadNodeImg(){
+        for(int node=1;node<this.relativeBoard.size();node++){
+            Button tempNode=this.relativeBoard.get(node);
+            super.getGameComponents().add(tempNode);
+        }
     }
 
 
@@ -453,7 +538,7 @@ public class MainGame extends GameScene {
         this.saveGameState();
 
         //Build Mini Game
-        super.getSceneDirector().buildTicTacToe();
+        //super.getSceneDirector().buildTicTacToe();
     }
 
 

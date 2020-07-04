@@ -16,7 +16,7 @@ public enum SceneType {
     MEMORYPATH("file:Resources/Imgs/Backgrounds/MemoryPathBackground.png","Resources/Sounds/MemoryPath_Music.mp3"),
     MEMORY("file:Resources/Imgs/Backgrounds/MemoryBackground.png","Resources/Sounds/Memory_Music.mp3"),
     CATCHCAT("file:Resources/Imgs/Backgrounds/CatchBooBackground_Img.png","Resources/Sounds/CatchBoo_Music.mp3"),
-    BOMBER("file:Resources/Imgs/Backgrounds/Map_Img.png","Resources/Sounds/CharacterSelection_Music.mp3"),
+    BOMBER("file:Resources/Imgs/Backgrounds/CollectCoinsScene.jpg","Resources/Sounds/CollectTheCoins_Music.mp3"),
     GUESS("file:Resources/Imgs/Backgrounds/WhoGuessBackground.png","Resources/Sounds/Memory_Music.mp3"),
     COINS("file:Resources/Imgs/Backgrounds/CollectCoinsScene.jpg","Resources/Sounds/CollectTheCoins_Music.mp3"),
     CARDS("file:Resources/Imgs/Backgrounds/MarioCardsBackground.png","Resources/Sounds/MarioCards_Music.mp3");

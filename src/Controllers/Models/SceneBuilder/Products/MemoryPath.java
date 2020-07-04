@@ -81,6 +81,7 @@ public class MemoryPath extends GameScene {
                                         }else{
                                             System.out.println("GANASTE!!!");
                                             stateWin = 1;
+                                            stop();
                                         }
                                         System.out.println("NEXT ROW: "+currentRow);
                                     } else {
@@ -91,6 +92,7 @@ public class MemoryPath extends GameScene {
                                         if(attempts==0) {
                                             System.out.println("PERDISTE :( ");
                                             stateWin = -1;
+                                            stop();
                                         }
                                     }
                                 }else{
@@ -251,6 +253,18 @@ public class MemoryPath extends GameScene {
         }
 
 
+    }
+
+    @Override
+    public void stop(){
+
+        //Stops Mini Game Execution
+        super.getMusicPlayer().stop();
+        super.getGameLoop().stop();
+
+        //Reload Main Game
+        super.getSceneDirector().buildMainGame();
+        //super.getSceneDirector().getMainGame().getGameLoop().start();
     }
 
 

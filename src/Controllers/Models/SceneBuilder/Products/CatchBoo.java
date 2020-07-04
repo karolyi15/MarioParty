@@ -164,6 +164,7 @@ public class CatchBoo extends GameScene {
             int[] nextMove=this.selectPath(openSet);
             if(nextMove.equals(null)){
                 System.out.println("Player Wins");
+                this.stop();
             }else{
                 gameField[booNode[0]][booNode[1]].setPressed(false);
                 gameField[booNode[0]][booNode[1]].setType(NodeType.TUMB);
@@ -176,6 +177,7 @@ public class CatchBoo extends GameScene {
 
         }else{
             System.out.println("Player Perdiooo!!! :(");
+            this.stop();
         }
 
         System.out.println("*** Boo Moved ***");
@@ -291,6 +293,18 @@ public class CatchBoo extends GameScene {
             }
         });
 
+    }
+
+    @Override
+    public void stop(){
+
+        //Stops Mini Game Execution
+        super.getMusicPlayer().stop();
+        super.getGameLoop().stop();
+
+        //Reload Main Game
+        super.getSceneDirector().buildMainGame();
+        //super.getSceneDirector().getMainGame().getGameLoop().start();
     }
 
 

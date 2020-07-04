@@ -174,4 +174,13 @@ public class SceneDirector {
         this.miniGame.start();
     }
 
+    public void  buildBomberMario(){
+
+        builder.reset(SceneType.BOMBER);
+        builder.setSceneController(controller);
+        builder.setSceneDirector(this);
+        this.miniGame=builder.getBuild();
+        this.miniGame.start();
+    }
+
 }

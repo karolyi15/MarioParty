@@ -87,7 +87,12 @@ public class SceneBuilder implements iSceneBuilder {
             this.gameScene=new MarioCards();
             this.gameScene.setSpriteFactory(this.spriteFactory);
 
-         }else{
+         }else if(sceneType.equals(SceneType.BOMBER)){
+
+            this.gameScene=new BomberMario();
+            this.gameScene.setSpriteFactory(this.spriteFactory);
+
+        }else{
             this.gameScene=null;
         }
 

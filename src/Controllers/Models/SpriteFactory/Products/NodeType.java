@@ -11,6 +11,7 @@ public enum NodeType {
     FIRE("file:Resources/Imgs/UI Elements/UI_Elements.png",313,108,17,16),
     ICE("file:Resources/Imgs/UI Elements/UI_Elements.png",290,108,17,16),
     TAIL("file:Resources/Imgs/UI Elements/UI_Elements.png",7,1117,24,22),
+
     SOUPICON("file:Resources/Imgs/UI Elements/UI_Elements.png",55,75,17,17),
     CARDSICON("file:Resources/Imgs/UI Elements/UI_Elements.png",267,162,25,32),
     GUESSICON("file:Resources/Imgs/UI Elements/UI_Elements.png",239,107,17,17),
@@ -154,8 +155,16 @@ public enum NodeType {
     SPADESK("file:Resources/Imgs/UI Elements/MarioCards_Elements.png",1217,520,101,157),
     SPADESAS("file:Resources/Imgs/UI Elements/MarioCards_Elements.png",1327,520,101,157),
 
-    STANDARTCARD("file:Resources/Imgs/UI Elements/MarioCards_Elements.png",0,690,100,157);
+    STANDARTCARD("file:Resources/Imgs/UI Elements/MarioCards_Elements.png",0,690,100,157),
 
+    //BOMBER MARIO
+    BOMBERSTARPART1("file:Resources/Imgs/UI Elements/Bomber_Elements.png",0,0,182,182),
+    BOMBERSTARPART2("file:Resources/Imgs/UI Elements/Bomber_Elements.png",182,0,182,182),
+    BOMBERSTARPART3("file:Resources/Imgs/UI Elements/Bomber_Elements.png",0,182,182,182),
+    BOMBERSTARPART4("file:Resources/Imgs/UI Elements/Bomber_Elements.png",182,182,182,182),
+    BOMBER("file:Resources/Imgs/UI Elements/Bomber_Elements.png",0,690,364,364),
+    BOMBERROCK("file:Resources/Imgs/UI Elements/Bomber_Elements.png",871,0,328,363),
+    BOMBERTRANSPARENT("file:Resources/Imgs/UI Elements/Bomber_Elements.png",36,78,10,10);
 
 
     private final String image;
