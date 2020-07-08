@@ -46,7 +46,7 @@ public class Scene_Controller {
 
         //Test System
         this.director.setSceneController(this);
-        this.director.buildTitleScene();
+        this.director.buildMarioSoup();
     }
 
    //Render System

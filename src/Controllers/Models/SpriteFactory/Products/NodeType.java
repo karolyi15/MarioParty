@@ -24,6 +24,7 @@ public enum NodeType {
 
     //Button State
     DEFAULTBUTTON("file:Resources/Imgs/UI Elements/UI_Elements.png",57,1114,85,25),
+    REDBUTTON("file:Resources/Imgs/UI Elements/UI_Elements.png",240,199,85,25),
 
     //UI
     TEXTAREA("file:Resources/Imgs/UI Elements/UI_Elements.png",4,1201,182,42),

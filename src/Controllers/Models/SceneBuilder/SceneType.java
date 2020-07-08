@@ -12,7 +12,7 @@ public enum SceneType {
 
     //Mini Games
     TICTACTOE("file:Resources/Imgs/Backgrounds/Tictactoe_Img.jpeg","Resources/Sounds/TicTacToe_Music.mp3"),
-    SOUP("file:Resources/Imgs/Backgrounds/Map_Img.png","Resources/Sounds/MarioSoup_Music.mp3"),
+    SOUP("file:Resources/Imgs/Backgrounds/TitleBackground_Img.png","Resources/Sounds/MarioSoup_Music.mp3"),
     MEMORYPATH("file:Resources/Imgs/Backgrounds/MemoryPathBackground.png","Resources/Sounds/MemoryPath_Music.mp3"),
     MEMORY("file:Resources/Imgs/Backgrounds/MemoryBackground.png","Resources/Sounds/Memory_Music.mp3"),
     CATCHCAT("file:Resources/Imgs/Backgrounds/CatchBooBackground_Img.png","Resources/Sounds/CatchBoo_Music.mp3"),

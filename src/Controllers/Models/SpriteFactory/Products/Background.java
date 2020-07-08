@@ -36,6 +36,7 @@ public class Background extends Sprite {
         switch (this.type){
             case TITLEMENU:
             case CHARACTERSELECTIONMENU:
+            case SOUP:
                 this.setPosition(482,5);
                 break;
             case BOARD:

@@ -3,6 +3,9 @@ package Controllers.Models.SceneBuilder.Products;
 import Controllers.Models.SceneBuilder.GameScene;
 import Controllers.Models.SceneBuilder.SceneType;
 import Controllers.Models.SpriteFactory.Products.Button;
+import Controllers.Models.SpriteFactory.Products.NodeType;
+import javafx.event.EventHandler;
+import javafx.scene.input.MouseEvent;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -32,6 +35,9 @@ public class MarioSoup extends GameScene {
     //Game Field Builder System
     Button[][] gameField;
     ArrayList<Integer> gameFieldSize;
+
+    //UI Validate
+    Button validateButton;
 
 
     //********************************************************************************************************************//
@@ -87,7 +93,7 @@ public class MarioSoup extends GameScene {
         this.gameField=new Button[size][size];
 
         //UI Elements
-        Button validateButton=new Button(590,440);
+        this.validateButton=new Button(590,440);
         validateButton.resizeImage(100,50);
         validateButton.setText("Validate");
         validateButton.setId("validateButton");
@@ -98,8 +104,8 @@ public class MarioSoup extends GameScene {
         for(int word=0;word<this.selectedWords.length;word++){
             for(int character=0;character<this.selectedWords[word].length();character++){
 
-                Button button=new Button(25*character+100,25*word+100);
-                button.resizeImage(25,25);
+                Button button=new Button(0,0);
+                button.resizeImage(25,20);
                 button.setId(String.valueOf(this.selectedWords[word].charAt(character)));
                 button.setText(String.valueOf(this.selectedWords[word].charAt(character)));
                 this.enableNodes.add(button);
@@ -123,8 +129,8 @@ public class MarioSoup extends GameScene {
             for(int column=0;column<this.gameField.length;column++){
                 Button testButton=gameField[row][column];
                 if(testButton==null){
-                    Button tempButton=new Button(0,0); /////////////
-                    tempButton.resizeImage(25,25);
+                    Button tempButton=new Button(30*row+50,20*column+10); /////////////
+                    tempButton.resizeImage(25,20);
                     tempButton.setText(this.alphabet[random.nextInt(this.alphabet.length)]);
                     gameField[row][column]=tempButton;
                     super.getGameComponents().add(tempButton);
@@ -137,25 +143,29 @@ public class MarioSoup extends GameScene {
     private void setNodesPosition(){
 
         int readLen=0;
-        //Set Horizontal Word
+        //Set Vertical Word
         for(int character=0;character<this.selectedWords[0].length();character++){
             this.gameField[this.gameField.length-1][character]=this.enableNodes.get(readLen);
+            this.gameField[this.gameField.length-1][character].setPosition(50+30*(this.gameField.length-1),20*character+10);
             readLen++;
         }
-        //Set Vertical Word
+        //Set Horizontal Word
         for(int character=0;character<this.selectedWords[1].length();character++){
             this.gameField[character][this.gameField.length-1]=this.enableNodes.get(readLen);
+            this.gameField[character][this.gameField.length-1].setPosition(30*character+50,10+(this.gameField.length-1)*20);
             readLen++;
 
         }
         //Set Diagonal Word 1
         for(int character=0;character<this.selectedWords[2].length();character++){
             this.gameField[character][character]=this.enableNodes.get(readLen);
+            this.gameField[character][character].setPosition(30*character+50,20*character+10);
             readLen++;
         }
         //Set Diagonal Word 2
         for(int character=0;character<this.selectedWords[3].length();character++){
             this.gameField[character+2][character]=this.enableNodes.get(readLen);
+            this.gameField[character+2][character].setPosition(30*(character+2)+50,20*character+10);
             readLen++;
         }
     }
@@ -219,8 +229,79 @@ public class MarioSoup extends GameScene {
 
     @Override
     public void handleMouseEvents(){
+        super.getSceneController().getCanvas().setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+
+                for(int element = 0; element< enableNodes.size(); element++){
+
+                    Button tempButton = enableNodes.get(element);
+
+                    if(tempButton.getPositionX()<=mouseEvent.getX() & mouseEvent.getX()<=tempButton.getPositionX()+tempButton.getWidth()){
+                        if(tempButton.getPositionY()<mouseEvent.getY() & mouseEvent.getY()<tempButton.getPositionY()+tempButton.getHeight()) {
+
+                           nodeClick(tempButton);
+                        }
+                    }
+                }
+
+
+                if(validateButton.getPositionX()<=mouseEvent.getX() & mouseEvent.getX()<=validateButton.getPositionX()+validateButton.getWidth()){
+                    if(validateButton.getPositionY()<mouseEvent.getY() & mouseEvent.getY()<validateButton.getPositionY()+validateButton.getHeight()) {
+
+                        validateWord();
+                    }}
+
+            }
+        });
 
     }
+
+    private void nodeClick(Button node){
+        if(node.getPressed()==true){
+            System.out.println("Node ya fue seleccionado");
+        }else {
+            node.setType(NodeType.REDBUTTON);
+            this.playerInput += node.getText().getValue();
+            System.out.println("Actual input: " + this.playerInput);
+        }
+    }
+
+    private  void validateWord(){
+        for(int word=0;word<this.selectedWords.length;word++){
+
+            if(this.playerInput.equals(this.selectedWords[word])){
+                System.out.println("Palabra encontrada: "+this.selectedWords[word]);
+                this.selectedWords[word]="";
+            }
+        }
+
+        if(checkWinner()){
+            System.out.println("Player Wins");
+            this.stop();
+        }else{
+            System.out.println("Quedan palabras por encontrar");
+            this.playerInput="";
+        }
+    }
+
+    private boolean checkWinner(){
+        int pendingWords=0;
+        for(int word=0;word<this.selectedWords.length;word++){
+            if(this.selectedWords[word].equals("")){
+                System.out.println("Empty Word");
+            }else{
+                pendingWords+=1;
+            }
+        }
+
+        if(pendingWords!=0){
+            return false;
+        }else{
+            return true;
+        }
+    }
+
 
     @Override
     public void stop(){
