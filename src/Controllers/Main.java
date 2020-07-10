@@ -1,5 +1,6 @@
 package Controllers;
 
+import Controllers.Views.Scene_Controller;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -61,6 +62,10 @@ public class Main extends Application {
 
             //Set Scene to RootLayout
             rootLayout.setCenter(mainMenu);
+
+            //Set Controller
+            Scene_Controller controller=loader.getController();
+            controller.setPrimaryStage(this.primaryStage);
 
 
 

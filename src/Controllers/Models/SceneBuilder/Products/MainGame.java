@@ -1,15 +1,23 @@
 package Controllers.Models.SceneBuilder.Products;
 
+import Controllers.Main;
 import Controllers.Models.Dice;
 import Controllers.Models.Player;
 import Controllers.Models.SceneBuilder.GameScene;
 import Controllers.Models.SceneBuilder.SceneType;
 import Controllers.Models.SpriteFactory.Products.*;
+import Controllers.Views.Tail_Controller;
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import org.json.simple.JSONObject;
 
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -349,7 +357,8 @@ public class MainGame extends GameScene {
            System.out.println("Players Punished\n");
        }
         System.out.println("***** Turn Changed *****");
-       this.executeGame(this.realBoard.get(player.getCurrentNode()).getType());
+        //this.executeGame(this.realBoard.get(player.getCurrentNode()).getType());
+        this.executeTail();
         this.changeTurn();
 
     }
@@ -413,6 +422,7 @@ public class MainGame extends GameScene {
                 break;
             case TAIL:
                 System.out.println("Colita");
+                this.executeTail();
                 break;
             case TUBERED:
                 System.out.println("entré en un tubo");
@@ -490,6 +500,33 @@ public class MainGame extends GameScene {
     }
 
     private void executeTail(){
+
+        try{
+            //Load Fxml File
+            FXMLLoader loader= new FXMLLoader();
+            loader.setLocation(Main.class.getResource("Views/Tail_UI.fxml"));
+            AnchorPane dialog=(AnchorPane) loader.load();
+
+            //Create Dialog Stage
+            Stage dialogStage=new Stage();
+            dialogStage.setTitle("Tail Field");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(super.getSceneDirector().getPrimaryStage());
+
+            Scene dialogScene=new Scene(dialog);
+            dialogStage.setScene(dialogScene);
+
+            //Set Controller
+            Tail_Controller controller=loader.getController();
+            controller.setDialogStage(dialogStage);
+            controller.setPlayer(super.getPlayerList().get(this.playerTurn));
+
+            //Wait Until Dialog Close
+            dialogStage.showAndWait();
+
+        }catch (IOException e){
+            e.printStackTrace();
+        }
 
     }
 

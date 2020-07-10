@@ -27,7 +27,7 @@ public class MarioCards extends GameScene {
     }
     @Override
     public void initGameComponents() {
-        players= 1+(int)(Math.random()*5 + 1);/// ESTO HAY QUE CAMBIARLO
+        players=super.getPlayerList().size();
         System.out.println("NUMBER OF PLAYERS:" + players);
         this.turns = players;
         this.deck = new ArrayList<Integer>();

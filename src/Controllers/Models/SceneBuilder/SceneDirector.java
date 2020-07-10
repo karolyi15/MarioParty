@@ -2,6 +2,7 @@ package Controllers.Models.SceneBuilder;
 
 import Controllers.Models.Player;
 import Controllers.Views.Scene_Controller;
+import javafx.stage.Stage;
 import org.json.simple.JSONObject;
 
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ public class SceneDirector {
 
     //Render System
     private Scene_Controller controller;
+    private Stage primaryStage;
 
     //Scene Transition System
     private GameScene mainGame;
@@ -62,7 +64,15 @@ public class SceneDirector {
         return gameLog;
     }
 
-//Building  Methods
+    public Stage getPrimaryStage() {
+        return primaryStage;
+    }
+
+    public void setPrimaryStage(Stage primaryStage) {
+        this.primaryStage = primaryStage;
+    }
+
+    //Building  Methods
 
     //Complete Solution
     public void buildSolution(){

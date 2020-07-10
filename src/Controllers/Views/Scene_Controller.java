@@ -6,6 +6,7 @@ import Controllers.Models.SceneBuilder.SceneDirector;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.stage.Stage;
 
 
 public class Scene_Controller {
@@ -15,6 +16,7 @@ public class Scene_Controller {
 
     //Render System
     private GraphicsContext drawer;
+    private Stage primaryStage;
 
 
     //FXML Components
@@ -47,6 +49,7 @@ public class Scene_Controller {
         //Test System
         this.director.setSceneController(this);
         this.director.buildTitleScene();
+        this.director.setPrimaryStage(this.primaryStage);
     }
 
    //Render System
@@ -58,5 +61,7 @@ public class Scene_Controller {
         return this.drawer;
     }
 
-
+    public void setPrimaryStage(Stage primaryStage) {
+        this.primaryStage = primaryStage;
+    }
 }
