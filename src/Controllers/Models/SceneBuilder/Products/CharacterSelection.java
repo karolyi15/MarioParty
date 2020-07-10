@@ -62,6 +62,8 @@ public class CharacterSelection extends GameScene {
         this.openSet.add(NodeType.WARIOPORTRAIT);
         this.openSet.add(NodeType.DAISYPORTRAIT);
         this.openSet.add(NodeType.YELLOWYOSHIPORTRAIT);
+        this.openSet.add(NodeType.BOWSERPORTRAIT);
+        this.openSet.add(NodeType.TOADPORTRAIT);
     }
 
     private void changePortrait(Button button){

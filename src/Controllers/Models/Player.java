@@ -78,6 +78,14 @@ public class Player {
                 this.character=new Character(CharacterType.YOSHIBLUE);
                 this.playerID=portrait;
                 break;
+            case BOWSERPORTRAIT:
+                this.character=new Character(CharacterType.BROWSER);
+                this.playerID=portrait;
+                break;
+            case TOADPORTRAIT:
+                this.character=new Character(CharacterType.TOAD);
+                this.playerID=portrait;
+                break;
         }
     }
 

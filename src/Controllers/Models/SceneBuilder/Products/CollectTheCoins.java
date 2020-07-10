@@ -68,6 +68,9 @@ public class CollectTheCoins extends GameScene {
                 System.out.println("TOTAL DE PUNTOS: " + counterPoints());
                 //seconds--;
                 //update();
+                if(checkWinner()){
+                    stop();
+                }
             }
         });
     }

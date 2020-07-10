@@ -46,7 +46,7 @@ public class Scene_Controller {
 
         //Test System
         this.director.setSceneController(this);
-        this.director.buildCatchBoo();
+        this.director.buildTitleScene();
     }
 
    //Render System

@@ -39,6 +39,8 @@ public enum NodeType {
     WARIOPORTRAIT("file:Resources/Imgs/UI Elements/CharacterMenu_Img.png",0,34,34,34),
     WALUIGIPORTRAIT("file:Resources/Imgs/UI Elements/CharacterMenu_Img.png",35,34,34,34),
     YELLOWYOSHIPORTRAIT("file:Resources/Imgs/UI Elements/CharacterMenu_Img.png",105,34,34,34),
+    BOWSERPORTRAIT("file:Resources/Imgs/UI Elements/CharacterMenu_Img.png",140,34,34,34),
+    TOADPORTRAIT("file:Resources/Imgs/UI Elements/CharacterMenu_Img.png",175,0,34,34),
 
     //Tic Tac Toe Nodes
     CAJA ("file:Resources/Imgs/UI Elements/TicTacToe_Elements.png",112,0,103,103),

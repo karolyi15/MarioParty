@@ -38,6 +38,9 @@ public class MainGame extends GameScene {
     //Scene Transition System
     NodeType playingNode;
 
+    //Random
+    Random random;
+
 
 
     //********************************************************************************************************************//
@@ -65,6 +68,8 @@ public class MainGame extends GameScene {
 
         //UI Elements
         this.initUI_Elements();
+
+        this.random=new Random();
 
         //**********************************Review
         //this.updatePathPosition();
@@ -380,7 +385,7 @@ public class MainGame extends GameScene {
                 break;
             case BOMBERICON:
                 this.stop();
-                super.getSceneDirector().buildCatchBoo();
+                super.getSceneDirector().buildBomberMario();
                 break;
             case TICTACTOEICON:
                 this.stop();
@@ -400,17 +405,26 @@ public class MainGame extends GameScene {
                 break;
             case FIRE:
                 System.out.println("Flor de fuego");
+                this.executeFire();
                 break;
             case ICE:
                 System.out.println("Flor de Hielo");
+                this.executeIce();
                 break;
             case TAIL:
                 System.out.println("Colita");
                 break;
             case TUBERED:
+                System.out.println("entré en un tubo");
+                this.executeRedTube();
+                break;
             case TUBEBLUE:
+                System.out.println("entré en un tubo");
+                this.executeBlueTube();
+                break;
             case TUBEYELLOW:
                 System.out.println("entré en un tubo");
+                this.executeYellowTube();
                 break;
 
 
@@ -419,9 +433,64 @@ public class MainGame extends GameScene {
 
     }
 
+    private void executeBlueTube(){
+        for(int node=0;node<this.relativeBoard.size();node++){
+            if(this.relativeBoard.get(node).getType()==NodeType.TUBEYELLOW){
+                super.getPlayerList().get(this.playerTurn).setCurrentNode(node);
+            }
+        }
+    }
+
+    private void executeYellowTube(){
+        for(int node=0;node<this.relativeBoard.size();node++){
+            if(this.relativeBoard.get(node).getType()==NodeType.TUBERED){
+                super.getPlayerList().get(this.playerTurn).setCurrentNode(node);
+            }
+        }
+
+    }
+
+    private void executeRedTube(){
+        for(int node=0;node<this.relativeBoard.size();node++){
+            if(this.relativeBoard.get(node).getType()==NodeType.TUBEBLUE){
+                super.getPlayerList().get(this.playerTurn).setCurrentNode(node);
+            }
+        }
+
+    }
+
     private void executePrison(){
         Player activePlayer=super.getPlayerList().get(this.playerTurn);
         activePlayer.setPunished(activePlayer.getPunished()+2);
+    }
+
+    private void executeIce(){
+        int punishedPlayer=0;
+        while(punishedPlayer==0){
+            int randomPlayer=random.nextInt(super.getPlayerList().size());
+            if(randomPlayer!=this.playerTurn){
+                Player tempPlayer=super.getPlayerList().get(randomPlayer);
+                tempPlayer.setPunished(tempPlayer.getPunished()+2);
+                punishedPlayer+=1;
+            }
+        }
+    }
+
+    private void executeFire(){
+        int punishedPlayer=0;
+        while(punishedPlayer==0){
+            int randomPlayer=random.nextInt(super.getPlayerList().size());
+            if(randomPlayer!=this.playerTurn){
+                Player tempPlayer=super.getPlayerList().get(randomPlayer);
+                tempPlayer.setCurrentNode(0);
+                punishedPlayer+=1;
+            }
+        }
+
+    }
+
+    private void executeTail(){
+
     }
 
     private void changeTurn(){
