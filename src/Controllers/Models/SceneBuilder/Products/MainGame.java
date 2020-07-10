@@ -355,8 +355,8 @@ public class MainGame extends GameScene {
             //MiniGames Options
             case SOUPICON:
                 this.stop();
-                super.getSceneDirector().buildTicTacToe();
-                //super.getSceneDirector().buildMarioSoup();
+                //super.getSceneDirector().buildTicTacToe();
+                super.getSceneDirector().buildMarioSoup();
                 break;
             case CARDSICON:
                 this.stop();
@@ -388,8 +388,8 @@ public class MainGame extends GameScene {
                 break;
             case COINSICON:
                 this.stop();
-                super.getSceneDirector().buildTicTacToe();
-                //super.getSceneDirector().buildCollectTheCoins();
+                //super.getSceneDirector().buildTicTacToe();
+                super.getSceneDirector().buildCollectTheCoins();
                 break;
              //Other Node Options
             case PRISON:
