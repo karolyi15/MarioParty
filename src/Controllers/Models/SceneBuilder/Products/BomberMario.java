@@ -93,10 +93,17 @@ public class BomberMario extends GameScene {
                                         explodeBomb(row,column,tempRockButton);
                                         if(checkWinner()==true){
                                             System.out.println("GANASTE!!!");
-
+                                            BomberMario.super.showDialog("Player Wins!!");
+                                            int playerTurn=(int)BomberMario.super.getSceneDirector().getGameLog().get("PlayerTurn");
+                                            BomberMario.super.getSceneDirector().getPlayerList().get(playerTurn).setCurrentNodeState(1);
+                                            stop();
                                         }else{
                                             if(contBombers == 0){
                                                 System.out.println("PERDISTE :(");
+                                                int playerTurn=(int)BomberMario.super.getSceneDirector().getGameLog().get("PlayerTurn");
+                                                BomberMario.super.getSceneDirector().getPlayerList().get(playerTurn).setCurrentNodeState(-1);
+                                                BomberMario.super.showDialog("Player Lose!!");
+                                                stop();
                                             }else{
                                                 contBombers--;
                                                 System.out.println("Siguiente Bomba");
@@ -126,21 +133,11 @@ public class BomberMario extends GameScene {
 
         if(checkWinner() == true){
             this.drawTitleWinnerState(1);
-            this.stop();
-            super.showDialog("Player Wins!!");
-            int playerTurn=(int)super.getSceneDirector().getGameLog().get("PlayerTurn");
-            super.getSceneDirector().getPlayerList().get(playerTurn).setCurrentNodeState(1);
+
 
         }else{
             if(contBombers==0){
                 this.drawTitleWinnerState(-1);
-
-
-                int playerTurn=(int)super.getSceneDirector().getGameLog().get("PlayerTurn");
-                super.getSceneDirector().getPlayerList().get(playerTurn).setCurrentNodeState(-1);
-
-                this.stop();
-                super.showDialog("Player Lose!!");
             }
         }
 

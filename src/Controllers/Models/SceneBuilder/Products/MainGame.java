@@ -326,6 +326,7 @@ public class MainGame extends GameScene {
     private void throwDice(Player player){
 
         String dialogContent="";
+        player.addTurnLog(this.relativeBoard.get(player.getCurrentNode()).getType());
         //System.out.println("Playing Player "+(this.playerTurn+1));
         //System.out.println("Actual x: "+player.getCharacter().getPositionX()+" Actual y: "+player.getCharacter().getPositionY());
 
@@ -387,7 +388,7 @@ public class MainGame extends GameScene {
                     super.showDialog(dialogContent);
                     //System.out.println("moved");
                     this.executeGame(this.realBoard.get(player.getCurrentNode()).getType());
-                    player.addTurnLog(this.relativeBoard.get(player.getCurrentNode()).getType());
+                    //player.addTurnLog(this.relativeBoard.get(player.getCurrentNode()).getType());
                 }
 
             }
@@ -565,12 +566,12 @@ public class MainGame extends GameScene {
             int randomPlayer=random.nextInt(super.getPlayerList().size());
             if(randomPlayer!=this.playerTurn){
                 Player tempPlayer=super.getPlayerList().get(randomPlayer);
-                tempPlayer.setCurrentNode(1);
+                tempPlayer.setCurrentNode(0);
                 tempPlayer.getCharacter().setPosition(this.relativeBoard.get(tempPlayer.getCurrentNode()).getPositionX(), this.relativeBoard.get(tempPlayer.getCurrentNode()).getPositionY());
                 punishedPlayer+=1;
             }
         }
-        super.getPlayerList().get(this.playerTurn).setCurrentNodeState(0);
+        super.getPlayerList().get(this.playerTurn).setCurrentNodeState(1);
     }
 
     private void executeTail(){
