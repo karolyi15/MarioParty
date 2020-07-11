@@ -47,7 +47,8 @@ public class MainGame extends GameScene {
     NodeType playingNode;
 
     //Random
-    Random random;
+    private Random random;
+    private boolean running;
 
 
 
@@ -79,6 +80,7 @@ public class MainGame extends GameScene {
         this.initUI_Elements();
 
         this.random=new Random();
+        this.running=true;
 
         //**********************************Review
         //this.updatePathPosition();
@@ -88,7 +90,7 @@ public class MainGame extends GameScene {
     }
 
     private void sortPlayers(){
-
+        String content="Initial List:\n";
         //Get player List Length
 
         int listLength=super.getPlayerList().size();
@@ -98,15 +100,15 @@ public class MainGame extends GameScene {
 
         for(int player=0;player<listLength;player++) {
             int diceResult = dice.throwDice() + dice.throwDice();
+            content+="Player "+(player+1)+": Throws "+diceResult+"\n";
             sortedList.add(diceResult);
         }
-        System.out.println("\nArray Inicial");
-        this.printArrayList(sortedList);
+
 
         //Sorting Player List
         for(int i=0;i<super.getPlayerList().size()-1;i++){
             for(int j=0;j<listLength-i-1;j++){
-                if(sortedList.get(j)>sortedList.get(j+1)){
+                if(sortedList.get(j)<sortedList.get(j+1)){
 
                     int temNumber=sortedList.get(j);
                     Player tempPayer=super.getPlayerList().get(j);
@@ -120,15 +122,18 @@ public class MainGame extends GameScene {
             }
         }
 
-        System.out.println("Array Ordenado");
-        this.printArrayList(sortedList);
+
+        content+="Sorted List:\n"+this.printArrayList(sortedList);
+        super.showDialog(content);
     }
 
     //Sorting Test
-    private void printArrayList(ArrayList<Integer> array){
+    private String printArrayList(ArrayList<Integer> array){
+        String content="";
         for(int element=0;element<array.size();element++){
-            System.out.print(array.get(element)+" ");
+           content+="Position "+(element+1)+": "+array.get(element)+"\n";
         }
+        return content;
     }
 
     //Camara System
@@ -356,8 +361,9 @@ public class MainGame extends GameScene {
                             player.getCharacter().setPosition(this.relativeBoard.get(player.getCurrentNode()).getPositionX(), this.relativeBoard.get(player.getCurrentNode()).getPositionY());
 
                             super.showDialog("Player " + (this.playerTurn + 1) + " Wins");
-                            //this.stop();
-                            super.getSceneDirector().getPrimaryStage().close();
+                            this.running=false;
+                            this.stop();
+                            super.getSceneDirector().buildTitleScene();
 
                         } else {
                             player.setCurrentNode(player.getCurrentNode() + diceValue);
@@ -370,9 +376,12 @@ public class MainGame extends GameScene {
                         //System.out.println("New x: " + player.getCharacter().getPositionX() + " New y: " + player.getCharacter().getPositionY());
                     }
                 }
-                super.showDialog(dialogContent);
-                System.out.println("moved");
-                //this.executeGame(this.realBoard.get(player.getCurrentNode()).getType());
+
+                if(this.running) {
+                    super.showDialog(dialogContent);
+                    System.out.println("moved");
+                    //this.executeGame(this.realBoard.get(player.getCurrentNode()).getType());
+                }
 
             }
 
