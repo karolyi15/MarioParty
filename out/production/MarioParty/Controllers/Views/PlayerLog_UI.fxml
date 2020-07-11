@@ -8,12 +8,12 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Views.PlayerLog_Controller">
    <children>
-      <TextArea fx:id="textArea" layoutX="38.0" layoutY="132.0" prefHeight="200.0" prefWidth="525.0" />
+      <TextArea fx:id="textArea" editable="false" layoutX="38.0" layoutY="132.0" prefHeight="200.0" prefWidth="525.0" />
       <Label layoutX="38.0" layoutY="49.0" text="Player Log: ">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Button fx:id="okButton" layoutX="493.0" layoutY="345.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" text="Ok" />
+      <Button fx:id="okButton" layoutX="493.0" layoutY="345.0" mnemonicParsing="false" onAction="#handleOk" prefHeight="25.0" prefWidth="70.0" text="Ok" />
    </children>
 </AnchorPane>

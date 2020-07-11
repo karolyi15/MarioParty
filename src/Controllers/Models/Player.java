@@ -97,9 +97,34 @@ public class Player {
         this.playerLog=new JSONObject();
         JSONArray playerTurns=new JSONArray();
 
-        this.playerLog.put("CurrentNode",this.currentNode);
+        this.playerLog.put("ID",this.playerID);
+        //this.playerLog.put("CurrentNode",this.currentNode);
         this.playerLog.put("Punishments",this.punished);
         this.playerLog.put("Turns",playerTurns);
+    }
+
+    public void addTurnLog(NodeType type){
+        //Getting Turns Array List
+        JSONArray playerTurns=(JSONArray) this.playerLog.get("Turns");
+
+        //Create new JsoN Object Turn
+        JSONObject turn=new JSONObject();
+        turn.put("Node",this.currentNode);
+        turn.put("NodeType",type);
+        turn.put("State",this.getNodeState());
+
+        //Add New Turn Log
+        playerTurns.add(turn);
+    }
+
+    private String getNodeState(){
+        if(this.currentNodeState==1){
+            return "Win";
+        }else if(this.currentNodeState==-1){
+            return "Lose";
+        }else{
+            return "Replay";
+        }
     }
 
     //Render System

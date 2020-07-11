@@ -6,6 +6,7 @@ import Controllers.Models.Player;
 import Controllers.Models.SceneBuilder.GameScene;
 import Controllers.Models.SceneBuilder.SceneType;
 import Controllers.Models.SpriteFactory.Products.*;
+import Controllers.Views.PlayerLog_Controller;
 import Controllers.Views.Tail_Controller;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -167,17 +168,18 @@ public class MainGame extends GameScene {
         //Init UI Components
         this.diceButton=new Button(540,435);
         diceButton.setText("Throw Dice");
-        diceButton.setId("Dice Button");
+        diceButton.setId("DiceButton");
         diceButton.resizeImage(150,50);
         super.getButtonsList().add(diceButton);
         super.getGameComponents().add(diceButton);
 
         this.textArea=new Button(390,10);
         textArea.setText("Player #");
-        textArea.setId("Text Area");
+        textArea.setId("TextArea");
         textArea.setType(NodeType.TEXTAREA);
         textArea.resizeImage(300,75);
         super.getGameComponents().add(textArea);
+        super.getButtonsList().add(textArea);
 
         this.portrait=new Button(NodeType.UNKNOWNPORTRAIT,400,20);
         portrait.resizeImage(54,58);
@@ -332,8 +334,12 @@ public class MainGame extends GameScene {
 
             if(player.isCurrentNodeState()==-1) {
                 super.delay(1000);
-                this.executeGame(this.realBoard.get(player.getCurrentNode()).getType());
+                player.setCurrentNodeState(0);
+                this.changeTurn();
 
+            }else if(player.isCurrentNodeState()==0){
+                super.delay(1000);
+                this.executeGame(this.realBoard.get(player.getCurrentNode()).getType());
             }else {
                 for (int dice = 0; dice < 2; dice++) {
 
@@ -379,8 +385,9 @@ public class MainGame extends GameScene {
 
                 if(this.running) {
                     super.showDialog(dialogContent);
-                    System.out.println("moved");
-                    //this.executeGame(this.realBoard.get(player.getCurrentNode()).getType());
+                    //System.out.println("moved");
+                    this.executeGame(this.realBoard.get(player.getCurrentNode()).getType());
+                    player.addTurnLog(this.relativeBoard.get(player.getCurrentNode()).getType());
                 }
 
             }
@@ -504,7 +511,7 @@ public class MainGame extends GameScene {
             }
         }
         Player tempPlayer=super.getPlayerList().get(this.playerTurn);
-        tempPlayer.setCurrentNodeState(0);
+        tempPlayer.setCurrentNodeState(1);
         tempPlayer.getCharacter().setPosition(this.relativeBoard.get(tempPlayer.getCurrentNode()).getPositionX(), this.relativeBoard.get(tempPlayer.getCurrentNode()).getPositionY());
         this.setCamaraOn(tempPlayer);
     }
@@ -516,7 +523,7 @@ public class MainGame extends GameScene {
             }
         }
         Player tempPlayer=super.getPlayerList().get(this.playerTurn);
-        tempPlayer.setCurrentNodeState(0);
+        tempPlayer.setCurrentNodeState(1);
         tempPlayer.getCharacter().setPosition(this.relativeBoard.get(tempPlayer.getCurrentNode()).getPositionX(), this.relativeBoard.get(tempPlayer.getCurrentNode()).getPositionY());
         this.setCamaraOn(tempPlayer);
     }
@@ -528,7 +535,7 @@ public class MainGame extends GameScene {
             }
         }
         Player tempPlayer=super.getPlayerList().get(this.playerTurn);
-        tempPlayer.setCurrentNodeState(0);
+        tempPlayer.setCurrentNodeState(1);
         tempPlayer.getCharacter().setPosition(this.relativeBoard.get(tempPlayer.getCurrentNode()).getPositionX(), this.relativeBoard.get(tempPlayer.getCurrentNode()).getPositionY());
         this.setCamaraOn(tempPlayer);
     }
@@ -536,7 +543,7 @@ public class MainGame extends GameScene {
     private void executePrison(){
         Player activePlayer=super.getPlayerList().get(this.playerTurn);
         activePlayer.setPunished(activePlayer.getPunished()+2);
-        super.getPlayerList().get(this.playerTurn).setCurrentNodeState(0);
+        super.getPlayerList().get(this.playerTurn).setCurrentNodeState(1);
     }
 
     private void executeIce(){
@@ -549,7 +556,7 @@ public class MainGame extends GameScene {
                 punishedPlayer+=1;
             }
         }
-        super.getPlayerList().get(this.playerTurn).setCurrentNodeState(0);
+        super.getPlayerList().get(this.playerTurn).setCurrentNodeState(1);
     }
 
     private void executeFire(){
@@ -558,7 +565,7 @@ public class MainGame extends GameScene {
             int randomPlayer=random.nextInt(super.getPlayerList().size());
             if(randomPlayer!=this.playerTurn){
                 Player tempPlayer=super.getPlayerList().get(randomPlayer);
-                tempPlayer.setCurrentNode(0);
+                tempPlayer.setCurrentNode(1);
                 tempPlayer.getCharacter().setPosition(this.relativeBoard.get(tempPlayer.getCurrentNode()).getPositionX(), this.relativeBoard.get(tempPlayer.getCurrentNode()).getPositionY());
                 punishedPlayer+=1;
             }
@@ -591,7 +598,7 @@ public class MainGame extends GameScene {
             //Wait Until Dialog Close
             dialogStage.showAndWait();
             Player tempPlayer=super.getPlayerList().get(this.playerTurn);
-            tempPlayer.setCurrentNodeState(0);
+            tempPlayer.setCurrentNodeState(1);
             tempPlayer.getCharacter().setPosition(this.relativeBoard.get(tempPlayer.getCurrentNode()).getPositionX(), this.relativeBoard.get(tempPlayer.getCurrentNode()).getPositionY());
             this.setCamaraOn(tempPlayer);
         }catch (IOException e){
@@ -656,10 +663,16 @@ public class MainGame extends GameScene {
                     if(tempButton.getPositionX()<=mouseEvent.getX() & mouseEvent.getX()<=tempButton.getPositionX()+tempButton.getWidth()){
                         if(tempButton.getPositionY()<mouseEvent.getY() & mouseEvent.getY()<tempButton.getPositionY()+tempButton.getHeight()) {
 
-                            throwDice(MainGame.super.getPlayerList().get(playerTurn));
-                            //updateCamara(MainGame.super.getPlayerList().get(playerTurn));
+                            if(tempButton.getId().equals("TextArea")) {
+                                showPlayerLog();
 
-                            //stop();
+                            }else {
+
+                                throwDice(MainGame.super.getPlayerList().get(playerTurn));
+                                //updateCamara(MainGame.super.getPlayerList().get(playerTurn));
+
+                                //stop();
+                            }
                         }
                     }
                 }
@@ -744,7 +757,7 @@ public class MainGame extends GameScene {
             dialogStage.setScene(dialogScene);
 
             //Set Controller
-            Tail_Controller controller=loader.getController();
+            PlayerLog_Controller controller=loader.getController();
             controller.setDialogStage(dialogStage);
             controller.setPlayer(super.getPlayerList().get(this.playerTurn));
 
