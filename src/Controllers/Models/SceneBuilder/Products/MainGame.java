@@ -51,6 +51,7 @@ public class MainGame extends GameScene {
 
 
 
+
     //********************************************************************************************************************//
     //************************************************ CLASS METHODS *****************************************************//
 
@@ -317,51 +318,95 @@ public class MainGame extends GameScene {
     //Game Logic
     private void throwDice(Player player){
 
-        System.out.println("Playing Player "+(this.playerTurn+1));
-        System.out.println("Actual x: "+player.getCharacter().getPositionX()+" Actual y: "+player.getCharacter().getPositionY());
-       if(player.getPunished()==0) {
+        String dialogContent="";
+        //System.out.println("Playing Player "+(this.playerTurn+1));
+        //System.out.println("Actual x: "+player.getCharacter().getPositionX()+" Actual y: "+player.getCharacter().getPositionY());
 
-           for (int dice = 0; dice < 2; dice++) {
-               int diceValue = this.dice.throwDice();
-               System.out.println("Dice "+dice+" :" + diceValue);
-               if (diceValue == 0) {
+        //Case: PLayer not Punished
+        if(player.getPunished()==0) {
 
-                   player.setPunished(player.getPunished() + 1);
+            if(player.isCurrentNodeState()==-1) {
+                super.delay(1000);
+                this.executeGame(this.realBoard.get(player.getCurrentNode()).getType());
 
-               } else {
+            }else {
+                for (int dice = 0; dice < 2; dice++) {
 
-                   int actualNode=player.getCurrentNode();
+                    int diceValue = this.dice.throwDice();
 
-                   if(actualNode+diceValue>26){
+                    dialogContent += "Dice " + (dice + 1) + ":" + diceValue + "\n";
 
-                       player.setCurrentNode(26-(actualNode+diceValue-26));
+                    //System.out.println("Dice " + dice + " :" + diceValue);
+                    if (diceValue == 0) {
 
-                   }else if(actualNode+diceValue==26){
+                        player.setPunished(player.getPunished() + 1);
 
-                       System.out.println("Player "+playerTurn+1+"Wins!!");
-                       player.setCurrentNode(player.getCurrentNode()+diceValue);
-                       //super.getGameLoop().stop();
-                   }else{
-                       player.setCurrentNode(player.getCurrentNode()+diceValue);
-                   }
-                   System.out.println("Player current node: "+player.getCurrentNode());
-                   //this.updatePathPosition();
-                   //this.setCamaraOn(player.getCharacter());
-                   player.getCharacter().setPosition(this.relativeBoard.get(player.getCurrentNode()).getPositionX(),this.relativeBoard.get(player.getCurrentNode()).getPositionY());
+                    } else {
 
-                   System.out.println("New x: "+player.getCharacter().getPositionX()+" New y: "+player.getCharacter().getPositionY());
-               }
+                        int actualNode = player.getCurrentNode();
+
+                        if (actualNode + diceValue > 26) {
+
+                            player.setCurrentNode(26 - (actualNode + diceValue - 26));
+
+                        } else if (actualNode + diceValue == 26) {
+
+                            System.out.println("Player " + playerTurn + 1 + "Wins!!");
+                            player.setCurrentNode(player.getCurrentNode() + diceValue);
+                            player.getCharacter().setPosition(this.relativeBoard.get(player.getCurrentNode()).getPositionX(), this.relativeBoard.get(player.getCurrentNode()).getPositionY());
+
+                            super.showDialog("Player " + (this.playerTurn + 1) + " Wins");
+                            //this.stop();
+                            super.getSceneDirector().getPrimaryStage().close();
+
+                        } else {
+                            player.setCurrentNode(player.getCurrentNode() + diceValue);
+                        }
+                        //System.out.println("Player current node: " + player.getCurrentNode());
+                        //this.updatePathPosition();
+                        //this.setCamaraOn(player.getCharacter());
+                        player.getCharacter().setPosition(this.relativeBoard.get(player.getCurrentNode()).getPositionX(), this.relativeBoard.get(player.getCurrentNode()).getPositionY());
+                        this.setCamaraOn(player);
+                        //System.out.println("New x: " + player.getCharacter().getPositionX() + " New y: " + player.getCharacter().getPositionY());
+                    }
+                }
+                super.showDialog(dialogContent);
+                System.out.println("moved");
+                //this.executeGame(this.realBoard.get(player.getCurrentNode()).getType());
+
+            }
+
+            if(player.isCurrentNodeState()==-1){
+                delay(2000);
+                this.changeTurn();
+            }
+
+            //If Player Won Mini Game Gets Another Turn
+            /*if(player.isCurrentNodeState()==1 & player.getPunished()==0){
+                delay(2000);
+                this.throwDice(super.getPlayerList().get(this.playerTurn));
+            }else {
+                delay(2000);
+                this.changeTurn();
+            }*/
+
            }
-       }else{
-           player.setPunished(player.getPunished()-1);
-           System.out.println("Players Punished\n");
+        //Case: Player is Punished
+        else{
+            System.out.println("Players Punished Cant Move\n");
+            player.setPunished(player.getPunished()-1);
+            System.out.println("***** Turn Changed *****");
+            super.delay(2000);
+            this.changeTurn();
        }
-        System.out.println("***** Turn Changed *****");
-        //this.executeGame(this.realBoard.get(player.getCurrentNode()).getType());
-        this.executeTail();
-        this.changeTurn();
+
+
+
+
 
     }
+
+
 
     private void executeGame(NodeType nodeType){
 
@@ -449,6 +494,10 @@ public class MainGame extends GameScene {
                 super.getPlayerList().get(this.playerTurn).setCurrentNode(node);
             }
         }
+        Player tempPlayer=super.getPlayerList().get(this.playerTurn);
+        tempPlayer.setCurrentNodeState(0);
+        tempPlayer.getCharacter().setPosition(this.relativeBoard.get(tempPlayer.getCurrentNode()).getPositionX(), this.relativeBoard.get(tempPlayer.getCurrentNode()).getPositionY());
+        this.setCamaraOn(tempPlayer);
     }
 
     private void executeYellowTube(){
@@ -457,7 +506,10 @@ public class MainGame extends GameScene {
                 super.getPlayerList().get(this.playerTurn).setCurrentNode(node);
             }
         }
-
+        Player tempPlayer=super.getPlayerList().get(this.playerTurn);
+        tempPlayer.setCurrentNodeState(0);
+        tempPlayer.getCharacter().setPosition(this.relativeBoard.get(tempPlayer.getCurrentNode()).getPositionX(), this.relativeBoard.get(tempPlayer.getCurrentNode()).getPositionY());
+        this.setCamaraOn(tempPlayer);
     }
 
     private void executeRedTube(){
@@ -466,12 +518,16 @@ public class MainGame extends GameScene {
                 super.getPlayerList().get(this.playerTurn).setCurrentNode(node);
             }
         }
-
+        Player tempPlayer=super.getPlayerList().get(this.playerTurn);
+        tempPlayer.setCurrentNodeState(0);
+        tempPlayer.getCharacter().setPosition(this.relativeBoard.get(tempPlayer.getCurrentNode()).getPositionX(), this.relativeBoard.get(tempPlayer.getCurrentNode()).getPositionY());
+        this.setCamaraOn(tempPlayer);
     }
 
     private void executePrison(){
         Player activePlayer=super.getPlayerList().get(this.playerTurn);
         activePlayer.setPunished(activePlayer.getPunished()+2);
+        super.getPlayerList().get(this.playerTurn).setCurrentNodeState(0);
     }
 
     private void executeIce(){
@@ -484,6 +540,7 @@ public class MainGame extends GameScene {
                 punishedPlayer+=1;
             }
         }
+        super.getPlayerList().get(this.playerTurn).setCurrentNodeState(0);
     }
 
     private void executeFire(){
@@ -493,10 +550,11 @@ public class MainGame extends GameScene {
             if(randomPlayer!=this.playerTurn){
                 Player tempPlayer=super.getPlayerList().get(randomPlayer);
                 tempPlayer.setCurrentNode(0);
+                tempPlayer.getCharacter().setPosition(this.relativeBoard.get(tempPlayer.getCurrentNode()).getPositionX(), this.relativeBoard.get(tempPlayer.getCurrentNode()).getPositionY());
                 punishedPlayer+=1;
             }
         }
-
+        super.getPlayerList().get(this.playerTurn).setCurrentNodeState(0);
     }
 
     private void executeTail(){
@@ -523,7 +581,10 @@ public class MainGame extends GameScene {
 
             //Wait Until Dialog Close
             dialogStage.showAndWait();
-
+            Player tempPlayer=super.getPlayerList().get(this.playerTurn);
+            tempPlayer.setCurrentNodeState(0);
+            tempPlayer.getCharacter().setPosition(this.relativeBoard.get(tempPlayer.getCurrentNode()).getPositionX(), this.relativeBoard.get(tempPlayer.getCurrentNode()).getPositionY());
+            this.setCamaraOn(tempPlayer);
         }catch (IOException e){
             e.printStackTrace();
         }
@@ -647,6 +708,44 @@ public class MainGame extends GameScene {
         //super.getSceneDirector().buildTicTacToe();
     }
 
+    private void finish(){
+        //Stops Game Execution
+        super.getMusicPlayer().stop();
+        super.getGameLoop().stop();
+
+        super.getSceneDirector().buildTitleScene();
+
+    }
+
+    private void showPlayerLog(){
+        try{
+
+            //Load Fxml File
+            FXMLLoader loader=new FXMLLoader();
+            loader.setLocation(Main.class.getResource("Views/PlayerLog_UI.fxml"));
+            AnchorPane playerDialog=(AnchorPane) loader.load();
+
+            //Create Dialog Stage
+            Stage dialogStage=new Stage();
+            dialogStage.setTitle("Player Log");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(super.getSceneDirector().getPrimaryStage());
+
+            Scene dialogScene=new Scene(playerDialog);
+            dialogStage.setScene(dialogScene);
+
+            //Set Controller
+            Tail_Controller controller=loader.getController();
+            controller.setDialogStage(dialogStage);
+            controller.setPlayer(super.getPlayerList().get(this.playerTurn));
+
+            //Wait Until Dialog Close
+            dialogStage.showAndWait();
+
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
 
 
 

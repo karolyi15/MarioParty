@@ -60,6 +60,10 @@ public class SceneDirector {
         this.playerList = playerList;
     }
 
+    public ArrayList<Player> getPlayerList() {
+        return playerList;
+    }
+
     public JSONObject getGameLog() {
         return gameLog;
     }

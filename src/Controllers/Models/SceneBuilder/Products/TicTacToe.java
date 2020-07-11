@@ -119,8 +119,18 @@ public class TicTacToe extends GameScene {
                 if(checkWinner() == true){
 
                     System.out.println("GANO EL JUGADOR" + turn *-1);
-                    stop();
+                    if(turn *-1==1) {
+                        TicTacToe.super.showDialog("Player Wins!!");
+                        int playerTurn = (int) TicTacToe.super.getSceneDirector().getGameLog().get("PlayerTurn");
+                        TicTacToe.super.getSceneDirector().getPlayerList().get(playerTurn).setCurrentNodeState(1);
 
+
+                    }else{
+                        TicTacToe.super.showDialog("Player Lose!!");
+                        int playerTurn = (int) TicTacToe.super.getSceneDirector().getGameLog().get("PlayerTurn");
+                        TicTacToe.super.getSceneDirector().getPlayerList().get(playerTurn).setCurrentNodeState(-1);
+                    }
+                    stop();
                 }else{
                     System.out.println("SIGUE EL JUGADOR" + turn);
 

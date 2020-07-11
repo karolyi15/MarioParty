@@ -127,10 +127,18 @@ public class BomberMario extends GameScene {
         if(checkWinner() == true){
             this.drawTitleWinnerState(1);
             this.stop();
+            super.showDialog("Player Wins!!");
+            int playerTurn=(int)super.getSceneDirector().getGameLog().get("PlayerTurn");
+            super.getSceneDirector().getPlayerList().get(playerTurn).setCurrentNodeState(1);
+
         }else{
             if(contBombers==0){
                 this.drawTitleWinnerState(-1);
                 this.stop();
+                super.showDialog("Player Lose!!");
+                int playerTurn=(int)super.getSceneDirector().getGameLog().get("PlayerTurn");
+                super.getSceneDirector().getPlayerList().get(playerTurn).setCurrentNodeState(-1);
+
             }
         }
 

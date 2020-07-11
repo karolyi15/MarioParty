@@ -48,8 +48,9 @@ public class Scene_Controller {
 
         //Test System
         this.director.setSceneController(this);
-        this.director.buildTitleScene();
         this.director.setPrimaryStage(this.primaryStage);
+        this.director.buildTitleScene();
+
     }
 
    //Render System

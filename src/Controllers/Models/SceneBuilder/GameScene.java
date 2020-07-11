@@ -8,6 +8,7 @@ import Controllers.Models.SpriteFactory.SpriteFactory;
 import Controllers.Views.Scene_Controller;
 import javafx.animation.AnimationTimer;
 import javafx.event.EventHandler;
+import javafx.scene.control.Alert;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
@@ -214,5 +215,23 @@ public class GameScene {
     public void stop(){
 
         this.gameLoop.stop();
+    }
+
+    public void showDialog(String content){
+
+        Alert alert=new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information");
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+
+        alert.showAndWait();
+    }
+
+    public void delay(long time){
+        try {
+            Thread.sleep(time);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
     }
 }

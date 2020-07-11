@@ -81,6 +81,9 @@ public class MemoryPath extends GameScene {
                                         }else{
                                             System.out.println("GANASTE!!!");
                                             stateWin = 1;
+                                            MemoryPath.super.showDialog("Player Wins!!");
+                                            int playerTurn=(int)MemoryPath.super.getSceneDirector().getGameLog().get("PlayerTurn");
+                                            MemoryPath.super.getSceneDirector().getPlayerList().get(playerTurn).setCurrentNodeState(1);
                                             stop();
                                         }
                                         System.out.println("NEXT ROW: "+currentRow);
@@ -92,6 +95,9 @@ public class MemoryPath extends GameScene {
                                         if(attempts==0) {
                                             System.out.println("PERDISTE :( ");
                                             stateWin = -1;
+                                            MemoryPath.super.showDialog("Player Lose!!");
+                                            int playerTurn=(int)MemoryPath.super.getSceneDirector().getGameLog().get("PlayerTurn");
+                                            MemoryPath.super.getSceneDirector().getPlayerList().get(playerTurn).setCurrentNodeState(-1);
                                             stop();
                                         }
                                     }

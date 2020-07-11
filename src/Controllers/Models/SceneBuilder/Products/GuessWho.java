@@ -103,9 +103,15 @@ public class GuessWho extends GameScene {
                                 disableButtons();
                                 if(checkWinner(tempGuessWhoButton)){
                                     System.out.println("YOU WIN!!!!");
+                                    GuessWho.super.showDialog("Player Wins!!");
+                                    int playerTurn=(int)GuessWho.super.getSceneDirector().getGameLog().get("PlayerTurn");
+                                    GuessWho.super.getSceneDirector().getPlayerList().get(playerTurn).setCurrentNodeState(1);
                                     stop();
                                 }else{
                                     System.out.println("YOU LOSE :(");
+                                    GuessWho.super.showDialog("Player Lose!!");
+                                    int playerTurn=(int)GuessWho.super.getSceneDirector().getGameLog().get("PlayerTurn");
+                                    GuessWho.super.getSceneDirector().getPlayerList().get(playerTurn).setCurrentNodeState(-1);
                                     stop();
                                 }
                             }

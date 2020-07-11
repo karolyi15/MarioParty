@@ -165,6 +165,9 @@ public class CatchBoo extends GameScene {
             int[] nextMove=this.selectPath(openSet);
             if(nextMove==null){
                 System.out.println("Player Wins");
+                super.showDialog("Player Wins!!");
+                int playerTurn=(int)super.getSceneDirector().getGameLog().get("PlayerTurn");
+                super.getSceneDirector().getPlayerList().get(playerTurn).setCurrentNodeState(1);
                 this.stop();
             }else{
                 gameField[booNode[0]][booNode[1]].setPressed(false);
@@ -181,6 +184,9 @@ public class CatchBoo extends GameScene {
 
         }else{
             System.out.println("Player Perdiooo!!! :(");
+            super.showDialog("Player Lose!!");
+            int playerTurn=(int)super.getSceneDirector().getGameLog().get("PlayerTurn");
+            super.getSceneDirector().getPlayerList().get(playerTurn).setCurrentNodeState(-1);
             this.stop();
         }
 

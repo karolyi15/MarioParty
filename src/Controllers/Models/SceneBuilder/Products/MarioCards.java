@@ -27,7 +27,7 @@ public class MarioCards extends GameScene {
     }
     @Override
     public void initGameComponents() {
-        players=super.getPlayerList().size();
+        players=super.getSceneDirector().getPlayerList().size();
         System.out.println("NUMBER OF PLAYERS:" + players);
         this.turns = players;
         this.deck = new ArrayList<Integer>();
@@ -78,9 +78,15 @@ public class MarioCards extends GameScene {
                                     System.out.println("-----TERMINO EL JUEGO-----");
                                     if(checkWinner()==true){
                                         System.out.println("YOU WIN!!!");
+                                        MarioCards.super.showDialog("Player Wins!!");
+                                        int playerTurn=(int)MarioCards.super.getSceneDirector().getGameLog().get("PlayerTurn");
+                                        MarioCards.super.getSceneDirector().getPlayerList().get(playerTurn).setCurrentNodeState(1);
                                         stop();
                                     }else{
                                         System.out.println("YOU LOSE!!!");
+                                        MarioCards.super.showDialog("Player Lose!!");
+                                        int playerTurn=(int)MarioCards.super.getSceneDirector().getGameLog().get("PlayerTurn");
+                                        MarioCards.super.getSceneDirector().getPlayerList().get(playerTurn).setCurrentNodeState(-1);
                                         stop();
                                     }
                                 }

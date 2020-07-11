@@ -278,6 +278,9 @@ public class MarioSoup extends GameScene {
 
         if(checkWinner()){
             System.out.println("Player Wins");
+            super.showDialog("Player Wins!!");
+            int playerTurn=(int)super.getSceneDirector().getGameLog().get("PlayerTurn");
+            super.getSceneDirector().getPlayerList().get(playerTurn).setCurrentNodeState(1);
             this.stop();
         }else{
             System.out.println("Quedan palabras por encontrar");

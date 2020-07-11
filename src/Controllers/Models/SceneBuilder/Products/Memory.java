@@ -89,9 +89,15 @@ public class Memory extends GameScene {
                                     if(allPairsFound() == true){
                                         if(checkWinner() ==true){
                                             System.out.println("GANO EL PLAYER 1");
+                                            Memory.super.showDialog("Player Wins!!");
+                                            int playerTurn=(int)Memory.super.getSceneDirector().getGameLog().get("PlayerTurn");
+                                            Memory.super.getSceneDirector().getPlayerList().get(playerTurn).setCurrentNodeState(1);
 
                                         }else{
                                             System.out.println("GANO EL PLAYER 2");
+                                            Memory.super.showDialog("Player Lose!!");
+                                            int playerTurn=(int)Memory.super.getSceneDirector().getGameLog().get("PlayerTurn");
+                                            Memory.super.getSceneDirector().getPlayerList().get(playerTurn).setCurrentNodeState(-1);
                                         }
                                         stop();
                                     }

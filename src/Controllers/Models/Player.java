@@ -17,6 +17,7 @@ public class Player {
     //Render System
     private NodeType playerID;
     private int currentNode;
+    private int currentNodeState;
     private Character character;
 
     //Game Components
@@ -35,6 +36,7 @@ public class Player {
 
         //Render System
         this.currentNode=0;
+        this.currentNodeState=1;
         this.createCharacter(portrait);
 
         //Game Components
@@ -129,5 +131,13 @@ public class Player {
 
     public JSONObject getPlayerLog() {
         return playerLog;
+    }
+
+    public int isCurrentNodeState() {
+        return currentNodeState;
+    }
+
+    public void setCurrentNodeState(int currentNodeState) {
+        this.currentNodeState = currentNodeState;
     }
 }

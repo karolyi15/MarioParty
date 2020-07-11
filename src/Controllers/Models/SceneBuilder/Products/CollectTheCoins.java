@@ -68,9 +68,7 @@ public class CollectTheCoins extends GameScene {
                 System.out.println("TOTAL DE PUNTOS: " + counterPoints());
                 //seconds--;
                 //update();
-                if(checkWinner()){
-                    stop();
-                }
+                checkWinner();
             }
         });
     }
@@ -145,11 +143,17 @@ public class CollectTheCoins extends GameScene {
         }
     }
 
-    private boolean checkWinner(){
+    private void checkWinner(){
         if(counterPoints() > 0){
-            return true;
-        }else{
-            return false;
+            CollectTheCoins.super.showDialog("Player Wins!!");
+            int playerTurn=(int)CollectTheCoins.super.getSceneDirector().getGameLog().get("PlayerTurn");
+            CollectTheCoins.super.getSceneDirector().getPlayerList().get(playerTurn).setCurrentNodeState(1);
+            stop();
+        }else if(counterPoints()<=-100){
+            CollectTheCoins.super.showDialog("Player Lose!!");
+            int playerTurn=(int)CollectTheCoins.super.getSceneDirector().getGameLog().get("PlayerTurn");
+            CollectTheCoins.super.getSceneDirector().getPlayerList().get(playerTurn).setCurrentNodeState(-1);
+            stop();
         }
     }
 
