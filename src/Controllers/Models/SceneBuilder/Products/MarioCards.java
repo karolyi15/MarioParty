@@ -408,6 +408,9 @@ public class MarioCards extends GameScene {
         super.getMusicPlayer().stop();
         super.getGameLoop().stop();
 
+        super.getSceneController().getDrawer().setFont(new Font(" Backward", 12));
+        super.getSceneController().getDrawer().setFill(Color.BLACK);
+
         //Reload Main Game
         super.getSceneDirector().buildMainGame();
         //super.getSceneDirector().getMainGame().getGameLoop().start();

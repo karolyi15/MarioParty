@@ -98,6 +98,7 @@ public class BomberMario extends GameScene {
                                             BomberMario.super.getSceneDirector().getPlayerList().get(playerTurn).setCurrentNodeState(1);
                                             stop();
                                         }else{
+                                            contBombers--;
                                             if(contBombers == 0){
                                                 System.out.println("PERDISTE :(");
                                                 int playerTurn=(int)BomberMario.super.getSceneDirector().getGameLog().get("PlayerTurn");
@@ -105,7 +106,7 @@ public class BomberMario extends GameScene {
                                                 BomberMario.super.showDialog("Player Lose!!");
                                                 stop();
                                             }else{
-                                                contBombers--;
+
                                                 System.out.println("Siguiente Bomba");
                                             }
                                         }
@@ -361,6 +362,9 @@ public class BomberMario extends GameScene {
         //Stops Mini Game Execution
         super.getMusicPlayer().stop();
         super.getGameLoop().stop();
+
+        super.getSceneController().getDrawer().setFont(new Font(" Backward", 12));
+        super.getSceneController().getDrawer().setFill(Color.BLACK);
 
         //Reload Main Game
         super.getSceneDirector().buildMainGame();

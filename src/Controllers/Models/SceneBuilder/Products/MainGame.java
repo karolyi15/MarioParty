@@ -561,15 +561,16 @@ public class MainGame extends GameScene {
     }
 
     private void executeFire(){
-        int punishedPlayer=0;
-        while(punishedPlayer==0){
-            int randomPlayer=random.nextInt(super.getPlayerList().size());
-            if(randomPlayer!=this.playerTurn){
-                Player tempPlayer=super.getPlayerList().get(randomPlayer);
-                tempPlayer.setCurrentNode(0);
-                tempPlayer.getCharacter().setPosition(this.relativeBoard.get(tempPlayer.getCurrentNode()).getPositionX(), this.relativeBoard.get(tempPlayer.getCurrentNode()).getPositionY());
-                punishedPlayer+=1;
-            }
+        if(this.playerTurn==super.getPlayerList().size()-1){
+            Player tempPlayer=super.getPlayerList().get(0);
+            tempPlayer.setCurrentNode(0);
+            tempPlayer.getCharacter().setPosition(this.relativeBoard.get(tempPlayer.getCurrentNode()).getPositionX(), this.relativeBoard.get(tempPlayer.getCurrentNode()).getPositionY());
+
+        }else{
+            Player tempPlayer=super.getPlayerList().get(this.playerTurn+1);
+            tempPlayer.setCurrentNode(0);
+            tempPlayer.getCharacter().setPosition(this.relativeBoard.get(tempPlayer.getCurrentNode()).getPositionX(), this.relativeBoard.get(tempPlayer.getCurrentNode()).getPositionY());
+
         }
         super.getPlayerList().get(this.playerTurn).setCurrentNodeState(1);
     }
